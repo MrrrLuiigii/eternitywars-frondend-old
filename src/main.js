@@ -15,9 +15,13 @@ import { Auth0Plugin } from "./auth";
 
 import vuetify from './plugins/vuetify';
 
-//Vue.config.productionTip = false
+import VueNativeSock from 'vue-native-websocket'
 
-//Vue.use(VueSocketio, 'http://localhost:9393');
+Vue.use(VueNativeSock, 'ws://localhost:8082/ws/', {
+reconnection: true, // (Boolean) whether to reconnect automatically (false)
+reconnectionAttempts: 5, // (Number) number of reconnection attempts before giving up (Infinity),
+reconnectionDelay: 3000, // (Number) how long to initially wait before attempting a new (1000)
+})
 
 // Install the authentication plugin here
 Vue.use( Auth0Plugin, {

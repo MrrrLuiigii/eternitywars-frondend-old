@@ -11,7 +11,6 @@
 import lobby from "./lobby";
 
 import axios from "axios";
-import discoveryService from "../../discovery-service/Eureka-service.js";
 
 export default {
   name: "lobbylist",
@@ -26,23 +25,16 @@ export default {
   },
   async mounted() {
     console.log(this.$auth.getTokenSilently());
-    const url = await discoveryService.getInstance("lobby-service");
-    this.$store.dispatch("SaveLobbyService", url.data);
     console.log("test");
     this.LoadLobbies(this.$store.getters.lobbyServiceIP);
   },
   methods: {
-    initService() {
-      discoveryService.getInstance("lobby-service").then(url => {
-        this.$store.dispatch("SaveLobbyService", url.data);
-      });
-    },
-    async LoadLobbies(url) {
+    async LoadLobbies() {
       console.log("test2");
       axios
         .request({
           url: "api/private/lobby/get",
-          baseURL: url,
+          baseURL: "",
           method: "get",
           headers: {
             Authorization: "Bearer " + (await this.$auth.getTokenSilently())

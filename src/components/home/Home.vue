@@ -1,11 +1,11 @@
 <template>
   <div>
     <Friendframe></Friendframe>
+    <button @click="GetUserInformation"></button>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import Friendframe from "../friendsystem/Friendframe"
 
 export default {
@@ -14,32 +14,33 @@ export default {
     Friendframe,
   },
   data() {
-    return {};
+    return {
+            wsMessage: {
+              Subject: null,
+              Action: null,
+              Content: null,
+              Token: null
+        }
+    };
+  },
+  created(){
+    this.$options.sockets.onmessage = (data) => console.log(data)
   },
   mounted() {
-    this.makePlayerInfoRequest();
+    this.GetUserInformation();
 
   },
   methods: {
-    async makePlayerInfoRequest() {
-      axios.request({
-          url: "api/private/user/getByEmail/" + this.$auth.user.email,
-          method: "get",
-          baseURL: url,
-          headers: {
-            Authorization: "Bearer " + await this.$auth.getTokenSilently()
-          }
-        })
-        .then(response => {
-          this.$store.dispatch("SavePlayerInfo", response.data);
-          if (this.$store.state.player.name == null) {
-            this.$router.push("register");
-          }
-        })
-        .catch(e => {
-          console.log(e);
-        });
+    async GetUserInformation() {
+      this.wsMessage.Subject = "USER"
+      this.wsMessage.Action = "GetUserByEmail"
+      this.wsMessage.Content = this.$auth.user.email
+      this.wsMessage.Token = await this.$auth.getTokenSilently()
+      this.$socket.send(JSON.stringify(this.wsMessage))
     },
+    messageReceived(){
+
+    }
   }
 };
 </script>
