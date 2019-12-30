@@ -1,7 +1,7 @@
 <template>
   <div>
     <Friendframe></Friendframe>
-    <button @click="GetUserInformation"></button>
+    <div>{{this.getPlayerInfo}}</div>
   </div>
 </template>
 
@@ -23,12 +23,15 @@ export default {
         }
     };
   },
-  created(){
-    this.$options.sockets.onmessage = (data) => console.log(data)
+  computed: {
+    getPlayerInfo(){
+      return this.$store.getters.getPlayerInfo;
+    }
   },
-  mounted() {
+  created(){
+    this.$options.sockets.onmessage = (data) => this.messageReceived(data)
     this.GetUserInformation();
-
+    
   },
   methods: {
     async GetUserInformation() {
@@ -37,9 +40,20 @@ export default {
       this.wsMessage.Content = this.$auth.user.email
       this.wsMessage.Token = await this.$auth.getTokenSilently()
       this.$socket.send(JSON.stringify(this.wsMessage))
+      console.log(this.wsMessage)
     },
-    messageReceived(){
-
+    checkData(){
+      if(this.getPlayerInfo.username == null){
+        this.$router.push('/register')
+      }
+    },
+    messageReceived(data){
+      const jsonData =JSON.parse(data.data)
+      switch(jsonData.action){
+         case "GetUserByEmail":
+           this.$store.dispatch('SavePlayerInfo',jsonData.content)
+           this.checkData()
+        }
     }
   }
 };

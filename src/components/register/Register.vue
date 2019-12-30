@@ -2,18 +2,17 @@
   <div>
     <h1>please set your username</h1>
     <div>
-      {{ this.$store.state.player }}
-      {{ this.$store.state.userService }}
-      {{ this.$auth.user }}
+      {{this.getPlayerInfo}}
+
       <input
-        v-model="username"
+        v-model="payload.username"
         placeholder="Please fill in your username, that you want to register."
       />
       <!-- <input
         type="text"
         id="username"
       /> -->
-      <button id="register" class="btn" v-on:click="CreateUser">
+      <button id="register" class="btn" v-on:click="registerUsername">
         register
       </button>
     </div>
@@ -21,46 +20,58 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "register",
   data() {
     return {
-      username: null
-    };
+      payload:{
+        username: null,
+      }, 
+      wsMessage: {
+        Subject: null,
+        Action: null,
+        Content: null,
+        Token: null
+    }
+  };
+  },
+    computed: {
+    getPlayerInfo(){
+      return this.$store.getters.getPlayerInfo;
+    }
+  },
+    created(){
+    this.$options.sockets.onmessage = (data) => this.messageReceived(data) 
   },
   mounted() {
-    console.log(this.$store.getters.player);
-    console.log(this.$store.getters.userServiceIP);
+    console.log(this.$store.getters.getPlayerInfo);
   },
   methods: {
-    async CreateUser() {
-      // const url = this.$store.getters.userServiceIP;
-      // console.log(url);
-      // var Username = document.getElementById("username").value;
-      // var Email = this.$auth.user.email;
-      // const token = await this.$auth.getTokenSilently();
-      axios
-        .request({
-          url: "api/private/user/createUser/",
-          method: "post",
-          baseURL: this.$store.getters.userServiceIP,
-          headers: {
-            Authorization: "Bearer " + (await this.$auth.getTokenSilently())
-          },
-          data: {
-            username: this.username,
-            email: this.$auth.user.email
-          }
-        })
-        .then(response => {
-          console.log(response);
-          this.$router.push("gamelobby");
-        })
-        .catch(error => {
-          if (error) throw new Error(error);
-        });
+   async registerUsername(){
+        this.wsMessage.Subject = "USER"
+        this.wsMessage.Action = "AddUser"
+        const cont = this.getPlayerInfo
+        cont.email = this.$auth.user.email
+        cont.username = this.payload.username
+        this.wsMessage.Content = cont
+        this.wsMessage.Token = await this.$auth.getTokenSilently()
+        this.$socket.send(JSON.stringify(this.wsMessage))
+      console.log(this.wsMessage)
+    },
+    checkData(){
+      if(this.getPlayerInfo.username != null){
+        this.$router.push('/')
+        }
+      },
+    messageReceived(data){
+      const jsonData =JSON.parse(data.data)
+      switch(jsonData.action){
+         case "AddUser":
+           console.log(jsonData.content)
+           this.$store.dispatch('SavePlayerInfo',jsonData.content)
+           this.checkData()
+        }
     }
   }
 };
