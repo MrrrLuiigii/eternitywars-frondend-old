@@ -39,28 +39,28 @@ export default {
     },
     getters: {
         onlinefriends: state => {
-            return state.friends.filter(friends => {
-              return friends.accountStatus == "Online";
+            return state.friends.filter(friend => {
+              return friend.accountStatus == "Online";
             });
         },
         offlinefriends: state => {
-            return state.friends.filter(friends => {
-              return friends.accountStatus == "Offline";
+            return state.friends.filter(friend => {
+              return friend.accountStatus == "Offline";
             });
         },
         inLobbyFriends: state => {
-          return state.friends.filter(friends => {
-            return friends.accountStatus == "InLobby";
+          return state.friends.filter(friend => {
+            return friend.accountStatus == "InLobby";
           });
       },
       inGameFriends: state => {
-        return state.friends.filter(friends => {
-          return friends.accountStatus == "inGame";
+        return state.friends.filter(friend => {
+          return friend.accountStatus == "InGame";
         });
     },
         pendingRequests: state => {
-          return state.friends.filter(friends => {
-            return friends.friendStatus == "pending";
+          return state.friends.filter(friend => {
+            return friend.friendStatus == "Pending";
           });
         },
         getfriends: state => {

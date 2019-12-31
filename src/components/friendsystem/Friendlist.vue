@@ -9,13 +9,13 @@
       </v-list>
          <v-list subheader dense>
       <v-subheader>Inlobby Friends</v-subheader>
-             <v-list-item v-for="(friend, index) in onlineFriends" :key="index" @click="startChat(friend)" >
+             <v-list-item v-for="(friend, index) in inLobbyFriends" :key="index" @click="startChat(friend)" >
                     <Friendcard :friend="friend"></Friendcard>
         </v-list-item>
       </v-list>
          <v-list subheader dense>
       <v-subheader>InGame Friends</v-subheader>
-             <v-list-item v-for="(friend, index) in onlineFriends" :key="index" @click="startChat(friend)" >
+             <v-list-item v-for="(friend, index) in inGameFriends" :key="index" @click="startChat(friend)" >
                     <Friendcard :friend="friend"></Friendcard>
         </v-list-item>
       </v-list>
@@ -70,12 +70,12 @@ data() {
       }, 900);
     },
     messageReceived(data){
-      const jsonData =JSON.parse(data.data.friends)
+      const jsonData =JSON.parse(data.data)
       console.log(jsonData)
       switch(jsonData.action){
          case "GETALLFRIENDS":
            console.log(jsonData.content)
-           this.$store.dispatch('SaveFriendData',jsonData.content)
+           this.$store.dispatch('SaveFriendData',jsonData.content.friends)
         }
     },
     startChat(friend){

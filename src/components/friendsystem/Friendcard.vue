@@ -5,7 +5,8 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-        <v-list-item-title v-text="friend.username"></v-list-item-title>
+            <v-list-item-title v-text="friend.username"></v-list-item-title>
+            <v-list-item-subtitle v-text="friend.accountStatus"></v-list-item-subtitle>
         </v-list-item-content>
 
         <v-list-item-icon>
