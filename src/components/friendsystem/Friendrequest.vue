@@ -1,5 +1,5 @@
 <template>
-  <div v-if="pendingRequests != null">
+  <div v-if="pendingRequests == []">
 
         <v-list subheader dense>
       <v-subheader>Pending Friend Requests</v-subheader>

@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <Friendframe></Friendframe>
+  <div> 
     <div>{{this.getPlayerInfo}}</div>
+    <div>{{this.$store.getters.getfriends}}</div>
+    <Friendframe></Friendframe>
   </div>
 </template>
 
@@ -46,14 +47,28 @@ export default {
       if(this.getPlayerInfo.username == null){
         this.$router.push('/register')
       }
+      else{
+          this.registerToServer()
+      }
     },
     messageReceived(data){
+      console.log(data.data)
       const jsonData =JSON.parse(data.data)
       switch(jsonData.action){
          case "GetUserByEmail":
-           this.$store.dispatch('SavePlayerInfo',jsonData.content)
-           this.checkData()
+          this.$store.dispatch('SavePlayerInfo',jsonData.content)
+          console.log(jsonData.content)
+          this.checkData()
         }
+    },
+    async registerToServer(){
+      this.wsMessage.Subject = "REGISTER"
+      this.wsMessage.Action = ""
+      const cont = this.getPlayerInfo
+      this.wsMessage.Content = cont
+      this.wsMessage.Token = await this.$auth.getTokenSilently()
+      this.$socket.send(JSON.stringify(this.wsMessage))
+      console.log(this.wsMessage)
     }
   }
 };

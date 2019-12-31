@@ -1,33 +1,6 @@
 export default {
     state: {
-        friends: [
-            {
-              avatar:
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRHVBpa8tcNHQhs_Rpqf5zpgsqilYxePNVvlxjb8qJzw6-_LWMvw&s",
-              username: "friend1",
-              active: true,
-              online: false
-            },
-            {
-              avatar:
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRHVBpa8tcNHQhs_Rpqf5zpgsqilYxePNVvlxjb8qJzw6-_LWMvw&s",
-              username: "friend2",
-              active: false,
-              online: true
-            }
-          ],
-          pendingFriends: [
-            {
-              avatar:
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRHVBpa8tcNHQhs_Rpqf5zpgsqilYxePNVvlxjb8qJzw6-_LWMvw&s",
-              username: "PendingFriend1"
-            },
-            {
-              avatar:
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRHVBpa8tcNHQhs_Rpqf5zpgsqilYxePNVvlxjb8qJzw6-_LWMvw&s",
-              username: "PendingFriend2"
-            }
-          ]    
+        friends: []
     },
     mutations: {
         SEND_FRIEND_REQUEST(state, friendname) {
@@ -59,22 +32,41 @@ export default {
         console.log(friendrequest);
         //TODO implement
       },
+      SAVE_FRIEND_DATA(state, friendData) {
+        state.friends = friendData
+        //TODO implement
+      },
     },
     getters: {
         onlinefriends: state => {
             return state.friends.filter(friends => {
-              return friends.online == true;
+              return friends.accountStatus == "Online";
             });
         },
         offlinefriends: state => {
             return state.friends.filter(friends => {
-              return friends.online == false;
+              return friends.accountStatus == "Offline";
             });
         },
+        inLobbyFriends: state => {
+          return state.friends.filter(friends => {
+            return friends.accountStatus == "InLobby";
+          });
+      },
+      inGameFriends: state => {
+        return state.friends.filter(friends => {
+          return friends.accountStatus == "inGame";
+        });
+    },
         pendingRequests: state => {
-            return state.pendingFriends;
-          }
+          return state.friends.filter(friends => {
+            return friends.friendStatus == "pending";
+          });
         },
+        getfriends: state => {
+          return state.friends;
+      }
+      },
     actions: {
         sendFriendRequest({ commit }, friendname) {
             commit("SEND_FRIEND_REQUEST", friendname);
@@ -87,6 +79,9 @@ export default {
           },
           blockFriendRequest({ commit }, friendRequest) {
             commit("DELETE_FRIEND_REQUEST", friendRequest);
+          },
+          SaveFriendData({ commit }, friendData) {
+            commit("SAVE_FRIEND_DATA", friendData);
           }
     }
 }

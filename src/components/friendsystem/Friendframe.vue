@@ -1,4 +1,4 @@
-<template>
+<template class="index">
  <v-sheet
     height=100vh
     class="overflow-hidden"
@@ -59,5 +59,8 @@ components:{
 </script>
 
 <style>
-
+.index{
+  position:absolute;
+  z-index: 1000;
+}
 </style>
