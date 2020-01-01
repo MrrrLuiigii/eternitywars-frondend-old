@@ -5,7 +5,7 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>{{ this.$auth.user.name }}</v-list-item-title>
+          <v-list-item-title>{{ this.$store.getters.getPlayerInfo.username }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 </template>

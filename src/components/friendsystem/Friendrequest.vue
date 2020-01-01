@@ -1,5 +1,5 @@
 <template>
-  <div v-if="pendingRequests == []">
+  <div v-if="pendingRequests !== []">
 
         <v-list subheader dense>
       <v-subheader>Pending Friend Requests</v-subheader>
@@ -33,18 +33,33 @@ export default {
         return this.$store.getters.pendingRequests;
         },
     },
+    data() {
+    return {
+      wsMessage: {
+        Subject: null,
+        Action: null,
+        Content: null,
+        Token: null,
+        friendname: null
+    }
+  };
+  },
     methods:{
-      acceptUser(requests){
+     async acceptUser(requests){
         console.log(requests)
-        this.$store.dispatch('acceptFriendRequest', requests);
+            this.wsMessage.Subject = "FRIEND"
+          this.wsMessage.Action = "ACCEPTREQUEST"
+          this.wsMessage.Content = this.$store.getters.getPlayerInfo;
+          this.wsMessage.Token = await this.$auth.getTokenSilently()
+          this.wsMessage.friendname = requests.username
+          this.$socket.send(JSON.stringify(this.wsMessage))
+          console.log(this.wsMessage)
       },
-      denyUser(requests){
+      async denyUser(requests){
         console.log(requests)
-        this.$store.dispatch('denyFriendRequest', requests);
       },
-      blockUser(requests){
+     async blockUser(requests){
         console.log(requests)
-        this.$store.dispatch('blockFriendRequest', requests);
       },
     }
 }

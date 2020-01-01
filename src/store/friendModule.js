@@ -12,26 +12,6 @@ export default {
               online: true
             });
         },
-        DELETE_FRIEND_REQUEST(state, friendrequest) {
-            let index = state.pendingFriends.indexof(friendrequest);
-            state.pendingFriends.splice(index, 1);
-        },
-                  
-    ACCEPT_FRIEND_REQUEST(state, friendrequest) {
-        console.log(state);
-        console.log(friendrequest);
-        //TODO implement
-      },
-      DENY_FRIEND_REQUEST(state, friendrequest) {
-        console.log(state);
-        console.log(friendrequest);
-        //TODO implement
-      },
-      BLOCK_FRIEND_REQUEST(state, friendrequest) {
-        console.log(state);
-        console.log(friendrequest);
-        //TODO implement
-      },
       SAVE_FRIEND_DATA(state, friendData) {
         state.friends = friendData
         //TODO implement
@@ -40,27 +20,27 @@ export default {
     getters: {
         onlinefriends: state => {
             return state.friends.filter(friend => {
-              return friend.accountStatus == "Online";
+              return friend.accountStatus == "Online" && friend.friendStatus == "Accepted";
             });
         },
         offlinefriends: state => {
             return state.friends.filter(friend => {
-              return friend.accountStatus == "Offline";
+              return friend.accountStatus == "Offline" && friend.friendStatus == "Accepted";
             });
         },
         inLobbyFriends: state => {
           return state.friends.filter(friend => {
-            return friend.accountStatus == "InLobby";
+            return friend.accountStatus == "InLobby" && friend.friendStatus == "Accepted";
           });
       },
       inGameFriends: state => {
         return state.friends.filter(friend => {
-          return friend.accountStatus == "InGame";
+          return friend.accountStatus == "InGame" && friend.friendStatus == "Accepted";
         });
     },
         pendingRequests: state => {
           return state.friends.filter(friend => {
-            return friend.friendStatus == "Pending";
+            return friend.friendStatus == "Requested";
           });
         },
         getfriends: state => {
@@ -70,15 +50,6 @@ export default {
     actions: {
         sendFriendRequest({ commit }, friendname) {
             commit("SEND_FRIEND_REQUEST", friendname);
-          },
-          acceptFriendRequest({ commit }, friendRequest) {
-            commit("DELETE_FRIEND_REQUEST", friendRequest);
-          },
-          denyFriendRequest({ commit }, friendRequest) {
-            commit("DELETE_FRIEND_REQUEST", friendRequest);
-          },
-          blockFriendRequest({ commit }, friendRequest) {
-            commit("DELETE_FRIEND_REQUEST", friendRequest);
           },
           SaveFriendData({ commit }, friendData) {
             commit("SAVE_FRIEND_DATA", friendData);
