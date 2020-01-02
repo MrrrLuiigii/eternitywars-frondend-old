@@ -39,8 +39,7 @@ methods:{
         this.wsMessage.Token = await this.$auth.getTokenSilently()
         this.$socket.send(JSON.stringify(this.wsMessage))
         console.log(this.wsMessage)
-            this.$store.dispatch('sendFriendRequest', this.friendname);
-            this.friendname = "";
+            this.wsMessage.friendname = "";
         }
     }
 }

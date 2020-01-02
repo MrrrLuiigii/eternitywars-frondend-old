@@ -25,6 +25,12 @@
                     <Friendcard :friend="friend"></Friendcard>
         </v-list-item>
       </v-list>
+        <v-list subheader dense>
+      <v-subheader>Blocked Users</v-subheader>
+             <v-list-item v-for="(friend, index) in blockedUsers" :key="index">
+                    <Friendcard :friend="friend"></Friendcard>
+        </v-list-item>
+      </v-list>
 
     </div>
 </template>
@@ -94,6 +100,9 @@ data() {
       },
     offlineFriends() {
       return this.$store.getters.offlinefriends;
+      },
+      blockedUsers() {
+      return this.$store.getters.blockedUsers;
       },
     },
 }

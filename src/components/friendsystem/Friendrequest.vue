@@ -32,15 +32,17 @@ export default {
     pendingRequests() {
         return this.$store.getters.pendingRequests;
         },
+          getPlayerInfo(){
+        return this.$store.getters.getPlayerInfo;
+    }
     },
     data() {
     return {
       wsMessage: {
         Subject: null,
         Action: null,
-        Content: null,
+        Content: {user: null, friend: null},
         Token: null,
-        friendname: null
     }
   };
   },
@@ -49,17 +51,32 @@ export default {
         console.log(requests)
             this.wsMessage.Subject = "FRIEND"
           this.wsMessage.Action = "ACCEPTREQUEST"
-          this.wsMessage.Content = this.$store.getters.getPlayerInfo;
-          this.wsMessage.Token = await this.$auth.getTokenSilently()
-          this.wsMessage.friendname = requests.username
-          this.$socket.send(JSON.stringify(this.wsMessage))
-          console.log(this.wsMessage)
+         const cont = this.getPlayerInfo
+        this.wsMessage.Content.user = cont
+        this.wsMessage.Content.friend = requests
+        this.wsMessage.Token = await this.$auth.getTokenSilently()
+        this.$socket.send(JSON.stringify(this.wsMessage))
+        console.log(this.wsMessage)
       },
       async denyUser(requests){
-        console.log(requests)
+             this.wsMessage.Subject = "FRIEND"
+          this.wsMessage.Action = "REMOVEFRIEND"
+         const cont = this.getPlayerInfo
+        this.wsMessage.Content.user = cont
+        this.wsMessage.Content.friend = requests
+        this.wsMessage.Token = await this.$auth.getTokenSilently()
+        this.$socket.send(JSON.stringify(this.wsMessage))
+        console.log(this.wsMessage)
       },
      async blockUser(requests){
-        console.log(requests)
+             this.wsMessage.Subject = "FRIEND"
+          this.wsMessage.Action = "BLOCKREQUEST"
+         const cont = this.getPlayerInfo
+        this.wsMessage.Content.user = cont
+        this.wsMessage.Content.friend = requests
+        this.wsMessage.Token = await this.$auth.getTokenSilently()
+        this.$socket.send(JSON.stringify(this.wsMessage))
+        console.log(this.wsMessage)
       },
     }
 }

@@ -43,6 +43,11 @@ export default {
             return friend.friendStatus == "Requested";
           });
         },
+        blockedUsers: state => {
+          return state.friends.filter(friend => {
+            return friend.friendStatus == "Blocked";
+          });
+        },
         getfriends: state => {
           return state.friends;
       }

@@ -53,7 +53,7 @@ export default {
     },
     messageReceived(data){
       console.log(data.data)
-      const jsonData =JSON.parse(data.data)
+      const jsonData = JSON.parse(data.data)
       switch(jsonData.action){
          case "GetUserByEmail":
           this.$store.dispatch('SavePlayerInfo',jsonData.content)

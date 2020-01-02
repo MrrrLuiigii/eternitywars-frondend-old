@@ -65,7 +65,7 @@ export default {
         }
       },
     messageReceived(data){
-      const jsonData =JSON.parse(data.data)
+      const jsonData = JSON.parse(data.data)
       switch(jsonData.action){
          case "AddUser":
            console.log(jsonData.content)
