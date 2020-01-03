@@ -91,18 +91,18 @@ export default {
     background-color: #3a5248;
     text-align: center;
 
-    font-size: 20px;
+    font-size: 2vh;
   }
 
   h1 {
-    font-size: 50px;
+    font-size: 5vh;
     font-weight: bold;
   }
 
   img {
     height: 100%;
     width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 5vh;
   }
 
   input {
