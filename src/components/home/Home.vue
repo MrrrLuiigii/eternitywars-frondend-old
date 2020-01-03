@@ -1,18 +1,21 @@
 <template>
   <div> 
-    <div>{{this.getPlayerInfo}}</div>
-    <div>{{this.$store.getters.getfriends}}</div>
+    <chatlist></chatlist>
     <Friendframe></Friendframe>
   </div>
 </template>
 
 <script>
 import Friendframe from "../friendsystem/Friendframe"
+import chatlist from "../chat/chatlist"
 
 export default {
   name: "Home",
   components:{ 
     Friendframe,
+    chatlist
+  },
+  mounted(){
   },
   data() {
     return {
@@ -21,7 +24,8 @@ export default {
               Action: null,
               Content: null,
               Token: null
-        }
+        },
+        Chatcontainer: null
     };
   },
   computed: {

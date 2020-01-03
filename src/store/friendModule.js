@@ -14,7 +14,6 @@ export default {
         },
       SAVE_FRIEND_DATA(state, friendData) {
         state.friends = friendData
-        //TODO implement
       },
     },
     getters: {

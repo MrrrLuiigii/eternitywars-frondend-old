@@ -15,6 +15,8 @@ import { Auth0Plugin } from "./auth";
 
 import vuetify from './plugins/vuetify';
 
+
+
 import VueNativeSock from 'vue-native-websocket'
 
 Vue.use(VueNativeSock, 'ws://localhost:8082/ws/', {

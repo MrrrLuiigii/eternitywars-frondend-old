@@ -31,7 +31,6 @@
                     <Friendcard :friend="friend"></Friendcard>
         </v-list-item>
       </v-list>
-
     </div>
 </template>
 
@@ -41,7 +40,7 @@ import Friendcard from "./Friendcard"
 export default {
 name: "Friendlist",
 components:{
-    Friendcard
+    Friendcard,
 },
 data() {
     return {
@@ -62,9 +61,7 @@ data() {
         const token = await this.$auth.getTokenSilently()
       setTimeout(() => {
          const cont = this.$store.getters.getPlayerInfo;
-         console.log("slaap")
         if(cont.username != null){
-          console.log("wakker")
           this.wsMessage.Subject = "FRIEND"
           this.wsMessage.Action = "GETALLFRIENDS"
           cont.email = this.$auth.user.email
@@ -85,7 +82,8 @@ data() {
         }
     },
     startChat(friend){
-      console.log(friend)
+      this.$store.dispatch('addChat', friend)
+      console.log(this.$store.getters.getChatList)
    }
   },
   computed: {
