@@ -39,11 +39,6 @@ export default {
     messageReceived(data){
              const jsonData =JSON.parse(data.data)
       console.log(jsonData)
-      switch(jsonData.action){
-         case "GETALLFRIENDS":
-           console.log(jsonData.content)
-           this.$store.dispatch('SaveFriendData',jsonData.content.friends)
-        }
     }
   }
 };
