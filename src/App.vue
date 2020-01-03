@@ -41,6 +41,7 @@
     text-align: center;
     background-image: url("./assets/buttonLong.png");
     background-size: 100% 100%;
+    margin: 0.5vh;
   }
 
   .artButton {
@@ -49,6 +50,7 @@
     text-align: center;
     background-image: url("./assets/button.png");
     background-size: 100% 100%;
+    margin: 0.5vh;
   }
 
   ::-webkit-scrollbar {

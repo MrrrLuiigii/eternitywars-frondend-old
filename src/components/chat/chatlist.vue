@@ -1,9 +1,7 @@
 <template>
-  <div> 
-      <div v-for="(friend, index) in this.$store.getters.getChatList" :key="index"> 
-          <chatbox> </chatbox>
-      </div>
-  </div>
+<div>
+          <chatbox v-for="(friend, index) in this.$store.getters.getChatList" :key="index" class="ma-3 pa-6"> </chatbox>
+          </div>
 </template>
 
 <script>

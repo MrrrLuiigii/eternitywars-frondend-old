@@ -2,6 +2,8 @@
 <div>
     <img id="logo" src="../../assets/logo.png">
 
+    <navbar></navbar>
+
     <Friendframe></Friendframe>
     
     <chatlist></chatlist>
@@ -12,12 +14,14 @@
 <script>
 import Friendframe from "../friendsystem/Friendframe"
 import chatlist from "../chat/chatlist"
+import navbar from "../nav/nav"
 
 export default {
   name: "Home",
   components:{ 
     Friendframe,
-    chatlist
+    chatlist,
+    navbar
   },
   mounted(){
   },
