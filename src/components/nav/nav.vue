@@ -1,32 +1,40 @@
 <template>
 <div>
   <div>
+    <Router-link to="/lobbies">
         <button
       class="artXButton"
     >
       Play
     </button>
+    </router-link>
   </div>
 <div>
+      <Router-link to="/deckbuilder">
         <button
       class="artXButton"
     >
       DeckBuilder
     </button>
+        </router-link>
   </div>
   <div>
+        <Router-link to="/shop">
         <button
       class="artXButton"
     >
       Shop
     </button>
+        </router-link>
   </div>
   <div>
+        <Router-link to="/quests">
         <button
       class="artXButton"
     >
       Quests
     </button>
+        </router-link>
   </div>
   <div>
           <button

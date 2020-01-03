@@ -1,12 +1,20 @@
 <template>
   <div id="app">
     <router-view/>
+    <Friendframe></Friendframe>
+    <chatlist></chatlist>
   </div>
 </template>
 
 
 <script>
+import Friendframe from "./components/friendsystem/Friendframe"
+import chatlist from "./components/chat/chatlist"
   export default {
+    components:{
+      Friendframe,
+      chatlist
+    },
   name: "app",
   }
 </script>

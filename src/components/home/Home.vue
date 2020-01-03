@@ -4,23 +4,17 @@
 
     <navbar></navbar>
 
-    <Friendframe></Friendframe>
-    
-    <chatlist></chatlist>
 
   </div>
 </template>
 
 <script>
-import Friendframe from "../friendsystem/Friendframe"
-import chatlist from "../chat/chatlist"
+
 import navbar from "../nav/nav"
 
 export default {
   name: "Home",
   components:{ 
-    Friendframe,
-    chatlist,
     navbar
   },
   mounted(){
