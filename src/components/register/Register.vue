@@ -1,20 +1,28 @@
 <template>
   <div>
-    <h1>please set your username</h1>
-    <div>
-      {{this.getPlayerInfo}}
 
+    <img id="logo" src="../../assets/logo.png">
+
+    <br>
+    <br>
+
+    <h1>Welcome, {{ this.$auth.user.name }}</h1>
+    <p>Since this is your first login, you have to set a username to proceed.</p>
+
+
+    <div>
       <input
         v-model="payload.username"
-        placeholder="Please fill in your username, that you want to register."
+        placeholder="Set username..."
       />
-      <!-- <input
-        type="text"
-        id="username"
-      /> -->
+
+      <br>
+      <br>
+
       <button id="register" class="btn" v-on:click="registerUsername">
-        register
+        Register
       </button>
+
     </div>
   </div>
 </template>
@@ -77,4 +85,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  h1 {
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  input {
+    width: 350px;
+    height: 40px;
+    text-align: center;
+    background-image: url("../../assets/buttonXLong.png");
+    background-size: 100% 100%;
+  }  
+
+  button {
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    background-image: url("../../assets/button.png");
+    background-size: 100% 100%;
+  }
+</style>

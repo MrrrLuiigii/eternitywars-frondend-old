@@ -1,7 +1,11 @@
 <template>
-  <div> 
-    <chatlist></chatlist>
+<div>
+    <img id="logo" src="../../assets/logo.png">
+
     <Friendframe></Friendframe>
+    
+    <chatlist></chatlist>
+
   </div>
 </template>
 
@@ -78,5 +82,41 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+  body {
+    color: #35252f;
+    background-color: #3a5248;
+    text-align: center;
+
+    font-size: 2vh;
+  }
+
+  h1 {
+    font-size: 5vh;
+    font-weight: bold;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 5vh;
+  }
+
+  input {
+    width: 350px;
+    height: 40px;
+    text-align: center;
+    background-image: url("../../assets/buttonXLong.png");
+    background-size: 100% 100%;
+  }  
+
+  button {
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    background-image: url("../../assets/button.png");
+    background-size: 100% 100%;
+  }
+
 </style>

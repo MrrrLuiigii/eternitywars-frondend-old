@@ -32,6 +32,10 @@ function createWindow () {
     win.loadURL('app://./index.html')
   }
 
+  win.maximize()
+  // win.setResizable(false)
+  // win.removeMenu(true)
+
   win.on('closed', () => {
     win = null
   })

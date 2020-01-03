@@ -1,39 +1,34 @@
 <template class="index">
- <v-sheet
-    height=100vh
-    class="overflow-hidden"
-    style="position: relative;"
+<div>
+  <button
+    class="artButton"
+    @click.stop="drawer = !drawer"
   >
-    <v-container class="fill-height">
-        <v-btn
-          dark
-          @click.stop="drawer = !drawer"
-        >
-          Friends
-        </v-btn>
-    </v-container>
+    Friends
+  </button>
 
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      temporary
-      right
-    >
-        <Userstatus/>
+  <v-navigation-drawer
+    v-model="drawer"
+    absolute
+    temporary
+    right
+  >
+    <Userstatus/>
 
-      <v-divider></v-divider>
+    <v-divider></v-divider>
 
-      <Friendadd/>
+    <Friendadd/>
 
-      <v-divider></v-divider>
+    <v-divider></v-divider>
 
-      <Friendrequest/>
+    <Friendrequest/>
 
-      <v-divider></v-divider>
+    <v-divider></v-divider>
 
-      <Friendlist/>
-    </v-navigation-drawer>
-  </v-sheet>
+    <Friendlist/>
+  </v-navigation-drawer>
+</div>
+
 </template>
 
 <script>
@@ -43,24 +38,24 @@ import Friendlist from './Friendlist'
 import Friendrequest from './Friendrequest'
 
 export default {
-data(){
-    return{
-         drawer: null,
-    }
-},
-name: "Friendframe",
-components:{
-    Userstatus,
-    Friendadd,
-    Friendlist,
-    Friendrequest
-}
+  data(){
+      return{
+          drawer: null,
+      }
+  },
+  name: "Friendframe",
+  components:{
+      Userstatus,
+      Friendadd,
+      Friendlist,
+      Friendrequest
+  }
 }
 </script>
 
 <style>
-.index{
-  position:absolute;
-  z-index: 1000;
-}
+  .index{
+    position:absolute;
+    z-index: 1000;
+  }
 </style>
