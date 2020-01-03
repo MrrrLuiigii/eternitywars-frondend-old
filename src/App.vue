@@ -19,28 +19,39 @@
 
   #app {
     font-family: "RetroComputer";
+    color: #35252f;
+    background-color: #3a5248;
+    text-align: center;
+    font-size: 20px;
     height: 100vh;
-    width: 50%;
+    width: 100%;
     overflow: hidden;
+  }
+
+  #logo {
+    height: 75%;
+    width: 75%;
+    margin-bottom: 5vh;
+    margin-top: 5vh;
+  }
+
+  .artXButton {
+    width: 350px;
+    height: 50px;
+    text-align: center;
+    background-image: url("./assets/buttonLong.png");
+    background-size: 100% 100%;
+  }
+
+  .artButton {
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    background-image: url("./assets/button.png");
+    background-size: 100% 100%;
   }
 
   ::-webkit-scrollbar {
     display:none;
-  }
-
-  body {
-    font-family: "RetroComputer";
-    background-color: #3a5248;
-    display: grid;
-    grid-template-rows: auto;
-    justify-items: center;
-    padding-top: 50px;
-    overflow: hidden;
-  }
-
-  body,
-  html {
-    margin: 0;
-    height: 100%;
   }
 </style>

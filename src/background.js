@@ -31,7 +31,7 @@ function createWindow () {
   }
 
   win.maximize()
-  win.setResizable(false)
+  // win.setResizable(false)
   // win.removeMenu(true)
 
   win.on('closed', () => {

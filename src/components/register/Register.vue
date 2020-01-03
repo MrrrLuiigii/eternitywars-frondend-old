@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <img src="../../assets/logo.png">
+    <img id="logo" src="../../assets/logo.png">
 
     <br>
     <br>
@@ -85,24 +85,10 @@ export default {
 };
 </script>
 
-<style>
-  body {
-    color: #35252f;
-    background-color: #3a5248;
-    text-align: center;
-
-    font-size: 2vh;
-  }
-
+<style scoped>
   h1 {
-    font-size: 5vh;
+    font-size: 50px;
     font-weight: bold;
-  }
-
-  img {
-    height: 100%;
-    width: 100%;
-    margin-bottom: 5vh;
   }
 
   input {
