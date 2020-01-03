@@ -1,9 +1,11 @@
 <template>
-  <div id="app">
-    <router-view/>
-    <Friendframe></Friendframe>
-    <chatlist></chatlist>
-  </div>
+<v-app>
+    <div id="app">
+      <router-view/>
+      <Friendframe></Friendframe>
+      <chatlist></chatlist>
+    </div>
+  </v-app>
 </template>
 
 
@@ -16,6 +18,7 @@ import chatlist from "./components/chat/chatlist"
       chatlist
     },
   name: "app",
+  
   }
 </script>
 

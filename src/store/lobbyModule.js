@@ -15,15 +15,20 @@ export default {
 
     },
     getters: {
-    lobbies: state => {
+    getLobbies: state => {
         return state.lobbies;
         },
+     getLobbyByObject(state){
+        return toFindLobby => state.lobbies.filter(lobby =>{
+            return lobby === toFindLobby
+        });
+    }    
     },
     actions: {
     SaveLobbies({ commit }, lobbies) {
         commit("SAVE_LOBBIES", lobbies);
         },
-        addNewLobby({ commit }, lobby) {
+    addNewLobby({ commit }, lobby) {
         commit("ADD_NEW_LOBBY", lobby);
         },
     }

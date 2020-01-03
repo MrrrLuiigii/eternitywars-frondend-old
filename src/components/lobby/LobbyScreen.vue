@@ -19,6 +19,6 @@ export default {
     lobbyform,
     lobbylist,
     homebutton
-  }
+  },
 };
 </script>

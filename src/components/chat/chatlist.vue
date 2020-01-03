@@ -37,8 +37,7 @@ export default {
   },
   methods: {
     messageReceived(data){
-             const jsonData =JSON.parse(data.data)
-      console.log(jsonData)
+            return data
     }
   }
 };

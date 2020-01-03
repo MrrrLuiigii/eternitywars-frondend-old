@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div v-for="(lobby, index) in lobbies" :key="index" :lobby="lobby">
+    <div v-for="(lobby, index) in getlobbies" :key="index" :lobby="lobby">
       <lobby :lobby="lobby"></lobby>
-      <button @click="JoinLobby(lobby)">join</button>
     </div>
   </div>
 </template>
@@ -10,47 +9,60 @@
 <script>
 import lobby from "./lobby";
 
-import axios from "axios";
-
 export default {
   name: "lobbylist",
   components: {
     lobby
   },
+     data() {
+    return {
+            wsMessage: {
+              Subject: null,
+              Action: null,
+              Content: null,
+              Token: null
+        },
+        Chatcontainer: null
+    };
+  },
   computed: {
-    lobbies() {
-      console.log(this.$store.getters.lobbies)
-      return this.$store.getters.lobbies;
+    getlobbies(){
+      return this.$store.getters.getLobbies;
     }
   },
-  async mounted() {
-    console.log(this.$auth.getTokenSilently());
-    console.log("test");
-    this.LoadLobbies(this.$store.getters.lobbyServiceIP);
+  created(){
+    this.$options.sockets.onmessage = (data) => this.messageReceived(data)
+    this.loadNewLobbies();
+    
   },
   methods: {
-    async LoadLobbies() {
-      console.log("test2");
-      axios
-        .request({
-          url: "api/private/lobby/get",
-          baseURL: "",
-          method: "get",
-          headers: {
-            Authorization: "Bearer " + (await this.$auth.getTokenSilently())
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-          this.$store.dispatch("SaveLobbies", response.data);
-        });
+    async loadNewLobbies(){
+      this.wsMessage.Subject = "LOBBY"
+      this.wsMessage.Action = "GETLOBBIES"
+      const cont = this.$store.getters.getPlayerInfo
+      this.wsMessage.Content = cont
+      this.wsMessage.Token = await this.$auth.getTokenSilently()
+      this.$socket.send(JSON.stringify(this.wsMessage))
+      console.log(this.wsMessage)
     },
-    JoinLobby(lobby) {
-      console.log("test4");
+    joinLobby(a){
       this.$router.push({
         name: "gamelobby",
-        params: { Lobby: lobby }
+        params: { Lobby: a }
       });
+    },
+    messageReceived(data){
+      console.log(data.data)
+      const jsonData = JSON.parse(data.data)
+      switch(jsonData.action){
+        case "GETLOBBIES":
+        this.$store.dispatch('SaveLobbies',jsonData.content.lobbies)
+        console.log(jsonData.content)
+      switch(jsonData.action){
+        case "JOINLOBBY":
+        this.joinLobby(jsonData.content)
+      }
+      }
     }
   }
 };
