@@ -1,21 +1,16 @@
 <template>
   <div>
-    <div>{{ this.lobby.id }}</div>
-    <div>{{ this.lobby.name }}</div>
-    <div>{{ this.lobby.description }}</div>
-    <button @click="JoinLobby(this.datalobby)">join</button>
+    <div>{{ this.datalobby.id }}</div>
+    <div>{{ this.datalobby.name }}</div>
+    <div>{{ this.datalobby.description }}</div>
+    <button v-on:click="joinLobby">join</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "lobby",
-  props: {
-    lobby: {
-      type: Object,
-      required: true,
-    }
-  },
+  name: "Lobby",
+  props: ['lobby'],
 data() {
   return {
     datalobby: this.lobby,
@@ -23,15 +18,22 @@ data() {
         Subject: null,
         Action: null,
         Content: null,
+        Player: null,
         Token: null
       },
     }
  },
  methods: {
-   joinLobby(a){
-     console.log(a)
-     console.log(this.$store.getters.getLobbyByObject(this.datalobby))
-   }
+   async joinLobby(){
+    console.log(this.datalobby)
+    this.wsMessage.Subject = "LOBBY"
+    this.wsMessage.Action = "JOINLOBBY"
+    this.wsMessage.Content = this.datalobby
+    this.wsMessage.Player = this.$store.getters.getPlayerInfo
+    this.wsMessage.Token = await this.$auth.getTokenSilently()
+    this.$socket.send(JSON.stringify(this.wsMessage))
+    console.log(this.wsMessage)
+   },
  }
 };
 </script>

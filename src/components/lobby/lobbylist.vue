@@ -45,12 +45,6 @@ export default {
       this.$socket.send(JSON.stringify(this.wsMessage))
       console.log(this.wsMessage)
     },
-    joinLobby(a){
-      this.$router.push({
-        name: "gamelobby",
-        params: { Lobby: a }
-      });
-    },
     messageReceived(data){
       console.log(data.data)
       const jsonData = JSON.parse(data.data)
@@ -60,6 +54,11 @@ export default {
         console.log(jsonData.content)
       switch(jsonData.action){
         case "JOINLOBBY":
+
+        this.$router.push({
+        name: 'gamelobby',
+        params: { Lobby: jsonData.content }
+      });
         this.joinLobby(jsonData.content)
       }
       }

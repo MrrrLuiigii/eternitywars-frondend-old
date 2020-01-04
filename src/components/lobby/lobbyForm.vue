@@ -60,7 +60,6 @@ export default {
 
         };
     },
-
     methods: {
         async addNewLobby(){
             this.dialog = false
