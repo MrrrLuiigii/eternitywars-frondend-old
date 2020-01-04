@@ -1,7 +1,18 @@
 <template>
     <div class="hand">
-        <cardslot/>
+        <div class="handContainer">
+            <cardslot/>
+            <cardslot/>
+            <cardslot/>
+            <cardslot/>
+            <cardslot/>
+            <cardslot/>
+            <cardslot/>
+            <cardslot/>
+            <cardslot/>
+        </div>
     </div>
+    
 </template>
 
 <script>
@@ -20,8 +31,19 @@ export default {
 </script>
 
 <style>
+    .handContainer {
+        justify-content: center;
+        display: flex;
+
+        margin: auto;
+        padding-left: 6vw;
+        padding-top: 9.5vh;
+
+        width: 100%;
+    }
+
     .hand {
-        height: 25%;
+        width: 100%;
     }
 
 </style>

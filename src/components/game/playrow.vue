@@ -1,6 +1,13 @@
 <template>
   <div class="playRow">
+    <div class="playRowContainer">
         <cardslot/>
+        <cardslot/>
+        <cardslot/>
+        <cardslot/>
+        <cardslot/>
+        <cardslot/>
+    </div>
   </div>
 </template>
 
@@ -20,8 +27,17 @@ export default {
 </script>
 
 <style>
+    .playRowContainer {
+        justify-content: center;
+        display: flex;
+
+        margin: auto;
+        padding-left: 3vw;
+
+        width: 100%;
+    }
+
     .playRow {
-        width: 100vw;
-        height: 25%;
+        width: 100%;
     }
 </style>

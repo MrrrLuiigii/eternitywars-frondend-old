@@ -20,10 +20,12 @@
 </script>
 
 <style>
-    .cardslot {
+    .cardSlot {
+        float: left;
 
+        margin: 0 9px 0 9px;
 
-        width: 10%;
+        width: 5vw;
         height: 15vh;
     }
 </style>
