@@ -36,6 +36,17 @@
     </button>
         </router-link>
   </div>
+
+<div>
+        <Router-link to="/game">
+        <button
+      class="artXButton"
+    >
+      Game
+    </button>
+        </router-link>
+  </div>
+
   <div>
           <button
         class="artButton"
