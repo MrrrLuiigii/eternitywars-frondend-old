@@ -61,7 +61,7 @@ data() {
         const token = await this.$auth.getTokenSilently()
       setTimeout(() => {
          const cont = this.$store.getters.getPlayerInfo;
-        if(cont.username != null){
+        if(cont.username !== null){
           this.wsMessage.Subject = "FRIEND"
           this.wsMessage.Action = "GETALLFRIENDS"
           cont.email = this.$auth.user.email
