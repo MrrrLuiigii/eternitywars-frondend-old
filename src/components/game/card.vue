@@ -46,17 +46,29 @@
 
 <style>
 
-    .card {
-        position: relative;
+    /* .card :focus() {
+        border: 1px solid rgb(86, 180, 239);
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
+    } */
 
-        background-color: burlywood;
+    .card {
+        z-index: 99;
+
+        position: absolute;
+
+        background-color: transparent;
+        background-image: url("../../assets/game/card/card.png");
+        background-size: 100% 100%;
+
+        border: none;
         
-        border-radius: 50%;
-        width: 100px;
-        height: 15vh;
+        margin: 0;
+        width: 5vw;
+        height: 14vh;
     }
 
     .cardName {
+        color: white;
         margin: auto;
 
         text-align: center;
@@ -70,7 +82,6 @@
 
         font-weight: bold;
 
-        background-color: red;
         /* background-image: url("../../assets/card/attack.png"); */
         /* background-size: 100% 100%; */
         /* object-fit: cover; */
@@ -87,8 +98,6 @@
 
         font-weight: bold;
 
-        background-color: blue;
-
         border-radius: 50%;
         width: 20%;
         height: 20%;
@@ -101,8 +110,6 @@
 
         font-weight: bold;
 
-        background-color: lightblue;
-
         border-radius: 50%;
         width: 20%;
         height: 20%;
@@ -114,8 +121,6 @@
         right: 0;
 
         font-weight: bold;
-
-        background-color: gray;
 
         border-radius: 50%;
         width: 20%;
