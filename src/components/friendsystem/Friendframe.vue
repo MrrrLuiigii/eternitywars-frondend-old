@@ -1,7 +1,7 @@
 <template class="index">
 <div>
   <button
-    class="artButton"
+    class="artButton friendButton"
     @click.stop="drawer = !drawer"
   >
     Friends
@@ -54,8 +54,14 @@ export default {
 </script>
 
 <style>
-  .index{
-    position:absolute;
+  .index {
+    position: absolute;
     z-index: 1000;
+  }
+
+  .friendButton {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
   }
 </style>
