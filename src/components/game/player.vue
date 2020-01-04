@@ -1,6 +1,6 @@
 <template>
-    <div class="heroContainer">
-        <div class="player">
+    <div v-bind:class="[ topPlayer ? heroContainerTop : heroContainerBottom ]">
+        <div v-bind:class="[ topPlayer ? playerTop : playerBottom ]">
             <div v-bind:class="[ topPlayer ? heroHpTop : heroHpBottom ]">
                 {{ this.Hero.hp }}
             </div>
@@ -9,6 +9,9 @@
             </div>
             <div v-bind:class="[ topPlayer ? heroDeathEssenceTop : heroDeathEssenceBottom ]">
                 {{ this.Hero.deathEssence }}
+            </div>
+            <div v-bind:class="[ topPlayer ? heroNameTop : heroNameBottom ]">
+                {{ this.Hero.name }}
             </div>
         </div>
     </div>
@@ -29,7 +32,14 @@ export default {
             heroDeathEssenceBottom: "heroDeathEssenceBottom",
             heroHpTop: "heroHpTop",
             heroHpBottom: "heroHpBottom",
+            heroNameTop: "heroNameTop",
+            heroNameBottom: "heroNameBottom",
+            playerTop: "playerTop",
+            playerBottom: "playerBottom",
+            heroContainerTop: "heroContainerTop",
+            heroContainerBottom: "heroContainerBottom",
             Hero: {
+                name: "suchACoolBoy",
                 hp: 30,
                 blueMana: 10,
                 deathEssence: 10
@@ -41,25 +51,66 @@ export default {
 </script>
 
 <style>
-    .heroContainer {
+    .heroContainerTop {
         position: relative;
 
         justify-content: center;
         display: flex;
+
+        padding-top: 3vh;
+
         width: 100%;
-        height: 10vh;
+        height: 12vh;
     }
 
-    .player {
+    .heroContainerBottom {
+        position: relative;
+
+        justify-content: center;
+        display: flex;
+
+        width: 100%;
+        height: 12vh;
+    }
+
+    .playerTop {
         justify-content: center;
         display: flex;
 
         position: relative;
 
-        padding-top: 5vh;
+        width: 25%;
+    }
+
+    .playerBottom {
+        justify-content: center;
+        display: flex;
+
+        position: relative;
 
         width: 25%;
         height: 10vh;
+    }
+
+    .heroNameTop {
+        color: white;
+
+        position: absolute;
+        bottom: 4.5vh;
+        left: 3vw;
+
+        margin-left: -10vw;
+
+    }
+
+    .heroNameBottom {
+        color: white;
+
+        position: absolute;
+        bottom: 3vh;
+        right: 3vw;
+
+        margin-right: -10vw;
     }
 
     .heroHpTop {
@@ -76,7 +127,7 @@ export default {
         color: white;
 
         position: absolute;
-        bottom: 6.5vh;
+        bottom: 7.6vh;
 
         width: 25px;
         height: 25px;
@@ -98,7 +149,7 @@ export default {
 
         position: absolute;
         right: 3.7vw;
-        bottom: 3.4vh;
+        bottom: 4.6vh;
 
         width: 25px;
         height: 25px;
@@ -120,7 +171,7 @@ export default {
 
         position: absolute;
         left: 4vw;
-        bottom: 3.1vh;
+        bottom: 4.4vh;
 
         width: 25px;
         height: 25px;

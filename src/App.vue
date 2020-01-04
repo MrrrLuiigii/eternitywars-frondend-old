@@ -37,6 +37,7 @@ import chatlist from "./components/chat/chatlist"
     height: 100vh;
     width: 100%;
     overflow: hidden;
+    user-select: none;
   }
 
   #logo {

@@ -1,6 +1,6 @@
 <template>
   <div class="playRow">
-    <div class="playRowContainer">
+    <div v-bind:class="[ topPlayer ? playRowContainerTop : playRowContainerBottom ]">
         <cardslot/>
         <cardslot/>
         <cardslot/>
@@ -18,21 +18,36 @@ export default {
     components: {
         cardslot
     },
+    props: {
+        topPlayer: Boolean
+    },
     data() {
         return {
-            
+            playRowContainerTop: "playRowContainerTop",
+            playRowContainerBottom: "playRowContainerBottom"
         }
     }
 }
 </script>
 
 <style>
-    .playRowContainer {
+    .playRowContainerTop {
         justify-content: center;
         display: flex;
 
         margin: auto;
-        padding-left: 3vw;
+        padding-left: .2vw;
+
+        width: 100%;
+    }
+
+    .playRowContainerBottom {
+        justify-content: center;
+        display: flex;
+
+        margin: auto;
+        padding-left: .2vw;
+        padding-top: 7.2vh;
 
         width: 100%;
     }

@@ -23,9 +23,9 @@
     .cardSlot {
         float: left;
 
-        margin: 0 9px 0 9px;
+        margin: 0 8.6px 0 8.6px;
 
         width: 5vw;
-        height: 15vh;
+        height: 12vh;
     }
 </style>
