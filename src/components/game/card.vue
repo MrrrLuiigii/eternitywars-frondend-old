@@ -64,7 +64,7 @@
         
         margin: 0;
         width: 5vw;
-        height: 14vh;
+        height: 12vh;
     }
 
     .cardName {
@@ -80,15 +80,13 @@
         bottom: 0;
         left: 0;
 
+        margin-left: -.25vw;
+        margin-bottom: .2vh;
+
         font-weight: bold;
 
-        /* background-image: url("../../assets/card/attack.png"); */
-        /* background-size: 100% 100%; */
-        /* object-fit: cover; */
-
-        border-radius: 50%;
-        width: 20%;
-        height: 20%;
+        width: 25px;
+        height: 25px;
     }
 
     .health {
@@ -96,11 +94,13 @@
         bottom: 0;
         right: 0;
 
+        margin-right: -.15vw;
+        margin-bottom: .2vh;
+
         font-weight: bold;
 
-        border-radius: 50%;
-        width: 20%;
-        height: 20%;
+        width: 25px;
+        height: 25px;
     }
 
     .blueMana {
@@ -108,11 +108,14 @@
         top: 0;
         left: 0;
 
+        margin-left: -.25vw;
+        margin-top: -.35vh;
+
         font-weight: bold;
 
         border-radius: 50%;
-        width: 20%;
-        height: 20%;
+        width: 25px;
+        height: 25px;
     }
 
     .deathEssence {
@@ -120,10 +123,13 @@
         top: 0;
         right: 0;
 
+        margin-left: -.25vw;
+        margin-top: -.35vh;
+
         font-weight: bold;
 
         border-radius: 50%;
-        width: 20%;
-        height: 20%;
+        width: 25px;
+        height: 25px;
     }
 </style>
