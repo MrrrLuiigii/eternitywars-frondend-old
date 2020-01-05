@@ -22,10 +22,9 @@ data() {
         Token: null
       },
     }
- },
+},
  methods: {
    async joinLobby(){
-    console.log(this.datalobby)
     this.wsMessage.Subject = "LOBBY"
     this.wsMessage.Action = "JOINLOBBY"
     this.wsMessage.Content = this.datalobby
@@ -34,7 +33,7 @@ data() {
     this.$socket.send(JSON.stringify(this.wsMessage))
     console.log(this.wsMessage)
    },
- }
+  }
 };
 </script>
 

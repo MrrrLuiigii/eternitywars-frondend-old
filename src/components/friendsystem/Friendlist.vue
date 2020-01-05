@@ -74,7 +74,6 @@ data() {
     },
     messageReceived(data){
       const jsonData =JSON.parse(data.data)
-      console.log(jsonData)
       switch(jsonData.action){
          case "GETALLFRIENDS":
            console.log(jsonData.content)

@@ -62,9 +62,10 @@ export default {
       const jsonData = JSON.parse(data.data)
       switch(jsonData.action){
          case "GetUserByEmail":
-          this.$store.dispatch('SavePlayerInfo',jsonData.content)
-          console.log(jsonData.content)
-          this.checkData()
+            this.$store.dispatch('SavePlayerInfo',jsonData.content)
+            console.log(jsonData.content)
+            this.checkData()
+          break
         }
     },
     async registerToServer(){
@@ -75,7 +76,7 @@ export default {
       this.wsMessage.Token = await this.$auth.getTokenSilently()
       this.$socket.send(JSON.stringify(this.wsMessage))
       console.log(this.wsMessage)
-    }
+    },
   }
 };
 </script>

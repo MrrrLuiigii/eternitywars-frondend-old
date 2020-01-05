@@ -7,6 +7,7 @@ import friendModule from './friendModule'
 import lobbyModule from './lobbyModule'
 import websocketModule from './websocketModule'
 import gameModule from "./gameModule"
+import gamePlayerModule from "./gamePlayerModule"
 
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     friendModule: friendModule,
     lobbyModule: lobbyModule,
     websocketModule: websocketModule,
-    gameModule: gameModule
+    gameModule: gameModule,
+    gamePlayerModule: gamePlayerModule
   },
 });
