@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div v-if="getSelectedDeck !== null">
+    <h2 v-if="getSelectedDeck !== null">
       Chosen deck is: {{getSelectedDeck.name}}
-    </div>
-    <div v-else>
+    </h2>
+    <h2 v-else>
       Choose a deck to play with!
-    </div>
+    </h2>
     <div class="deckSlotContainer">
       <GameLobbyDeckSlots class="leftDeckSlot" v-bind:Index="0"/>
       <GameLobbyDeckSlots class="rightDeckSlot" v-bind:Index="1"/>

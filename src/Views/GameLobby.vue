@@ -3,7 +3,7 @@
       <div class="lobbyAndPlayerInfo">
 
         <div class="lobbyInfo">
-          <p>{{joinedLobby.name}}</p>
+          <h1>{{joinedLobby.name}}</h1>
         </div>
 
         <div class="playerInfoContainer">
@@ -30,14 +30,14 @@
 
         <GameLobbyDecks class="gameLobbyDecksComponent"/>
 
-        <div v-if="GamePlayer.lobbyPlayerStatus === 'NotReady'">  
+        <div class="readyButtonContainer" v-if="GamePlayer.lobbyPlayerStatus === 'NotReady'">  
           <button v-on:click="ready"
             class="artXButton"
           >
             Ready
           </button>
         </div>
-        <div v-else>  
+        <div class="readyButtonContainer" v-else>  
           <button v-on:click="unReady"
           class="artXButton"
           >
@@ -184,7 +184,22 @@ export default {
   }
 
   .gameLobbyDecksComponent {
-    padding-top: 15vh;
-    
+    padding-top: 15vh;    
+  }
+
+  .leaveButtonContainer {
+    position: absolute;
+    bottom: 30vh;
+    left: 14vw;
+  }
+
+  .readyButtonContainer {
+    position: absolute;
+    bottom: 30vh;
+    right: 15vw;
+  }
+
+  .lobbyInfo {
+    margin-top: 15vh;
   }
 </style>
