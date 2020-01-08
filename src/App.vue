@@ -70,6 +70,16 @@ export default {
   outline: 0;
 }
 
+.artSButton {
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  background-image: url("./assets/button.png");
+  background-size: 100% 100%;
+  margin: 0.5vh;
+  outline: 0;
+}
+
 .artPanel {
   width: 350px;
   height: 200px;

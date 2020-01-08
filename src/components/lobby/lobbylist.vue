@@ -1,7 +1,7 @@
 <template>
-  <div class="lobbyContainer">
+  <div class="lobbyContainer scrollable">
     <div
-      class="artPanel scrollable"
+      class="artPanel"
       v-bind:class="[ index % 2 === 0 ? lobbyLeft : lobbyRight ]"
       v-for="(lobby, index) in getlobbies"
       :key="index"
@@ -95,9 +95,9 @@ export default {
   }
 
   .lobbyContainer {
-    width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 750px;
+    margin: 2vh auto 10vh auto;
+    height: 85vh;
   }
 
   .scrollable {

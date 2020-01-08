@@ -21,5 +21,12 @@ export default {
     position: absolute;
     left: 10px;
     bottom: 10px;
+    text-decoration: none;
+    color: #35252f;
+    outline: 0;
+  }
+
+  .homeButton:focus {
+    outline: 0;
   }
 </style>

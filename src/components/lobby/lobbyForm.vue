@@ -1,38 +1,48 @@
 <template>
     <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Create new lobby</v-btn>
-      </template>
-      <v-card>
-        <v-card-title>
-          <span class="headline">Lobby creation details</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12" sm="12" md="12">
-                <v-text-field v-model="Lobby.name" label="Lobby Name*" required></v-text-field>
-              </v-col>
 
-              <v-col cols="12">
-                <v-text-field v-model="Lobby.description" label="Description*" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="Lobby.password" label="Password" type="password"></v-text-field>
-              </v-col>
+      <template v-slot:activator="{ on }">
+        <button class="artXButton createLobbyButton" v-on="on">Create lobby</button>
+      </template>
+
+      <v-card class="createLobbyForm">
+        <div>
+          <v-card-title>
+            <span class="headline">Lobby details</span>
+          </v-card-title>
+        </div>
+
+        <div>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12" sm="12" md="12">
+                  <input class="artXButton lobbyFormInput" v-model="Lobby.name" placeholder="Name*" required/>
+                </v-col>
                 <v-col cols="12">
-                <v-text-field v-model="Lobby.tournamentCode" label="Tournament code" type="password"></v-text-field>
-              </v-col>
-            </v-row>
-          </v-container>
-          <small>*indicates required field</small>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="addNewLobby">Create</v-btn>
-        </v-card-actions>
+                  <input class="artXButton lobbyFormInput" v-model="Lobby.description" placeholder="Description*" required/>
+                </v-col>
+                <v-col cols="12">
+                  <input class="artXButton lobbyFormInput" v-model="Lobby.password" placeholder="Password" type="password"/>
+                </v-col>
+                  <v-col cols="12">
+                  <input class="artXButton lobbyFormInput" v-model="Lobby.tournamentCode" placeholder="Tournament code" type="password"/>
+                </v-col>
+              </v-row>
+            </v-container>
+            <small>*indicates required field</small>
+          </v-card-text>
+        </div>
+
+        <div>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <button class="artButton" text @click="dialog = false">Cancel</button>
+            <button class="artButton" text @click="addNewLobby">Create</button>
+          </v-card-actions>
+        </div>        
+        
       </v-card>
     </v-dialog>
   </v-row>
@@ -76,5 +86,15 @@ export default {
 </script>
 
 <style>
+  .createLobbyButton {
+    margin-top: 5vh;
+  }
 
+  .createLobbyForm {
+    background-color: #3a5248 !important;
+  }
+
+  .lobbyFormInput {
+    width: 90%;
+  }
 </style>

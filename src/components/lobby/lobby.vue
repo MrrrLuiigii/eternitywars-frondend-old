@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <div>{{ this.datalobby.id }}</div>
-    <div>{{ this.datalobby.name }}</div>
-    <div>{{ this.datalobby.description }}</div>
-    <button v-on:click="joinLobby">join</button>
+  <div class="lobbyBlock">
+    <div>
+      <div class="lobbyName">{{ this.datalobby.name }}</div>
+      <div class="lobbyDescription">{{ this.datalobby.description }}</div>
+    </div>    
+    <button class="artSButton joinButton" v-on:click="joinLobby">Join</button>
   </div>
 </template>
 
@@ -37,4 +38,26 @@ data() {
 };
 </script>
 
-<style></style>
+<style>
+  .lobbyName {
+    font-size: 30px;
+  }
+
+  .lobbyDescription {
+    font-size: 15px;
+  }
+
+  .joinButton {
+    position: absolute;
+    bottom: 2vh;
+  }
+
+  .lobbyBlock {
+    height: 100%;
+    widows: 100%;
+    position: relative;
+    padding: 2vh 5vw;
+    justify-content: center;
+    display: flex;
+  }
+</style>
