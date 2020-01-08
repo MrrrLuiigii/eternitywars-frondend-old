@@ -1,7 +1,8 @@
 <template>
   <div class="lobbyContainer">
     <div
-      class="lobbyZooi artPanel"
+      class="artPanel scrollable"
+      v-bind:class="[ index % 2 === 0 ? lobbyLeft : lobbyRight ]"
       v-for="(lobby, index) in getlobbies"
       :key="index"
       :lobby="lobby"
@@ -21,6 +22,8 @@ export default {
   },
   data() {
     return {
+      lobbyLeft: "lobbyLeft",
+      lobbyRight: "lobbyRight",
       wsMessage: {
         Subject: null,
         Action: null,
@@ -83,13 +86,21 @@ export default {
 </script>
 
 <style>
-.lobbyZooi {
-  background-color: red;
-}
+  .lobbyLeft {
+    float: left;
+  }
 
-.lobbyContainer {
-  position: relative;
-  justify-content: center;
-  display: flex;
-}
+  .lobbyRight {
+    float: right;
+  }
+
+  .lobbyContainer {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .scrollable {
+    overflow: scroll;
+  }
 </style>

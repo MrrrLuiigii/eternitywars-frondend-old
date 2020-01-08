@@ -2,7 +2,7 @@
      <div>
     <Router-link to="/">
         <button
-      class="artXButton"
+      class="artButton homeButton"
     >
       Home
     </button>
@@ -11,10 +11,15 @@
 </template>
 <script>
 export default {
-    name: "hoembutton"
+    name: "homeButton"
     
 }
 </script>
-<style>
 
+<style>
+  .homeButton {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+  }
 </style>
