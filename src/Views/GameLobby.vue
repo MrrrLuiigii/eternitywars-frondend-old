@@ -1,37 +1,60 @@
 <template>
-  <div>
-    <p>{{joinedLobby}}</p>
-    <Playerinfo v-bind:playerIndex="0"/>
-    <Playerinfo v-bind:playerIndex="1"/>
-    <GameLobbyDecks/>
-    <p>{{GamePlayer}}</p>
+    <div class="gameLobbyContainer">
+      <div class="lobbyAndPlayerInfo">
 
-    <div>
-      <div>  
-         <Router-link to="/lobbies">
+        <div class="lobbyInfo">
+          <p>{{joinedLobby.name}}</p>
+        </div>
+
+        <div class="playerInfoContainer">
+          <div class="playerOneInfo">            
+            <Playerinfo v-bind:playerIndex="0"/>
+          </div>
+          <div class="playerTwoInfo">
+            <Playerinfo v-bind:playerIndex="1"/>
+          </div>
+        </div>
+
+        <div class="leaveButtonContainer">
+          <Router-link to="/lobbies">
             <button v-on:click="leave"
-            class="artXButton"
+            class="artXButton routerLink"
           >
             Leave
           </button>
        </Router-link>
-     </div>
-     <div v-if="GamePlayer.lobbyPlayerStatus === 'NotReady'">  
-        <button v-on:click="ready"
-        class="artXButton"
-      >
-        Ready
-      </button>
+        </div>
+      </div>
+
+      <div class="deckSelectionContainer">
+
+        <GameLobbyDecks/>
+
+        <div>
+          <div>
+            <div v-if="GamePlayer.lobbyPlayerStatus === 'NotReady'">  
+                <button v-on:click="ready"
+                class="artXButton"
+              >
+                Ready
+              </button>
+            </div>
+            <div v-else>  
+              <button v-on:click="unReady"
+              class="artXButton"
+              >
+                Unready
+              </button>
+            </div>
+          </div>
+
+          <p>{{GamePlayer}}</p>
+
+        </div>
+      </div>
     </div>
-      <div v-else>  
-        <button v-on:click="unReady"
-        class="artXButton"
-      >
-        Unready
-      </button>
-     </div>
-  </div>
-  </div>
+
+    
 </template>
 
 <script>
@@ -138,3 +161,38 @@ export default {
   }
 };
 </script>
+
+<style>
+  .gameLobbyContainer {
+    height: 100%;
+    width: 100%;
+  }
+
+  .lobbyAndPlayerInfo {
+    width: 50%;
+    height: 100%;
+    float: left;
+  }
+
+  .deckSelectionContainer {
+    width: 50%;
+    height: 100%;
+    float: right;
+  }
+
+  .playerOneInfo {
+    width: 50%;
+    height: 100%;
+    float: left;
+  }
+
+  .playerTwoInfo {
+    width: 50%;
+    height: 100%;
+    float: right;
+  }
+
+
+
+
+</style>

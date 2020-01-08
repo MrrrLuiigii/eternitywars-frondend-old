@@ -65,9 +65,9 @@ methods: {
     logout(){
       if(confirm("Are you sure that you want to logout?")){
         this.$auth.logout();
+      }
     }
   }
-}
 }
 
 
