@@ -64,7 +64,9 @@ name: "navbar",
 methods: {
     logout(){
       if(confirm("Are you sure that you want to logout?")){
-        this.$auth.logout();
+           this.$auth.logout({
+      returnTo: window.location.origin
+      });
       }
     }
   }

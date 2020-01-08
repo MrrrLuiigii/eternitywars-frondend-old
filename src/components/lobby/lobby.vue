@@ -3,8 +3,10 @@
     <div>
       <div class="lobbyName">{{ this.datalobby.name }}</div>
       <div class="lobbyDescription">{{ this.datalobby.description }}</div>
+      <div class="lobbyDescription">{{this.getPlayerCount()}} / 2</div>
     </div>    
-    <button class="artSButton joinButton" v-on:click="joinLobby">Join</button>
+    <button v-if="this.getPlayerCount() < 2" class="artSButton joinButton" v-on:click="joinLobby">Join</button>
+    <div v-else class="artSButton joinButton">Full</div>
   </div>
 </template>
 
@@ -33,6 +35,12 @@ data() {
     this.wsMessage.Token = await this.$auth.getTokenSilently()
     this.$socket.send(JSON.stringify(this.wsMessage))
     console.log(this.wsMessage)
+   },
+   getPlayerCount(){
+     if(this.datalobby.playerTwo !== null){
+       return 2
+     }
+     return 1
    },
   }
 };
