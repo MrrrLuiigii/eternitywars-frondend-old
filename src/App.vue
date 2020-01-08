@@ -90,6 +90,16 @@ export default {
   outline: 0;
 }
 
+.artSPanel {
+  width: 350px;
+  height: 100px;
+  text-align: center;
+  background-image: url("./assets/buttonLong.png");
+  background-size: 100% 100%;
+  margin: 0.5vh;
+  outline: 0;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

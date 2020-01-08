@@ -1,10 +1,16 @@
 <template>
-<div v-if="getplayer.deckCollection.decks[deckIndex] !== undefined">
-    <div v-on:click="selectDeck">{{getplayer.deckCollection.decks[deckIndex].name}}</div>  
-</div>
-<div v-else>
-    <div>Empty deck of cards</div>
-</div>
+  <div>
+    <div v-if="getplayer.deckCollection.decks[deckIndex] !== undefined">
+      <div class="artSPanel deckCard" v-on:click="selectDeck">
+        {{getplayer.deckCollection.decks[deckIndex].name}}
+      </div>
+    </div>
+    <div v-else>
+      <div class="artSPanel deckCard">
+        <small>Empty</small>
+      </div>
+    </div>
+  </div>  
 </template>
 
 <script>
@@ -58,5 +64,7 @@ computed: {
 </script>
 
 <style>
-
+  .deckCard {
+    padding-top: 3.5vh;
+  }
 </style>

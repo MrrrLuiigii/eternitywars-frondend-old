@@ -28,33 +28,24 @@
 
       <div class="deckSelectionContainer">
 
-        <GameLobbyDecks/>
+        <GameLobbyDecks class="gameLobbyDecksComponent"/>
 
-        <div>
-          <div>
-            <div v-if="GamePlayer.lobbyPlayerStatus === 'NotReady'">  
-                <button v-on:click="ready"
-                class="artXButton"
-              >
-                Ready
-              </button>
-            </div>
-            <div v-else>  
-              <button v-on:click="unReady"
-              class="artXButton"
-              >
-                Unready
-              </button>
-            </div>
-          </div>
-
-          <p>{{GamePlayer}}</p>
-
+        <div v-if="GamePlayer.lobbyPlayerStatus === 'NotReady'">  
+          <button v-on:click="ready"
+            class="artXButton"
+          >
+            Ready
+          </button>
+        </div>
+        <div v-else>  
+          <button v-on:click="unReady"
+          class="artXButton"
+          >
+            Unready
+          </button>
         </div>
       </div>
-    </div>
-
-    
+    </div>    
 </template>
 
 <script>
@@ -192,7 +183,8 @@ export default {
     float: right;
   }
 
-
-
-
+  .gameLobbyDecksComponent {
+    padding-top: 15vh;
+    
+  }
 </style>
