@@ -1,17 +1,17 @@
 <template>
   <div>
     <div>
-      <lobbylist />
       <lobbyform />
+      <lobbylist />
     </div>
-    <homebutton/>
+    <homebutton />
   </div>
 </template>
 
 <script>
 import lobbyform from "./lobbyForm";
 import lobbylist from "./lobbylist";
-import homebutton from "../buttons/homebutton"
+import homebutton from "../buttons/homebutton";
 
 export default {
   name: "LobbyScreen",
@@ -19,6 +19,6 @@ export default {
     lobbyform,
     lobbylist,
     homebutton
-  },
+  }
 };
 </script>
