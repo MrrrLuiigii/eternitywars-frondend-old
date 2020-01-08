@@ -3,7 +3,7 @@
   <div>
     <Router-link to="/lobbies">
         <button
-      class="artXButton"
+      class="artXButton routerLink"
     >
       Play
     </button>
@@ -12,7 +12,7 @@
 <div>
       <Router-link to="/deckbuilder">
         <button
-      class="artXButton"
+      class="artXButton routerLink"
     >
       DeckBuilder
     </button>
@@ -21,7 +21,7 @@
   <div>
         <Router-link to="/shop">
         <button
-      class="artXButton"
+      class="artXButton routerLink"
     >
       Shop
     </button>
@@ -30,7 +30,7 @@
   <div>
         <Router-link to="/quests">
         <button
-      class="artXButton"
+      class="artXButton routerLink"
     >
       Quests
     </button>
@@ -40,7 +40,7 @@
 <div>
         <Router-link to="/game">
         <button
-      class="artXButton"
+      class="artXButton routerLink"
     >
       Game
     </button>
@@ -74,5 +74,13 @@ methods: {
 </script>
 
 <style>
+  .routerLink {
+    text-decoration: none;
+    outline: 0;
+    color: #35252f;
+  }
 
+  .routerLink:focus {
+    outline: 0;
+  }
 </style>
