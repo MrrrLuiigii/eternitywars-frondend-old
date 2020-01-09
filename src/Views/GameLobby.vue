@@ -185,13 +185,13 @@ export default {
 
   .leaveButtonContainer {
     position: absolute;
-    bottom: 30vh;
+    bottom: 18vh;
     left: 14vw;
   }
 
   .readyButtonContainer {
     position: absolute;
-    bottom: 30vh;
+    bottom: 18vh;
     right: 15vw;
   }
 
