@@ -1,19 +1,20 @@
 <template>
   <div>
-      <homebutton/>
+    <cardcollection />
+    <homebutton />
   </div>
 </template>
 
 <script>
-import homebutton from "../components/buttons/homebutton"
+import cardcollection from "@/components/deckbuilder/cardcollection";
+import homebutton from "@/components/buttons/homebutton";
 export default {
-name:"Deckbuilder",
+  name: "Deckbuilder",
   components: {
-    homebutton
+    homebutton,
+    cardcollection
   }
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

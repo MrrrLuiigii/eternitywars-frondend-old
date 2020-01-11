@@ -1,47 +1,47 @@
 export default {
-    state: {
-        lobbies: null,
-        joinedLobby: null,
-        selectedDeck: null,
-    },
-    mutations: {
+  state: {
+    lobbies: null,
+    joinedLobby: null,
+    selectedDeck: null
+  },
+  mutations: {
     SAVE_JOINED_LOBBY(state, lobby) {
-    state.joinedLobby = lobby;
+      state.joinedLobby = lobby;
     },
     SAVE_LOBBIES(state, lobbies) {
-    state.lobbies = lobbies;
-    //TODO implement
+      state.lobbies = lobbies;
+      //TODO implement
     },
     SET_DECK(state, deck) {
-    state.selectedDeck = deck;
+      state.selectedDeck = deck;
     },
     CLEAR_DECK(state, deck) {
-    state.selectedDeck = deck;
-     },
- },
-    getters: {
+      state.selectedDeck = deck;
+    }
+  },
+  getters: {
     getLobbies: state => {
-        return state.lobbies;
-        },  
+      return state.lobbies;
+    },
     getJoinedlobby: state => {
-        return state.joinedLobby;
+      return state.joinedLobby;
     },
     getSelectedDeck: state => {
-        return state.selectedDeck;
+      return state.selectedDeck;
     }
-    },
-    actions: {
+  },
+  actions: {
     SaveLobbies({ commit }, lobbies) {
-        commit("SAVE_LOBBIES", lobbies);
-        },
+      commit("SAVE_LOBBIES", lobbies);
+    },
     SaveJoinedLobby({ commit }, lobby) {
-        commit("SAVE_JOINED_LOBBY", lobby);
-        },
+      commit("SAVE_JOINED_LOBBY", lobby);
+    },
     SetDeck({ commit }, deck) {
-        commit("SET_DECK", deck);
-        },
-    ClearSelectedDeck({commit}, deck){
-        commit("CLEAR_DECK", deck)
-     }
+      commit("SET_DECK", deck);
+    },
+    ClearSelectedDeck({ commit }, deck) {
+      commit("CLEAR_DECK", deck);
     }
-}
+  }
+};
