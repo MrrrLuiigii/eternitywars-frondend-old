@@ -9,7 +9,7 @@ import websocketModule from "./websocketModule";
 import gameModule from "./gameModule";
 import gamePlayerModule from "./gamePlayerModule";
 import deckBuilderModule from "./deckBuilderModule";
-import gameModule from './gameModule';
+
 
 Vue.use(Vuex);
 
@@ -23,6 +23,5 @@ export default new Vuex.Store({
     gameModule: gameModule,
     gamePlayerModule: gamePlayerModule,
     deckBuilderModule: deckBuilderModule,
-    gameModule: gameModule,
   }
 });
