@@ -8,7 +8,8 @@
 export default {
     name: "deck",
     props: {
-        topPlayer: Boolean
+        topPlayer: Boolean,
+        index: Number,
     },
     data() {
         return {

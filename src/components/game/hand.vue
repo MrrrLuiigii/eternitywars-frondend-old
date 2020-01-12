@@ -1,15 +1,15 @@
 <template>
     <div class="hand">
         <div v-bind:class="[ topPlayer ? handContainerTop : handContainerBottom ]">
-            <cardslot/>
-            <cardslot/>
-            <cardslot/>
-            <cardslot/>
-            <cardslot/>
-            <cardslot/>
-            <cardslot/>
-            <cardslot/>
-            <cardslot/>
+            <cardslot v-bind:cardSlotIndex="7" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
+            <cardslot v-bind:cardSlotIndex="5" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
+            <cardslot v-bind:cardSlotIndex="3" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
+            <cardslot v-bind:cardSlotIndex="1" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
+            <cardslot v-bind:cardSlotIndex="0" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
+            <cardslot v-bind:cardSlotIndex="2" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
+            <cardslot v-bind:cardSlotIndex="4" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
+            <cardslot v-bind:cardSlotIndex="6" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
+            <cardslot v-bind:cardSlotIndex="8" v-bind:playerIndex="ïndex" v-bind:handSlot="true"/>
         </div>
     </div>    
 </template>
@@ -19,7 +19,8 @@ import cardslot from "@/components/game/cardslot.vue"
 export default {
     name: "hand",
     props: {
-        topPlayer: Boolean
+        topPlayer: Boolean,
+        index: Number,
     },
     components: {
         cardslot
