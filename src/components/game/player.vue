@@ -2,7 +2,7 @@
     <div v-bind:class="[ topPlayer ? heroContainerTop : heroContainerBottom ]">
         <div v-bind:class="[ topPlayer ? playerTop : playerBottom ]">
             <div v-bind:class="[ topPlayer ? heroHpTop : heroHpBottom ]">
-                {{ gameState.Player[index].Hero.Hp }}
+                {{ gameState.Player[index].Username }}
             </div>
             <div v-bind:class="[ topPlayer ? heroBlueManaTop : heroBlueManaBottom ]">
                 {{ gameState.Player[index].Hero.Mana }}
