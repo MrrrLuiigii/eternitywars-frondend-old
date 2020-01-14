@@ -10,7 +10,6 @@ export default {
     },
     SAVE_LOBBIES(state, lobbies) {
       state.lobbies = lobbies;
-      //TODO implement
     },
     SET_DECK(state, deck) {
       state.selectedDeck = deck;
