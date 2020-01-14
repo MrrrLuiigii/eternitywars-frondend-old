@@ -3,7 +3,7 @@
       <div class="lobbyAndPlayerInfo">
 
         <div class="lobbyInfo">
-                <p>{{getplayer}}</p>
+                
           <h1>{{joinedLobby.name}}</h1>
         </div>
 
