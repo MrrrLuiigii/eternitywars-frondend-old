@@ -10,6 +10,7 @@ import gameModule from "./gameModule";
 import gamePlayerModule from "./gamePlayerModule";
 import deckBuilderModule from "./deckBuilderModule";
 
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -21,6 +22,6 @@ export default new Vuex.Store({
     websocketModule: websocketModule,
     gameModule: gameModule,
     gamePlayerModule: gamePlayerModule,
-    deckBuilderModule: deckBuilderModule
+    deckBuilderModule: deckBuilderModule,
   }
 });

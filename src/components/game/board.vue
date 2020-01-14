@@ -1,13 +1,13 @@
 <template>
   <div class="board">
-      <deck v-bind:topPlayer="true"/>
-      <hand v-bind:topPlayer="true"/>
-      <player v-bind:topPlayer="true"/>
-      <playrow v-bind:topPlayer="true"/>
-      <playrow v-bind:topPlayer="false"/>
-      <player v-bind:topPlayer="false"/>
-      <hand v-bind:topPlayer="false"/>
-      <deck v-bind:topPlayer="false"/>
+      <deck v-bind:topPlayer="true" v-bind:index="1"/>
+      <hand v-bind:topPlayer="true" v-bind:index="1"/>
+      <player v-bind:topPlayer="true" v-bind:index="1"/>
+      <playrow v-bind:topPlayer="true" v-bind:index="1"/>
+      <playrow v-bind:topPlayer="false" v-bind:index="0"/>
+      <player v-bind:topPlayer="false" v-bind:index="0"/>
+      <hand v-bind:topPlayer="false" v-bind:index="0"/>
+      <deck v-bind:topPlayer="false" v-bind:index="0"/>
       <endButton />
   </div>
 </template>

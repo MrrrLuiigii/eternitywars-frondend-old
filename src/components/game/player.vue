@@ -2,16 +2,16 @@
     <div v-bind:class="[ topPlayer ? heroContainerTop : heroContainerBottom ]">
         <div v-bind:class="[ topPlayer ? playerTop : playerBottom ]">
             <div v-bind:class="[ topPlayer ? heroHpTop : heroHpBottom ]">
-                {{ this.Hero.hp }}
+                {{ gameState.Player[index].Username }}
             </div>
             <div v-bind:class="[ topPlayer ? heroBlueManaTop : heroBlueManaBottom ]">
-                {{ this.Hero.blueMana }}
+                {{ gameState.Player[index].Hero.Mana }}
             </div>
             <div v-bind:class="[ topPlayer ? heroDeathEssenceTop : heroDeathEssenceBottom ]">
-                {{ this.Hero.deathEssence }}
+                {{ gameState.Player[index].Hero.DeathEssence }}
             </div>
             <div v-bind:class="[ topPlayer ? heroNameTop : heroNameBottom ]">
-                {{ this.Hero.name }}
+                {{ gameState.Player[index].Hero.Name }}
             </div>
         </div>
     </div>
@@ -22,6 +22,7 @@
 export default {
     name: "player",
     props: {
+        index: Number,
         topPlayer: Boolean
     },
     data() {
@@ -44,6 +45,11 @@ export default {
                 blueMana: 10,
                 deathEssence: 10
             }
+        }
+    },
+    computed: {
+        gameState(){
+            return this.$store.getters.getGame
         }
     }
 

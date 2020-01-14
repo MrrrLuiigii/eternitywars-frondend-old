@@ -1,27 +1,50 @@
 <template>
 
-  <div class="card">
+  <div class="card" v-if="inhand">
+      <div v-on:click="place()">
+        <div class="cardName">
+            {{ this.card.name }}
+        </div>
 
-    <div class="cardName">
-        {{ this.card.name }}
+        <div class="blueMana">
+            {{ this.card.blueMana }}
+        </div>
+
+        <div class="deathEssence">
+            {{ this.card.deathEssence }}
+        </div>
+
+        <div class="attack">
+            {{ this.card.attack }}
+        </div>
+
+        <div class="health">
+            {{ this.card.health }}
+        </div>
     </div>
+  </div>
+   <div class="card" v-else>
+      <div v-on:click="attack()">
+        <div class="cardName">
+            {{ this.card.name }}
+        </div>
 
-    <div class="blueMana">
-        {{ this.card.blueMana }}
+        <div class="blueMana">
+            {{ this.card.blueMana }}
+        </div>
+
+        <div class="deathEssence">
+            {{ this.card.deathEssence }}
+        </div>
+
+        <div class="attack">
+            {{ this.card.attack }}
+        </div>
+
+        <div class="health">
+            {{ this.card.health }}
+        </div>
     </div>
-
-    <div class="deathEssence">
-        {{ this.card.deathEssence }}
-    </div>
-
-    <div class="attack">
-        {{ this.card.attack }}
-    </div>
-
-    <div class="health">
-        {{ this.card.health }}
-    </div>
-
   </div>
 
 </template>
@@ -29,18 +52,23 @@
 <script>
     export default {
         name: "card",
+        props:{
+            card: Object,
+            onField: Boolean,
+            inHand: Boolean,
+        },
         data() {
             return {
-                card: {
-                    name: "Dreadlord von Reemer",
-                    blueMana: 6,
-                    deathEssence: 7,
-                    attack: 4,
-                    health: 5
-                }
+            }
+        },
+        methods:{
+            attack(){
+                return null
+            },
+             place(){
+                return null
             }
         }
-
     }
 </script>
 
