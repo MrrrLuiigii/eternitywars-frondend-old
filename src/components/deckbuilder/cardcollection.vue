@@ -1,42 +1,70 @@
 <template>
   <div class="cardCollectionContainer">
-    <div
-      v-bind:class="[
-        index % 5 === 0
-          ? firstRow
-          : [
-              index % 5 === 1
-                ? secondRow
-                : [
-                    index % 5 === 2
-                      ? thirdRow
-                      : [index % 5 === 3 ? fourthRow : fifthRow]
-                  ]
-            ]
-      ]"
-      v-for="(card, index) in getCardCollection"
-      :key="index"
-      :card="card"
-    >
-      <cardslot />
+    <div class="firstRow">
+      <div
+        class="collectionCardDiv"
+        v-for="(card, index) in getCardCollection"
+        :key="index"
+        :card="card"
+      >
+        <cardslot :card="card" v-if="index % 5 === 0" />
+      </div>
+    </div>
+    <div class="secondRow">
+      <div
+        class="collectionCardDiv"
+        v-for="(card, index) in getCardCollection"
+        :key="index"
+        :card="card"
+      >
+        <cardslot :card="card" v-if="index % 5 === 1" />
+      </div>
+    </div>
+    <div class="thirdRow">
+      <div
+        class="collectionCardDiv"
+        v-for="(card, index) in getCardCollection"
+        :key="index"
+        :card="card"
+      >
+        <cardslot :card="card" v-if="index % 5 === 2" />
+      </div>
+    </div>
+    <div class="fourthRow">
+      <div
+        class="collectionCardDiv"
+        v-for="(card, index) in getCardCollection"
+        :key="index"
+        :card="card"
+      >
+        <cardslot :card="card" v-if="index % 5 === 3" />
+      </div>
+    </div>
+    <div class="fifthRow">
+      <div
+        class="collectionCardDiv"
+        v-for="(card, index) in getCardCollection"
+        :key="index"
+        :card="card"
+      >
+        <cardslot :card="card" v-if="index % 5 === 4" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import cardslot from "@/components/game/cardslot";
+import cardslot from "@/components/deckbuilder/collectionCardslot";
 export default {
   name: "cardcollection",
   components: {
     cardslot
   },
+  props: {
+    card: Object
+  },
   data() {
     return {
-      firstRow: "firstRow",
-      secondRow: "secondRow",
-      thirdRow: "thirdRow",
-      fourthRow: "fourthRow",
-      fifthRow: "fifthRow",
       wsMessage: {
         Subject: null,
         Action: null,
@@ -56,7 +84,7 @@ export default {
   },
   methods: {
     async loadCardCollection() {
-      this.wsMessage.Subject = "COLLECTION";
+      this.wsMessage.Subject = "CARD";
       this.wsMessage.Action = "GetByUserId";
       const cont = this.$store.getters.getPlayerInfo;
       this.wsMessage.Content = cont;
@@ -66,11 +94,12 @@ export default {
     },
     messageReceived(data) {
       const jsonData = JSON.parse(data.data);
+      console.log(jsonData);
       switch (jsonData.action) {
         case "GETCARDCOLLECTION": {
           const data = jsonData.content;
-          const cardcollection = data.cardCollection.cards;
-          this.$store.dispatch("SaveCardCollection", cardcollection);
+          const cards = data.cards;
+          this.$store.dispatch("SaveCardCollection", cards);
           break;
         }
       }
@@ -80,24 +109,44 @@ export default {
 </script>
 
 <style>
+.collectionCardDiv {
+  width: 7vw;
+  height: 12vh;
+}
+
 .firstRow {
-  margin-top: 5vh;
+  margin-top: 3vh;
+  width: 60vw;
+  display: flex;
+  overflow-x: scroll;
 }
 
 .secondRow {
-  margin-top: 10vh;
+  margin-top: 2vh;
+  width: 60vw;
+  display: flex;
+  overflow-x: scroll;
 }
 
 .thirdRow {
-  margin-top: 15vh;
+  margin-top: 2vh;
+  width: 60vw;
+  display: flex;
+  overflow-x: scroll;
 }
 
 .fourthRow {
-  margin-top: 20vh;
+  margin-top: 2vh;
+  width: 60vw;
+  display: flex;
+  overflow-x: scroll;
 }
 
 .fifthRow {
-  margin-top: 25vh;
+  margin-top: 2vh;
+  width: 60vw;
+  display: flex;
+  overflow-x: scroll;
 }
 
 .cardCollectionContainer {

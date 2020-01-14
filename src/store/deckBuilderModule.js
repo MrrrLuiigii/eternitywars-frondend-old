@@ -1,20 +1,20 @@
 export default {
   state: {
-    cardCollection: null
+    cards: null
   },
   mutations: {
-    SAVE_CARDCOLLECTION(state, cardCollection) {
-      state.cardCollection = cardCollection;
+    SAVE_CARDCOLLECTION(state, cards) {
+      state.cards = cards;
     }
   },
   getters: {
     getCardCollection: state => {
-      return state.cardCollection;
+      return state.cards;
     }
   },
   actions: {
-    SaveCardCollection({ commit }, cardCollection) {
-      commit("SAVE_CARDCOLLECTION", cardCollection);
+    SaveCardCollection({ commit }, cards) {
+      commit("SAVE_CARDCOLLECTION", cards);
     }
   }
 };
