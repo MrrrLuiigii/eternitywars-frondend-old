@@ -1,6 +1,9 @@
 <template>
-    <div v-bind:class="[ topPlayer ? deckCardCountTop : deckCardCountBottom ]">
-        {{ this.deck.cardCount }}
+    <div v-bind:class="[ topPlayer ? deckCardCountTop : deckCardCountBottom ]" v-if="index === 0">
+         {{ gameState.connectedPlayers[index].cardsInDeck.lenght}}
+    </div>
+      <div v-bind:class="[ topPlayer ? deckCardCountTop : deckCardCountBottom ]" v-else>
+        {{ gameState.connectedPlayers[index].cardsInDeck.lenght}}
     </div>
 </template>
 
@@ -15,9 +18,11 @@ export default {
         return {
             deckCardCountTop: "deckCardCountTop",
             deckCardCountBottom: "deckCardCountBottom",
-            deck: {
-                cardCount: 30
-            }
+        }
+    },
+    computed: {
+        gameState(){
+            return this.$store.getters.getGame
         }
     }
 }

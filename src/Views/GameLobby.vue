@@ -99,6 +99,12 @@ export default {
           this.updateGamePlayer(jsonData.content) 
           break
         }
+        case "LAUNCHGAME":{
+          this.$store.dispatch('SetGame', jsonData.content)
+          const id = jsonData.content.id;
+          this.$router.push({ name: "game", params: { id } });
+          break
+        }
       }
     },
     updateGamePlayer(data){
@@ -145,7 +151,7 @@ export default {
     this.wsMessage.Token = await this.$auth.getTokenSilently()
     this.$socket.send(JSON.stringify(this.wsMessage))
     }
-  }
+  },
 };
 </script>
 
