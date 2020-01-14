@@ -3,7 +3,6 @@
       <div class="lobbyAndPlayerInfo">
 
         <div class="lobbyInfo">
-                
           <h1>{{joinedLobby.name}}</h1>
         </div>
 
@@ -123,6 +122,7 @@ export default {
     this.wsMessage.Token = await this.$auth.getTokenSilently()
     this.$socket.send(JSON.stringify(this.wsMessage))
     this.$store.dispatch('ClearSelectedDeck', null)
+    this.$store.dispatch('SaveGamePlayer', null)
     },
     ready(){
       if(this.getSelectedDeck === null){
