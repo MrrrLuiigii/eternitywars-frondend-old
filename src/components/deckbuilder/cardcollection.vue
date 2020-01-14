@@ -58,9 +58,8 @@ export default {
     async loadCardCollection() {
       this.wsMessage.Subject = "COLLECTION";
       this.wsMessage.Action = "GetByUserId";
-      this.wsMessage.Content = "";
-      //   const cont = this.$store.getters.getPlayerInfo;
-      //   this.wsMessage.Content = cont;
+      const cont = this.$store.getters.getPlayerInfo;
+      this.wsMessage.Content = cont;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
       console.log(this.wsMessage);
