@@ -1,7 +1,11 @@
 <template>
   <div>
     <div v-if="getplayer.deckCollection.decks[deckIndex] !== undefined">
-      <div class="artSPanel deckCard" v-on:click="selectDeck">
+      <div v-if="getplayer.deckCollection.decks[deckIndex].lenght < 30" class="artSPanel deckCard">
+        {{getplayer.deckCollection.decks[deckIndex].name}}
+        <small>Deck is not complete</small>
+      </div>
+      <div v-else class="artSPanel deckCard" v-on:click="selectDeck">
         {{getplayer.deckCollection.decks[deckIndex].name}}
       </div>
     </div>
@@ -47,7 +51,6 @@ computed: {
         this.wsMessage.Subject = "LOBBY"
         this.wsMessage.Action = "SETDECK"
         this.wsMessage.Content = this.joinedLobby
-
 
 
         this.Player.username = this.User.username
