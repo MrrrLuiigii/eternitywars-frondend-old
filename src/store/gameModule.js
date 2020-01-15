@@ -2,9 +2,10 @@ export default {
     state: {
         game: {},
         selectedCardInHand: null,
-        SelectedCardSlotOnYourField: null,
+        SelectedEmptyCardSlotOnYourField: null,
         SelectedTargetToAttack: null,
-        SelectedHeroToAttack: null
+        SelectedHeroToAttack: null,
+        SelectedCardSlotOnYourField: null
     },
     getters: {
         getGame: state => {
@@ -12,6 +13,9 @@ export default {
         },
         getSelectedCardInHand: state => {
             return state.getSelectedCardInHand;
+        },
+        getSelectedEmptyCardSlotOnYourField: state => {
+            return state.SelectedEmptyCardSlotOnYourField;
         },
         getSelectedCardSlotOnYourField: state => {
             return state.SelectedCardSlotOnYourField;
@@ -33,7 +37,10 @@ export default {
         SELECT_CARD_IN_HAND(state, data){
             state.selectedCardInHand = data
         },
-        SELECTED_CARDSLOT_ON_YOUR_FIELD(state, data){
+        SELECTED_EMPTY_CARDSLOT_ON_YOUR_FIELD(state, data){
+            state.SelectedEmptyCardSlotOnYourField = data
+        },
+        SELECTED_CARD_CARDSLOT_ON_YOUR_FIELD(state, data){
             state.SelectedCardSlotOnYourField = data
         },
         SELECTED_TARGET_TO_ATTACK(state, data){
@@ -53,8 +60,11 @@ export default {
         SelectCardInHand({commit}, data){
             commit("SELECT_CARD_IN_HAND", data)
         },
+        SelectedEmptyCardSlotOnYourField({commit}, data){
+            commit("SELECTED_EMPTY_CARDSLOT_ON_YOUR_FIELD", data)
+        },
         SelectedCardSlotOnYourField({commit}, data){
-            commit("SELECTED_CARDSLOT_ON_YOUR_FIELD", data)
+            commit("SELECTED_CARD_CARDSLOT_ON_YOUR_FIELD", data)
         },
         SelectedTargetToAttack({commit}, data){
             commit("SELECTED_TARGET_TO_ATTACK", data)

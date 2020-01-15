@@ -13,17 +13,20 @@
     </div>
     <div v-else>
         <div v-if="playerIndexData === 0">
-            <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined"> 
+            <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined" 
+            v-on:click="SelectCardOnYourField(gameState.connectedPlayers[playerIndexData].cardsInHand, cardSlotIndexData)"
+            > 
                 <card v-bind:card="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData].card"
                     v-bind:inHand="false"
                     v-bind:onField="true"/>
             </div>
-         <div class="cardSlot" v-else v-on:click="SelectYourField(gameState.connectedPlayers[playerIndexData].cardsInHand, cardSlotIndexData)"> 
+         <div class="cardSlot" v-else v-on:click="SelectEmptyYourField(gameState.connectedPlayers[playerIndexData].cardsInHand, cardSlotIndexData)"> 
         </div>
         </div>
         <div v-else>
               <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined"
-              v-on:click="SelectTargetToAttack(gameState.connectedPlayers[playerIndexData].cardsInHand, cardSlotIndexData)"> 
+              v-on:click="SelectTargetToAttack(gameState.connectedPlayers[playerIndexData].cardsInHand, cardSlotIndexData)"
+              v-on:click.right="SelectTargetToAttack(null, null)"> 
                 <card v-bind:card="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData].card"
                     v-bind:inHand="false"
                     v-bind:onField="true"/>
@@ -67,8 +70,11 @@
         getSelectedCardInHand(){
             return this.$store.getters.getSelectedCardInHand
         },
+         getSelectedEmptyCardSlotOnYourField(){
+            return this.$store.getters.getSelectedEmptyCardSlotOnYourField
+        },
          getSelectedCardSlotOnYourField(){
-            return this.$store.getters.SelectedCardSlotOnYourField
+            return this.$store.getters.getSelectedCardSlotOnYourField
         }
     },
     methods:{
@@ -80,21 +86,29 @@
             }
             this.$store.dispatch("SelectCardInHand", null)
         },
-        SelectYourField(cardslot, index){
+        SelectEmptyYourField(cardslot, index){
             console.log("werkt wel")
             if(this.getSelectedCardInHand !== null){
             const data = { cardslot, index}
-            this.$store.dispatch("SelectedCardSlotOnYourField", data)
+            this.$store.dispatch("SelectedEmptyCardSlotOnYourField", data)
             this.TryToPlayCard()
             console.log(data)
             }
+        },
+        SelectCardOnYourField(cardslot, index){
+              if(cardslot !== null){
+            const data = { cardslot, index}
+            this.$store.dispatch("SelectedCardSlotOnYourField", data)
+            console.log(data)
+            }
+            this.$store.dispatch("SelectedCardSlotOnYourField", null)
         },
         TryToPlayCard(){
             this.PlayMessage.Content = this.gameState
             this.PlayMessage.Subject = "GAME"
             this.PlayMessage.Action = "PLACECARD"
             this.PlayMessage.CardToPlay = this.getSelectedCardInHand
-            this.PlayMessage.SpotToPlace = this.getSelectedCardSlotOnYourField
+            this.PlayMessage.SpotToPlace = this.getSelectedEmptyCardSlotOnYourField
 
         },
         SelectTargetToAttack(cardslot, index){
