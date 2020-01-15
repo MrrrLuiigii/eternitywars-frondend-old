@@ -126,7 +126,6 @@ export default {
     this.wsMessage.Token = await this.$auth.getTokenSilently()
     this.$socket.send(JSON.stringify(this.wsMessage))
     this.$store.dispatch('ClearSelectedDeck', null)
-    this.$store.dispatch('SaveGamePlayer', null)
     },
     ready(){
       if(this.getSelectedDeck === null){
