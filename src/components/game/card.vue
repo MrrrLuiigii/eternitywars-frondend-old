@@ -1,17 +1,17 @@
 <template>
 
-  <div class="card" v-if="inhand">
+  <div class="card" v-if="inHand">
       <div v-on:click="place()">
         <div class="cardName">
             {{ this.card.name }}
         </div>
 
         <div class="blueMana">
-            {{ this.card.blueMana }}
+            {{ this.card.blue_mana }}
         </div>
 
         <div class="deathEssence">
-            {{ this.card.deathEssence }}
+            {{ this.card.death_essence }}
         </div>
 
         <div class="attack">

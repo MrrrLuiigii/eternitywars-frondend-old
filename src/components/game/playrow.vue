@@ -16,12 +16,10 @@ export default {
     components: {
         cardslot
     },
-    props: {
-        index: Number,
-        topPlayer: Boolean
-    },
+    props: ['index', 'topPlayer'],
     data() {
         return {
+            indexData: this.index,
             playRowContainerTop: "playRowContainerTop",
             playRowContainerBottom: "playRowContainerBottom"
         }

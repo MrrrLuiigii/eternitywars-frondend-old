@@ -44,18 +44,21 @@
             Unready
           </button>
         </div>
+        <homebutton/>
       </div>
     </div>    
 </template>
 
 <script>
 import Playerinfo from "@/components/gamelobby/Playerinfo";
-import GameLobbyDecks from "@/components/gamelobby/GameLobbyDecks"
+import GameLobbyDecks from "@/components/gamelobby/GameLobbyDecks";
+import homebutton from "@/components/buttons/homebutton";
 
 export default {
   components:{
     Playerinfo,
-    GameLobbyDecks
+    GameLobbyDecks,
+    homebutton
   },
   data: function() {
     return {
@@ -100,6 +103,7 @@ export default {
         }
         case "LAUNCHGAME":{
           this.$store.dispatch('SetGame', jsonData.content)
+          console.table(jsonData.content)
           const id = jsonData.content.id;
           this.$router.push({ name: "game", params: { id } });
           break
@@ -122,7 +126,6 @@ export default {
     this.wsMessage.Token = await this.$auth.getTokenSilently()
     this.$socket.send(JSON.stringify(this.wsMessage))
     this.$store.dispatch('ClearSelectedDeck', null)
-    this.$store.dispatch('SaveGamePlayer', null)
     },
     ready(){
       if(this.getSelectedDeck === null){
