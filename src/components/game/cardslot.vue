@@ -1,6 +1,8 @@
 <template>
     <div v-if="handSlot">
-        <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData] !== undefined"> 
+        <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData] !== undefined" 
+        v-on:click="SelectCard(gameState.connectedPlayers[playerIndexData].cardsInHand, cardSlotIndexData)"
+        v-on:click.right="SelectCard(null, null)" > 
              <card v-if="playerIndexData === 0" v-bind:card="gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData]"
                 v-bind:inHand="true"
                 v-bind:onField="false"/>
@@ -10,12 +12,23 @@
         </div>
     </div>
     <div v-else>
-        <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined"> 
-             <card v-bind:card="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData].card"
-                v-bind:inHand="false"
-                v-bind:onField="true"/>
+        <div v-if="playerIndexData === 0">
+            <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined"> 
+                <card v-bind:card="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData].card"
+                    v-bind:inHand="false"
+                    v-bind:onField="true"/>
+            </div>
+         <div class="cardSlot" v-else v-on:click="SelectYourField(gameState.connectedPlayers[playerIndexData].cardsInHand, cardSlotIndexData)"> 
         </div>
+        </div>
+        <div v-else>
+              <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined"> 
+                <card v-bind:card="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData].card"
+                    v-bind:inHand="false"
+                    v-bind:onField="true"/>
+            </div>
          <div class="cardSlot" v-else> 
+        </div>
         </div>
     </div>
 </template>
@@ -41,6 +54,27 @@
             computed: {
         gameState(){
             return this.$store.getters.getGame
+        },
+        getSelectedCardInHand(){
+            return this.$store.getters.getSelectedCardInHand
+        }
+    },
+    methods:{
+        SelectCard(cardslot, index){
+            if(cardslot !== null){
+            const data = { cardslot, index}
+            this.$store.dispatch("SelectCardInHand", data)
+            console.log(data)
+            }
+            this.$store.dispatch("SelectCardInHand", null)
+        },
+        SelectYourField(cardslot, index){
+            console.log("werkt wel")
+            if(this.getSelectedCardInHand !== null){
+            const data = { cardslot, index}
+            this.$store.dispatch("SelectCardInHand", data)
+            console.log(data)
+            }
         }
     }
  }

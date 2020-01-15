@@ -1,11 +1,27 @@
 export default {
     state: {
         game: {},
+        selectedCardInHand: null,
+        SelectedCardSlotOnYourField: null,
+        SelectedTargetToAttack: null,
+        SelectedHeroToAttack: null
     },
     getters: {
         getGame: state => {
             return state.game;
-        }
+        },
+        getSelectedCardInHand: state => {
+            return state.getSelectedCardInHand;
+        },
+        getSelectedCardSlotOnYourField: state => {
+            return state.SelectedCardSlotOnYourField;
+        },
+        getSelectedTargetToAttack: state => {
+            return state.SelectedTargetToAttack;
+        },
+        getSelectedHeroToAttack: state => {
+            return state.SelectedHeroToAttack;
+        },
     },
     mutations: {
         UPDATE_GAME(state, game){
@@ -13,7 +29,19 @@ export default {
         },
         SET_GAME(state, game){
             state.game = game
-        }
+        },
+        SELECT_CARD_IN_HAND(state, data){
+            state.selectedCardInHand = data
+        },
+        SELECTED_CARDSLOT_ON_YOUR_FIELD(state, data){
+            state.SelectedCardSlotOnYourField = data
+        },
+        SELECTED_TARGET_TO_ATTACK(state, data){
+            state.SelectedCardSlotOnYourField = data
+        },
+        SELECTED_HERO_TO_ATTACK(state, data){
+            state.SelectedHeroToAttack = data
+        },
     },
     actions: {
         UpdateGame({commit}, game){
@@ -21,6 +49,18 @@ export default {
         },
         SetGame({commit}, game){
             commit("SET_GAME", game)
-        }
+        },
+        SelectCardInHand({commit}, data){
+            commit("SELECT_CARD_IN_HAND", data)
+        },
+        SelectedCardSlotOnYourField({commit}, data){
+            commit("SELECTED_CARDSLOT_ON_YOUR_FIELD", data)
+        },
+        SelectedTargetToAttack({commit}, data){
+            commit("SELECTED_TARGET_TO_ATTACK", data)
+        },
+        SelectedHeroToAttack({commit}, data){
+            commit("SELECTED_HERO_TO_ATTACK", data)
+        },
     }
 }
