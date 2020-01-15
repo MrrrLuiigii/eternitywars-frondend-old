@@ -1,7 +1,7 @@
 <template>
     <div v-if="handSlot">
-        <div class="cardSlot" v-if="gameState.Player[playerIndexData].cardsInHand[cardSlotIndexData] !== undefined"> 
-             <card v-bind:card="gameState.Player[playerIndexData].cardsInHand[cardSlotIndexData]"
+        <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData] !== undefined"> 
+             <card v-bind:card="gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData]"
                 v-bind:inHand="true"
                 v-bind:onField="false"/>
         </div>
@@ -15,6 +15,7 @@
                 v-bind:onField="true"/>
         </div>
          <div class="cardSlot" v-else> 
+             <card v-bind:card="gameState.connectedPlayers[0].cardsInHand[0]"/>
         </div>
     </div>
 </template>
