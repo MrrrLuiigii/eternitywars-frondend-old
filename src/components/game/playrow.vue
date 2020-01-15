@@ -1,6 +1,5 @@
 <template>
-  <div class="playRow">
-    <div v-bind:class="[ topPlayer ? playRowContainerTop : playRowContainerBottom ]">
+  <div v-bind:class="[ topPlayer ? playRowContainerTop : playRowContainerBottom ]">
         <cardslot v-bind:cardSlotIndex="4" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
         <cardslot v-bind:cardSlotIndex="2" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
         <cardslot v-bind:cardSlotIndex="0" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
@@ -8,7 +7,6 @@
         <cardslot v-bind:cardSlotIndex="3" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
         <cardslot v-bind:cardSlotIndex="5" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
     </div>
-  </div>
 </template>
 
 <script>
@@ -42,8 +40,6 @@ export default {
 
         height: 12vh;
         width: 35vw;
-
-        border: 3px solid red;
     }
 
     .playRowContainerBottom {
@@ -56,11 +52,5 @@ export default {
 
         height: 12vh;
         width: 35vw;
-
-        border: 3px solid red;
-    }
-
-    .playRow {
-        width: 100%;
     }
 </style>
