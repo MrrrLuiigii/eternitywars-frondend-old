@@ -41,8 +41,6 @@ export default {
 
         width: 53vw;
         height: 12vh;
-
-        border: 3px solid blue;
     }
 
     .handContainerBottom {
@@ -55,7 +53,5 @@ export default {
 
         width: 53vw;
         height: 12vh;
-
-        border: 3px solid blue;
     }
 </style>

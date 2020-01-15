@@ -1,7 +1,6 @@
 <template>
     <div v-bind:class="[ topPlayer ? heroContainerTop : heroContainerBottom ]">
-        <div v-bind:class="[ topPlayer ? playerTop : playerBottom ]">
-            <div v-bind:class="[ topPlayer ? heroHpTop : heroHpBottom ]">
+        <div v-bind:class="[ topPlayer ? heroHpTop : heroHpBottom ]">
                 {{ gameState.connectedPlayers[index].hero.hp }}
             </div>
             <div v-bind:class="[ topPlayer ? heroBlueManaTop : heroBlueManaBottom ]">
@@ -13,7 +12,6 @@
             <div v-bind:class="[ topPlayer ? heroNameTop : heroNameBottom ]">
                 {{ gameState.connectedPlayers[index].username }}
             </div>
-        </div>
     </div>
 </template>
 
@@ -35,8 +33,6 @@ export default {
             heroHpBottom: "heroHpBottom",
             heroNameTop: "heroNameTop",
             heroNameBottom: "heroNameBottom",
-            playerTop: "playerTop",
-            playerBottom: "playerBottom",
             heroContainerTop: "heroContainerTop",
             heroContainerBottom: "heroContainerBottom",
             Hero: {
@@ -58,72 +54,53 @@ export default {
 
 <style>
     .heroContainerTop {
-        position: relative;
+        position: absolute;
+        top: 26.5vh;
+        left: 25vw;
 
         justify-content: center;
         display: flex;
 
         padding-top: 3vh;
 
-        width: 100%;
-        height: 12vh;
+        width: 36vw;
+        height: 7.5vh;
     }
 
     .heroContainerBottom {
-        position: relative;
+        position: absolute;
+        bottom: 26.5vh;
+        right: 25vw;
 
         justify-content: center;
         display: flex;
 
-        width: 100%;
-        height: 12vh;
-    }
-
-    .playerTop {
-        justify-content: center;
-        display: flex;
-
-        position: relative;
-
-        width: 25%;
-    }
-
-    .playerBottom {
-        justify-content: center;
-        display: flex;
-
-        position: relative;
-
-        width: 25%;
-        height: 10vh;
+        width: 36vw;
+        height: 7.5vh;
     }
 
     .heroNameTop {
         color: white;
 
         position: absolute;
-        bottom: 4.5vh;
-        left: 3vw;
-
-        margin-left: -10vw;
-
+        top: 0;
+        left: 0;
     }
 
     .heroNameBottom {
         color: white;
 
         position: absolute;
-        bottom: 3vh;
-        right: 3vw;
-
-        margin-right: -10vw;
+        bottom: 0;
+        right: 0;
     }
 
     .heroHpTop {
         color: white;
 
         position: absolute;
-        bottom: .5vh;
+        bottom: 0;
+        right: 10.2vw;
 
         width: 25px;
         height: 25px;
@@ -133,7 +110,10 @@ export default {
         color: white;
 
         position: absolute;
-        bottom: 7.6vh;
+        top: 0;
+        left: 10.2vw;
+
+        margin-top: -.6vh;
 
         width: 25px;
         height: 25px;
@@ -143,8 +123,8 @@ export default {
         color: white;
 
         position: absolute;
-        left: 3.7vw;
-        bottom: 3.4vh;
+        left: 16vw;
+        top: 2vh;
 
         width: 25px;
         height: 25px;
@@ -154,8 +134,8 @@ export default {
         color: white;
 
         position: absolute;
-        right: 3.7vw;
-        bottom: 4.6vh;
+        right: 16vw;
+        bottom: 2vh;
 
         width: 25px;
         height: 25px;
@@ -165,8 +145,8 @@ export default {
         color: white;
 
         position: absolute;
-        right: 4.1vw;
-        bottom: 3.6vh;
+        right: 2.4vw;
+        top: 1.5vh;
 
         width: 25px;
         height: 25px;
@@ -176,8 +156,8 @@ export default {
         color: white;
 
         position: absolute;
-        left: 4vw;
-        bottom: 4.4vh;
+        left: 2.3vw;
+        bottom: 1.8vh;
 
         width: 25px;
         height: 25px;
