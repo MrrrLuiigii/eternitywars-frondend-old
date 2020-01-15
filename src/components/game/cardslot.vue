@@ -1,9 +1,10 @@
 <template>
     <div v-if="handSlot">
         <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData] !== undefined"> 
-             <card v-bind:card="gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData]"
+             <card v-if="playerIndexData === 0" v-bind:card="gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData]"
                 v-bind:inHand="true"
                 v-bind:onField="false"/>
+                <cardback v-else/>
         </div>
          <div class="cardSlot" v-else> 
         </div>
@@ -15,17 +16,19 @@
                 v-bind:onField="true"/>
         </div>
          <div class="cardSlot" v-else> 
-             <card v-bind:card="gameState.connectedPlayers[0].cardsInHand[0]"/>
         </div>
     </div>
 </template>
 
 <script>
     import card from "@/components/game/card.vue"
+    import cardback from "@/components/game/cardback.vue"
     export default {
+
         name: "cardslot",
         components: {
-            card
+            card,
+            cardback 
         },
         props:['handSlot', 'cardSlotIndex', 'playerIndex'],
         data() {

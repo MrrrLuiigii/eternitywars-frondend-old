@@ -1,9 +1,9 @@
 <template>
     <div v-bind:class="[ topPlayer ? deckCardCountTop : deckCardCountBottom ]" v-if="index === 0">
-         {{ gameState.connectedPlayers[index].cardsInDeck.lenght}}
+         {{ gameState.connectedPlayers[index].cardsInDeck.length}}
     </div>
       <div v-bind:class="[ topPlayer ? deckCardCountTop : deckCardCountBottom ]" v-else>
-        {{ gameState.connectedPlayers[index].cardsInDeck.lenght}}
+        {{ gameState.connectedPlayers[index].cardsInDeck.length}}
     </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     computed: {
         gameState(){
             return this.$store.getters.getGame
-        }
+        },
     }
 }
 </script>
