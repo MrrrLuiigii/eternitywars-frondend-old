@@ -1,17 +1,15 @@
 <template>
-    <div class="hand">
-        <div v-bind:class="[ topPlayer ? handContainerTop : handContainerBottom ]">
-            <cardslot v-bind:cardSlotIndex="7" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-            <cardslot v-bind:cardSlotIndex="5" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-            <cardslot v-bind:cardSlotIndex="3" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-            <cardslot v-bind:cardSlotIndex="1" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-            <cardslot v-bind:cardSlotIndex="0" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-            <cardslot v-bind:cardSlotIndex="2" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-            <cardslot v-bind:cardSlotIndex="4" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-            <cardslot v-bind:cardSlotIndex="6" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-            <cardslot v-bind:cardSlotIndex="8" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
-        </div>
-    </div>    
+    <div v-bind:class="[ topPlayer ? handContainerTop : handContainerBottom ]">
+        <cardslot v-bind:cardSlotIndex="7" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+        <cardslot v-bind:cardSlotIndex="5" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+        <cardslot v-bind:cardSlotIndex="3" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+        <cardslot v-bind:cardSlotIndex="1" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+        <cardslot v-bind:cardSlotIndex="0" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+        <cardslot v-bind:cardSlotIndex="2" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+        <cardslot v-bind:cardSlotIndex="4" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+        <cardslot v-bind:cardSlotIndex="6" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+        <cardslot v-bind:cardSlotIndex="8" v-bind:playerIndex="indexData" v-bind:handSlot="true"/>
+    </div>  
 </template>
 
 <script>
@@ -37,25 +35,27 @@ export default {
         justify-content: center;
         display: flex;
 
-        margin: auto;
-        padding-left: 6.1vw;
-        padding-top: 10.5vh;
+        position: absolute;
+        top: 11vh;
+        left: 26.5vw;
 
-        width: 100%;
+        width: 53vw;
+        height: 12vh;
+
+        border: 3px solid blue;
     }
 
     .handContainerBottom {
         justify-content: center;
         display: flex;
 
-        margin: auto;
-        padding-right: 5.8vw;
+        position: absolute;
+        bottom: 11vh;
+        right: 26.5vw;
 
-        width: 100%;
+        width: 53vw;
+        height: 12vh;
+
+        border: 3px solid blue;
     }
-
-    .hand {
-        width: 100%;
-    }
-
 </style>
