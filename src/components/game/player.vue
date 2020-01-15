@@ -7,7 +7,7 @@
                 {{ gameState.connectedPlayers[index].hero.mana }}
             </div>
             <div v-bind:class="[ topPlayer ? heroDeathEssenceTop : heroDeathEssenceBottom ]">
-                {{ gameState.connectedPlayers[index].hero.deathEssence }}
+                {{ gameState.connectedPlayers[index].hero.deathessence }}
             </div>
             <div v-bind:class="[ topPlayer ? heroNameTop : heroNameBottom ]">
                 {{ gameState.connectedPlayers[index].username }}
