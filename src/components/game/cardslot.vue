@@ -1,7 +1,7 @@
 <template>
     <div v-if="handSlot">
-        <div class="cardSlot" v-if="gameState.Player[playerIndex].cardsInHand[cardSlotIndex] !== undefined"> 
-             <card v-bind:card="gameState.Player[playerIndex].cardsInHand[cardSlotIndex]"
+        <div class="cardSlot" v-if="gameState.Player[playerIndexData].cardsInHand[cardSlotIndexData] !== undefined"> 
+             <card v-bind:card="gameState.Player[playerIndexData].cardsInHand[cardSlotIndexData]"
                 v-bind:inHand="true"
                 v-bind:onField="false"/>
         </div>
@@ -9,8 +9,8 @@
         </div>
     </div>
     <div v-else>
-        <div class="cardSlot" v-if="gameState.BoardRow[playerIndex].cardOnBoard[cardSlotIndex] !== undefined"> 
-             <card v-bind:card="gameState.BoardRow[playerIndex].cardOnBoard[cardSlotIndex]"
+        <div class="cardSlot" v-if="gameState.BoardRow[playerIndexData].cardOnBoard[cardSlotIndexData] !== undefined"> 
+             <card v-bind:card="gameState.BoardRow[playerIndexData].cardOnBoard[cardSlotIndexData]"
                 v-bind:inHand="false"
                 v-bind:onField="true"/>
         </div>
@@ -26,14 +26,12 @@
         components: {
             card
         },
-        props:{
-            handSlot: Boolean,
-            cardSlotIndex: Number,
-            playerIndex: Number
-        },
+        props:['handSlot', 'cardSlotIndex', 'playerIndex'],
         data() {
             return {
-
+                handSlotData: this.handSlot,
+                cardSlotIndexData: this.cardSlotIndex,
+                playerIndexData: this.playerIndex
             }
         },
             computed: {

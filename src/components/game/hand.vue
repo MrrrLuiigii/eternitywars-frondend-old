@@ -18,15 +18,13 @@
 import cardslot from "@/components/game/cardslot.vue"
 export default {
     name: "hand",
-    props: {
-        topPlayer: Boolean,
-        index: Number,
-    },
+    props: ['index', 'topPlayer'],
     components: {
         cardslot
     },
     data() {
         return {
+            indexData: this.index,
             handContainerTop: "handContainerTop",
             handContainerBottom: "handContainerBottom"
         }
