@@ -22,14 +22,16 @@
         </div>
         </div>
         <div v-else>
-              <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined"> 
+              <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined"
+              v-on:click="SelectTargetToAttack(gameState.connectedPlayers[playerIndexData].cardsInHand, cardSlotIndexData)"> 
                 <card v-bind:card="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData].card"
                     v-bind:inHand="false"
                     v-bind:onField="true"/>
             </div>
-         <div class="cardSlot" v-else> 
+            <div class="cardSlot" v-else> 
+            </div>
         </div>
-        </div>
+        
     </div>
 </template>
 
@@ -48,7 +50,14 @@
             return {
                 handSlotData: this.handSlot,
                 cardSlotIndexData: this.cardSlotIndex,
-                playerIndexData: this.playerIndex
+                playerIndexData: this.playerIndex,
+                PlayMessage: {
+                    Subject: null,
+                    Action: null,
+                    Content: null,
+                    CardToPlay: null,
+                    SpotToPlace: null,
+                }
             }
         },
             computed: {
@@ -57,6 +66,9 @@
         },
         getSelectedCardInHand(){
             return this.$store.getters.getSelectedCardInHand
+        },
+         getSelectedCardSlotOnYourField(){
+            return this.$store.getters.SelectedCardSlotOnYourField
         }
     },
     methods:{
@@ -72,9 +84,26 @@
             console.log("werkt wel")
             if(this.getSelectedCardInHand !== null){
             const data = { cardslot, index}
-            this.$store.dispatch("SelectCardInHand", data)
+            this.$store.dispatch("SelectedCardSlotOnYourField", data)
+            this.TryToPlayCard()
             console.log(data)
             }
+        },
+        TryToPlayCard(){
+            this.PlayMessage.Content = this.gameState
+            this.PlayMessage.Subject = "GAME"
+            this.PlayMessage.Action = "PLACECARD"
+            this.PlayMessage.CardToPlay = this.getSelectedCardInHand
+            this.PlayMessage.SpotToPlace = this.getSelectedCardSlotOnYourField
+
+        },
+        SelectTargetToAttack(cardslot, index){
+        console.log("werkt wel")
+        if(this.SelectedCardSlotOnYourField !== null){
+        const data = { cardslot, index}
+        this.$store.dispatch("SelectCardInHand", data)
+        console.log(data)
+        }
         }
     }
  }
