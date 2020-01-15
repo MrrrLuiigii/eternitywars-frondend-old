@@ -8,7 +8,7 @@
       <player v-bind:topPlayer="false" v-bind:index="0"/>
       <hand v-bind:topPlayer="false" v-bind:index="0"/>
       <deck v-bind:topPlayer="false" v-bind:index="0"/>
-      <endButton />
+      <endButton v-if="getPlayerInfo.userId === gameState.playerTurn "/>
   </div>
 </template>
 
@@ -27,6 +27,14 @@
             endButton,
             deck
         },
+          computed: {
+    getPlayerInfo(){
+      return this.$store.getters.getPlayerInfo;
+    },
+            gameState(){
+            return this.$store.getters.getGame
+        },
+    },
         data() {
             return {
 
