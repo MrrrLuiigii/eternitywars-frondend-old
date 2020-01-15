@@ -1,20 +1,31 @@
 <template>
   <div>
-    <cardcollection />
+    <cardcollection class="cardcollectionComponent" />
+    <deckCreator class="deckCreatorComponent" />
     <homebutton />
   </div>
 </template>
 
 <script>
+import deckCreator from "@/components/deckbuilder/deckCreator";
 import cardcollection from "@/components/deckbuilder/cardcollection";
 import homebutton from "@/components/buttons/homebutton";
 export default {
   name: "Deckbuilder",
   components: {
     homebutton,
-    cardcollection
+    cardcollection,
+    deckCreator
   }
 };
 </script>
 
-<style></style>
+<style>
+.cardcollectionComponent {
+  float: left;
+}
+
+.deckCreatorComponent {
+  float: right;
+}
+</style>

@@ -1,12 +1,12 @@
 <template>
   <div class="playRow">
     <div v-bind:class="[ topPlayer ? playRowContainerTop : playRowContainerBottom ]">
-        <cardslot v-bind:cardSlotIndex="4" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
-        <cardslot v-bind:cardSlotIndex="2" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
-        <cardslot v-bind:cardSlotIndex="0" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
-        <cardslot v-bind:cardSlotIndex="1" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
-        <cardslot v-bind:cardSlotIndex="3" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
-        <cardslot v-bind:cardSlotIndex="5" v-bind:playerIndex="ïndex" v-bind:handSlot="false"/>
+        <cardslot v-bind:cardSlotIndex="4" v-bind:playerIndex="indexData" v-bind:handSlot="false"/>
+        <cardslot v-bind:cardSlotIndex="2" v-bind:playerIndex="indexData" v-bind:handSlot="false"/>
+        <cardslot v-bind:cardSlotIndex="0" v-bind:playerIndex="indexData" v-bind:handSlot="false"/>
+        <cardslot v-bind:cardSlotIndex="1" v-bind:playerIndex="indexData" v-bind:handSlot="false"/>
+        <cardslot v-bind:cardSlotIndex="3" v-bind:playerIndex="indexData" v-bind:handSlot="false"/>
+        <cardslot v-bind:cardSlotIndex="5" v-bind:playerIndex="indexData" v-bind:handSlot="false"/>
     </div>
   </div>
 </template>
@@ -18,12 +18,10 @@ export default {
     components: {
         cardslot
     },
-    props: {
-        index: Number,
-        topPlayer: Boolean
-    },
+    props: ['index', 'topPlayer'],
     data() {
         return {
+            indexData: this.index,
             playRowContainerTop: "playRowContainerTop",
             playRowContainerBottom: "playRowContainerBottom"
         }
@@ -36,21 +34,28 @@ export default {
         justify-content: center;
         display: flex;
 
-        margin: auto;
-        padding-left: .2vw;
+        position: absolute;
+        top: 34vh;
+        left: 32.5vw;
 
-        width: 100%;
+        height: 12vh;
+        width: 35vw;
+
+        border: 3px solid red;
     }
 
     .playRowContainerBottom {
         justify-content: center;
         display: flex;
 
-        margin: auto;
-        padding-left: .2vw;
-        padding-top: 7.2vh;
+        position: absolute;
+        bottom: 34vh;
+        right: 32.5vw;
 
-        width: 100%;
+        height: 12vh;
+        width: 35vw;
+
+        border: 3px solid red;
     }
 
     .playRow {

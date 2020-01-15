@@ -103,6 +103,7 @@ export default {
         }
         case "LAUNCHGAME":{
           this.$store.dispatch('SetGame', jsonData.content)
+          console.table(jsonData.content)
           const id = jsonData.content.id;
           this.$router.push({ name: "game", params: { id } });
           break
