@@ -10,8 +10,8 @@
         </div>
     </div>
     <div v-else>
-        <div class="cardSlot" v-if="gameState.BoardRow[playerIndexData].cardOnBoard[cardSlotIndexData] !== undefined"> 
-             <card v-bind:card="gameState.BoardRow[playerIndexData].cardOnBoard[cardSlotIndexData]"
+        <div class="cardSlot" v-if="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData] !== undefined"> 
+             <card v-bind:card="gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[cardSlotIndexData].card"
                 v-bind:inHand="false"
                 v-bind:onField="true"/>
         </div>
