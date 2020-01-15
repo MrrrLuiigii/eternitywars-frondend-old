@@ -36,21 +36,28 @@ export default {
         justify-content: center;
         display: flex;
 
-        margin: auto;
-        padding-left: .2vw;
+        position: absolute;
+        top: 34vh;
+        left: 32.5vw;
 
-        width: 100%;
+        height: 12vh;
+        width: 35vw;
+
+        border: 3px solid red;
     }
 
     .playRowContainerBottom {
         justify-content: center;
         display: flex;
 
-        margin: auto;
-        padding-left: .2vw;
-        padding-top: 7.2vh;
+        position: absolute;
+        bottom: 34vh;
+        right: 32.5vw;
 
-        width: 100%;
+        height: 12vh;
+        width: 35vw;
+
+        border: 3px solid red;
     }
 
     .playRow {

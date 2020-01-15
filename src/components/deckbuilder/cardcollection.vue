@@ -110,47 +110,47 @@ export default {
 
 <style>
 .collectionCardDiv {
-  width: 7vw;
+  /* width: 7vw; */
   height: 12vh;
 }
 
 .firstRow {
   margin-top: 3vh;
+  margin-left: 1.5vw;
   width: 60vw;
   display: flex;
-  overflow-x: scroll;
 }
 
 .secondRow {
   margin-top: 2vh;
+  margin-left: 1.5vw;
   width: 60vw;
   display: flex;
-  overflow-x: scroll;
 }
 
 .thirdRow {
   margin-top: 2vh;
+  margin-left: 1.5vw;
   width: 60vw;
   display: flex;
-  overflow-x: scroll;
 }
 
 .fourthRow {
   margin-top: 2vh;
+  margin-left: 1.5vw;
   width: 60vw;
   display: flex;
-  overflow-x: scroll;
 }
 
 .fifthRow {
   margin-top: 2vh;
+  margin-left: 1.5vw;
   width: 60vw;
   display: flex;
-  overflow-x: scroll;
 }
 
 .cardCollectionContainer {
-  margin: 5vh 3vw 10vh 3vw;
+  margin: 5vh 0 0 3vw;
 
   padding-top: 4.5vh;
 
@@ -158,6 +158,6 @@ export default {
   width: 60vw;
   background-color: red;
 
-  overflow-x: auto;
+  /* overflow-x: auto; */
 }
 </style>
