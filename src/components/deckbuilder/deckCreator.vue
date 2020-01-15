@@ -32,6 +32,8 @@ export default {
   margin: 5vh 3vw 0 0;
 
   padding-top: 4.5vh;
+  justify-content: center;
+  display: flex;
 
   width: 30vw;
   height: 85vh;

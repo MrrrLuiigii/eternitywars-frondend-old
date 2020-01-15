@@ -4,17 +4,47 @@
       label="Select a deck..."
       v-model="selectedDeck"
       :items="decks"
-      @input="getDeckById"
+      item-text="name"
+      single-line
+      v-on:change="getDeckById"
     />
+
+    <div
+      v-if="this.selectedDeck == null"
+      class="deckCardsContainer deckMessage"
+    >
+      <small>You don't have a deck selected...</small>
+    </div>
+    <div
+      v-else-if="this.selectedDeck.cards.cards === null"
+      class="deckCardsContainer deckMessage"
+    >
+      <small>You don't have any cards in this deck yet...</small>
+    </div>
+    <div v-else class="deckCardsContainer">
+      <div
+        v-for="(card, index) in this.selectedDeck.cards.cards"
+        :key="index"
+        :card="card"
+      >
+        <deckbuilderCard :card="card" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import deckbuilderCard from "@/components/deckbuilder/deckbuilderCard";
 export default {
   name: "collectionDeck",
+  props: ["card"],
+  components: {
+    deckbuilderCard
+  },
   data() {
     return {
       selectedDeck: null,
+      decks: null,
       wsMessage: {
         Subject: null,
         Action: null,
@@ -25,48 +55,51 @@ export default {
   },
   created() {
     this.$options.sockets.onmessage = data => this.messageReceived(data);
-    this.getDecks();
+    this.getAllEmptyDecks();
   },
   methods: {
-    async getDecks() {
+    async getAllEmptyDecks() {
       this.wsMessage.Subject = "DECK";
-      this.wsMessage.Action = "GETALLDECK";
-      const cont = this.$store.getters.getPlayerInfo;
-      this.wsMessage.Content = cont;
+      this.wsMessage.Action = "GETALLEMPTYDECKS";
+      const player = this.$store.getters.getPlayerInfo;
+      this.wsMessage.Content = player;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
-      console.log(this.wsMessage);
     },
     async getDeckById() {
-      //   this.wsMessage.Subject = "DECK";
-      //   this.wsMessage.Action = "GETDECKBYID";
-      //   this.wsMessage.Content = selectedDeck;
-      //   this.wsMessage.Token = await this.$auth.getTokenSilently();
-      //   this.$socket.send(JSON.stringify(this.wsMessage));
-      //   console.log(this.wsMessage);
+      this.wsMessage.Subject = "DECK";
+      this.wsMessage.Action = "GETBUILDERDECKBYID";
+      this.wsMessage.Content = this.selectedDeck;
+      this.wsMessage.Token = await this.$auth.getTokenSilently();
+      this.$socket.send(JSON.stringify(this.wsMessage));
     },
     messageReceived(data) {
       const jsonData = JSON.parse(data.data);
-
-      console.log(jsonData);
-
       switch (jsonData.action) {
-        case "GETDECKBYID":
-          console.log(jsonData.content);
-          //   this.$store.dispatch("SaveFriendData", jsonData.content.friends);
+        case "GETBUILDERDECKBYID":
+          this.selectedDeck = jsonData.content;
           break;
         case "GETALLDECK":
-          this.$store.dispatch("SaveDeckCollection", jsonData.content);
+          this.decks = jsonData.content.decks;
           break;
       }
-    }
-  },
-  computed: {
-    decks() {
-      return this.$store.getters.getPlayerInfo.deckCollection.decks;
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+.deckCardsContainer {
+  width: 25vw;
+  height: 70vh;
+
+  border: 3px solid orange;
+
+  overflow-y: scroll;
+}
+
+.deckMessage {
+  color: white;
+  padding-top: 35vh;
+}
+</style>
