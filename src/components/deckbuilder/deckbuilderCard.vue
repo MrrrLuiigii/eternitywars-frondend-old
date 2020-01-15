@@ -1,15 +1,31 @@
 <template>
-  <div class="deckBuilderCardName">{{ this.deckbuilderCard.name }}</div>
+  <div class="deckBuilderCardName">
+    <div @mouseleave="mouseLeave" @mouseover="mouseOver">{{ this.deckbuilderCard.name }}</div>
+    <hoverCard class="hoverCard" v-show="hoverActive" :card="card" />
+  </div>
 </template>
 
 <script>
+import hoverCard from "@/components/deckbuilder/collectionCard";
 export default {
   name: "deckbuilderCard",
   props: ["card"],
+  components: {
+    hoverCard
+  },
   data() {
     return {
+      hoverActive: false,
       deckbuilderCard: this.card
     };
+  },
+  methods: {
+    mouseOver() {
+      this.hoverActive = true;
+    },
+    mouseLeave() {
+        this.hoverActive = false;
+    }
   }
 };
 </script>
@@ -18,6 +34,13 @@ export default {
 .deckBuilderCardName {
   font-size: 20px;
   background-color: lightblue;
-  margin-bottom: .1vh;
+  margin-bottom: 0.1vh;
+}
+
+.hoverCard {
+    position: absolute;
+    top: 40vh;
+    right: 35vw;
+    transform: scale(1.5);
 }
 </style>
