@@ -31,7 +31,7 @@ export default {
 .deckCreatorContainer {
   margin: 5vh 3vw 0 0;
 
-  padding-top: 4.5vh;
+  padding-top: 2vh;
   justify-content: center;
   display: flex;
 

@@ -29,6 +29,9 @@ export default {
   computed: {
     getCardCollection() {
       return this.$store.getters.getCardCollection;
+    },
+    getSelectedBuilderDeck() {
+      return this.$store.getters.getSelectedBuilderDeck;
     }
   },
   created() {

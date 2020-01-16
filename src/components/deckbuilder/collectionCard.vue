@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div v-on:click="select()">
+    <div v-on:click="addToDeck()">
       <div class="cardName">
         {{ this.card.name }}
       </div>
@@ -30,15 +30,44 @@ export default {
   props: {
     card: Object
   },
+  computed: {
+    getSelectedBuilderDeck() {
+      return this.$store.getters.getSelectedBuilderDeck;
+    }
+  },
   data() {
-    return {};
+    return {
+      wsMessage: {
+        Subject: null,
+        Action: null,
+        Content: null,
+        Token: null
+      }
+    };
   },
   methods: {
-    deselect() {
-      return null;
-    },
-    select() {
-      return null;
+    async addToDeck() {
+      const deck = JSON.parse(JSON.stringify(this.getSelectedBuilderDeck));
+      const cardToAdd = JSON.parse(JSON.stringify(this.card));
+
+      if (deck.cards.cards.length < 30) {
+        deck.cards.cards = [];
+        deck.cards.cards[0] = cardToAdd;
+
+        this.wsMessage.Subject = "DECK";
+        this.wsMessage.Action = "ADDCARD";
+        this.wsMessage.Content = deck;
+        this.wsMessage.Token = await this.$auth.getTokenSilently();
+        this.$socket.send(JSON.stringify(this.wsMessage));
+        console.log(this.wsMessage);
+      }
+      else {
+        this.$toasted.show("Your deck has reached maximum capacity.", {
+            theme: "toasted-primary",
+            position: "bottom-right",
+            duration: 2500
+          });
+      }
     }
   }
 };

@@ -1,5 +1,13 @@
 <template>
   <div class="deckSelectorComponent">
+    <button
+      v-if="this.decks.length < 6"
+      class="artXButton createDeckButton"
+      v-on:click="createDeck"
+    >
+      Create Deck
+    </button>
+
     <v-combobox
       label="Select a deck..."
       v-model="selectedDeck"
@@ -76,7 +84,7 @@ export default {
     },
     async removeCard(selectedDeck, index) {
       const deck = JSON.parse(JSON.stringify(selectedDeck));
-      const card = deck.cards.cards[index];
+      const card = JSON.parse(JSON.stringify(deck.cards.cards[index]));
 
       deck.cards.cards = [];
       deck.cards.cards[0] = card;
@@ -86,14 +94,13 @@ export default {
       this.wsMessage.Content = deck;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
-      console.log(this.wsMessage);
     },
     messageReceived(data) {
       const jsonData = JSON.parse(data.data);
       switch (jsonData.action) {
         case "GETBUILDERDECKBYID":
-          console.log(jsonData);
           this.selectedDeck = jsonData.content;
+          this.$store.dispatch("SaveSelectedDeck", jsonData.content);
           break;
         case "GETALLDECK":
           this.decks = jsonData.content.decks;
