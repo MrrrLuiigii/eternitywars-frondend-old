@@ -26,7 +26,7 @@
         v-for="(card, index) in this.selectedDeck.cards.cards"
         :key="index"
         :card="card"
-        @click="changeColor(selectedDeck.cards.cards, index)"
+        @click.right="removeCard(selectedDeck, index)"
       >
         <deckbuilderCard :card="card" />
       </div>
@@ -74,20 +74,31 @@ export default {
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
     },
+    async removeCard(selectedDeck, index) {
+      const deck = JSON.parse(JSON.stringify(selectedDeck));
+      const card = deck.cards.cards[index];
+
+      deck.cards.cards = [];
+      deck.cards.cards[0] = card;
+
+      this.wsMessage.Subject = "DECK";
+      this.wsMessage.Action = "REMOVECARD";
+      this.wsMessage.Content = deck;
+      this.wsMessage.Token = await this.$auth.getTokenSilently();
+      this.$socket.send(JSON.stringify(this.wsMessage));
+      console.log(this.wsMessage);
+    },
     messageReceived(data) {
       const jsonData = JSON.parse(data.data);
       switch (jsonData.action) {
         case "GETBUILDERDECKBYID":
+          console.log(jsonData);
           this.selectedDeck = jsonData.content;
           break;
         case "GETALLDECK":
           this.decks = jsonData.content.decks;
           break;
       }
-    },
-    changeColor(cards, index) {
-      console.table(cards);
-      console.log(index);
     }
   }
 };
