@@ -26,6 +26,13 @@
             this.handleErrors(jsonData.content);
             break;
           }
+           case "ENDGAME": {
+            console.table(jsonData.content);
+            const id = jsonData.content.id;
+            this.$router.push({ name: "home", params: { id } });
+            this.$store.dispatch("UpdateGame", null);
+            break;
+          }
         }
       },
       handleErrors(game) {

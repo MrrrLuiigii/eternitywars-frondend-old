@@ -31,7 +31,7 @@
         v-on:click=" SelectTargetToAttack( cardSlotIndexData ) "
         v-on:click.right="SelectTargetToAttack(null)"
       >
-        <card
+        <card @mouseleave="mouseLeave" @mouseover="mouseOver"
           v-bind:card="
             gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
               cardSlotIndexData
@@ -40,6 +40,7 @@
           v-bind:inHand="false"
           v-bind:onField="true"
         />
+         <hovercard class="hoverCard" v-show="hoverActive" :card="gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[cardSlotIndexData].card"/>
       </div>
       <div class="cardSlot" v-else></div>
     </div>
@@ -49,15 +50,18 @@
 <script>
   import card from "@/components/game/card.vue";
   import cardback from "@/components/game/cardback.vue";
+  import hovercard from "@/components/deckbuilder/collectionCard"
   export default {
     name: "cardslot",
     components: {
       card,
-      cardback
+      cardback,
+      hovercard
     },
     props: ["handSlot", "cardSlotIndex", "playerIndex"],
     data() {
       return {
+        hoverActive: false,
         handSlotData: this.handSlot,
         cardSlotIndexData: this.cardSlotIndex,
         playerIndexData: this.playerIndex,
@@ -95,6 +99,12 @@
       }
     },
     methods: {
+      mouseOver(){
+        this.hoverActive = true
+      },
+      mouseLeave(){
+        this.hoverActive = false
+      },
       SelectCard(index) {
         if (index !== null) {
           this.$store.dispatch("SelectCardInHand", index);
@@ -160,4 +170,11 @@
     width: 5vw;
     height: 12vh;
   }
+
+  .hoverCard {
+  position: relative;
+  top: 0;
+  right: 2vw;
+  transform: scale(1.5);
+}
 </style>
