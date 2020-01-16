@@ -50,7 +50,6 @@ export default {
       this.wsMessage.Content = cont;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
-      console.log(this.wsMessage);
       this.getDecks();
     },
     async getDecks() {
@@ -60,7 +59,6 @@ export default {
       this.wsMessage.Content = cont;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
-      console.log(this.wsMessage);
     },
     messageReceived(data) {
       const jsonData = JSON.parse(data.data);
@@ -76,7 +74,6 @@ export default {
           this.$store.dispatch("SaveLobbies", jsonData.content.lobbies);
           break;
         case "GETALLDECK":
-          console.log(jsonData.content);
           this.$store.dispatch("SaveDeckCollection", jsonData.content);
           break;
       }
