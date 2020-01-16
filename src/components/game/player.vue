@@ -63,7 +63,7 @@
           Subject: null,
           Action: null,
           Content: null,
-          CardToAttackWith: null,
+          CardToAttackHeroWith: null,
           Hero: null
         }
       };
@@ -83,7 +83,7 @@
       SelectHero(hero) {
         console.log("werkt wel");
         if (this.SelectedCardSlotOnYourField !== null) {
-          const data = { cardslot, index };
+          const data = { hero};
           this.$store.dispatch("SelectedHeroToAttack", data);
           this.AttackHero();
           console.log(data);
@@ -93,8 +93,10 @@
         this.AttackHeroMessage.Content = this.gameState;
         this.AttackHeroMessage.Subject = "GAME";
         this.AttackHeroMessage.Action = "ATTACKHERO";
-        this.AttackHeroMessage.CardToAttackWith = this.getSelectedCardSlotOnYourField;
+        this.AttackHeroMessage.CardToAttackHeroWith = this.getSelectedCardSlotOnYourField;
         this.AttackHeroMessage.Hero = this.getSelectedHeroToAttack;
+        this.$socket.send(JSON.stringify(this.AttackHeroMessage));
+        console.log(this.AttackHeroMessage)
       }
     }
   };

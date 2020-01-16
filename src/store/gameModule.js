@@ -12,7 +12,7 @@ export default {
             return state.game;
         },
         getSelectedCardInHand: state => {
-            return state.getSelectedCardInHand;
+            return state.selectedCardInHand;
         },
         getSelectedEmptyCardSlotOnYourField: state => {
             return state.SelectedEmptyCardSlotOnYourField;
@@ -44,7 +44,7 @@ export default {
             state.SelectedCardSlotOnYourField = data
         },
         SELECTED_TARGET_TO_ATTACK(state, data){
-            state.SelectedCardSlotOnYourField = data
+            state.SelectedTargetToAttack = data
         },
         SELECTED_HERO_TO_ATTACK(state, data){
             state.SelectedHeroToAttack = data

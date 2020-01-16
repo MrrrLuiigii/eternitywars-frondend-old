@@ -91,5 +91,14 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ '@/Views/Game.vue'),
       beforeEnter: authGuard
     },
+    {
+      path: '/endgame',
+      name: 'endgame',
+   // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ '@/Views/Endgame.vue'),
+      beforeEnter: authGuard
+    },
   ]
 })
