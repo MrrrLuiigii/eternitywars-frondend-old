@@ -22,7 +22,7 @@ Vue.use(Toasted);
 
 import VueNativeSock from "vue-native-websocket";
 
-Vue.use(VueNativeSock, "ws://localhost:8082/ws/", {
+Vue.use(VueNativeSock, "ws://25.77.68.216:8082/ws/", {
   reconnection: true, // (Boolean) whether to reconnect automatically (false)
   reconnectionAttempts: 5, // (Number) number of reconnection attempts before giving up (Infinity),
   reconnectionDelay: 3000 // (Number) how long to initially wait before attempting a new (1000)
