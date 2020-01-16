@@ -34,7 +34,7 @@
       <div
         class="cardSlot"
         v-if="
-          gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[
+          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
             cardSlotIndexData
           ] !== undefined
         "
@@ -47,7 +47,7 @@
       >
         <card
           v-bind:card="
-            gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[
+            gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
               cardSlotIndexData
             ].card
           "
@@ -70,7 +70,7 @@
       <div
         class="cardSlot"
         v-if="
-          gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[
+          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
             cardSlotIndexData
           ] !== undefined
         "
@@ -84,7 +84,7 @@
       >
         <card
           v-bind:card="
-            gameState.connectedPlayers[playerIndexData].boardrow.cardSlotList[
+            gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
               cardSlotIndexData
             ].card
           "
