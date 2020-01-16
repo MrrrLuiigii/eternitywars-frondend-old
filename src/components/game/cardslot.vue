@@ -12,6 +12,15 @@
       @mouseleave="mouseLeave"
       @mouseover="mouseOver"
     >
+      <hovercard
+        class="hoverCard"
+        v-show="hoverActive"
+        :card="
+          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
+            cardSlotIndexData
+          ].card
+        "
+      />
       <card
         v-if="playerIndexData === 0"
         v-bind:card="
@@ -23,15 +32,6 @@
         v-bind:onField="false"
       />
       <cardback v-else />
-      <hovercard
-        class="hoverCard"
-        v-show="hoverActive"
-        :card="
-          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
-            cardSlotIndexData
-          ].card
-        "
-      />
     </div>
     <div class="cardSlot" v-else></div>
   </div>
