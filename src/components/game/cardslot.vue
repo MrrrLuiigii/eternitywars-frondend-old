@@ -9,8 +9,6 @@
       "
       v-on:click="SelectCard(cardSlotIndexData)"
       v-on:click.right="SelectCard(null)"
-      @mouseleave="mouseLeave"
-      @mouseover="mouseOver"
     >
       <card
         v-if="playerIndexData === 0"
@@ -23,15 +21,6 @@
         v-bind:onField="false"
       />
       <cardback v-else />
-      <hovercard
-        class="hoverCard"
-        v-show="hoverActive"
-        :card="
-          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
-            cardSlotIndexData
-          ].card
-        "
-      />
     </div>
     <div class="cardSlot" v-else></div>
   </div>
@@ -46,8 +35,6 @@
           ].card !== null
         "
         v-on:click="SelectCardOnYourField(cardSlotIndex)"
-        @mouseleave="mouseLeave"
-        @mouseover="mouseOver"
       >
         <card
           v-bind:card="
@@ -57,15 +44,6 @@
           "
           v-bind:inHand="false"
           v-bind:onField="true"
-        />
-        <hovercard
-          class="hoverCard"
-          v-show="hoverActive"
-          :card="
-            gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
-              cardSlotIndexData
-            ].card
-          "
         />
       </div>
       <div
@@ -84,8 +62,6 @@
         "
         v-on:click="SelectTargetToAttack(cardSlotIndexData)"
         v-on:click.right="SelectTargetToAttack(null)"
-        @mouseleave="mouseLeave"
-        @mouseover="mouseOver"
       >
         <card
           v-bind:card="
@@ -96,15 +72,6 @@
           v-bind:inHand="false"
           v-bind:onField="true"
         />
-        <hovercard
-          class="hoverCard"
-          v-show="hoverActive"
-          :card="
-            gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
-              cardSlotIndexData
-            ].card
-          "
-        />
       </div>
       <div class="cardSlot" v-else></div>
     </div>
@@ -114,18 +81,15 @@
 <script>
 import card from "@/components/game/card.vue";
 import cardback from "@/components/game/cardback.vue";
-import hovercard from "@/components/deckbuilder/collectionCard";
 export default {
   name: "cardslot",
   components: {
     card,
     cardback,
-    hovercard
   },
   props: ["handSlot", "cardSlotIndex", "playerIndex"],
   data() {
     return {
-      hoverActive: false,
       handSlotData: this.handSlot,
       cardSlotIndexData: this.cardSlotIndex,
       playerIndexData: this.playerIndex,
@@ -163,13 +127,13 @@ export default {
     }
   },
   methods: {
-    mouseOver() {
-      this.hoverActive = true;
-      console.log("hovveeerrrrrrrrrrrrrrrrrr");
-    },
-    mouseLeave() {
-      this.hoverActive = false;
-    },
+    // mouseOver() {
+    //   this.hoverActive = true;
+    //   console.log("hovveeerrrrrrrrrrrrrrrrrr");
+    // },
+    // mouseLeave() {
+    //   this.hoverActive = false;
+    // },
     SelectCard(index) {
       if (index !== null) {
         this.$store.dispatch("SelectCardInHand", index);
@@ -234,12 +198,12 @@ export default {
   height: 12vh;
 }
 
-.hoverCard {
+/* .hoverCard {
   position: absolute;
   top: 0;
   left: 0;
   transform: scale(1.5);
 
   margin-left: -30vw;
-}
+} */
 </style>
