@@ -156,7 +156,7 @@ export default {
 
   height: 85vh;
   width: 60vw;
-  border: 3px solid red;
+  background-color: red;
 
   /* overflow-x: auto; */
 }

@@ -104,7 +104,6 @@
     }
 
     .attack {
-        color: white;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -119,7 +118,6 @@
     }
 
     .health {
-        color: white;
         position: absolute;
         bottom: 0;
         right: 0;
@@ -134,7 +132,6 @@
     }
 
     .blueMana {
-        color: white;
         position: absolute;
         top: 0;
         left: 0;
@@ -150,7 +147,6 @@
     }
 
     .deathEssence {
-        color: white;
         position: absolute;
         top: 0;
         right: 0;
