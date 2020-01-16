@@ -1,54 +1,7 @@
 <template>
   <div class="cardCollectionContainer">
-    <div class="firstRow">
-      <div
-        class="collectionCardDiv"
-        v-for="(card, index) in getCardCollection"
-        :key="index"
-        :card="card"
-      >
-        <cardslot :card="card" v-if="index % 5 === 0" />
-      </div>
-    </div>
-    <div class="secondRow">
-      <div
-        class="collectionCardDiv"
-        v-for="(card, index) in getCardCollection"
-        :key="index"
-        :card="card"
-      >
-        <cardslot :card="card" v-if="index % 5 === 1" />
-      </div>
-    </div>
-    <div class="thirdRow">
-      <div
-        class="collectionCardDiv"
-        v-for="(card, index) in getCardCollection"
-        :key="index"
-        :card="card"
-      >
-        <cardslot :card="card" v-if="index % 5 === 2" />
-      </div>
-    </div>
-    <div class="fourthRow">
-      <div
-        class="collectionCardDiv"
-        v-for="(card, index) in getCardCollection"
-        :key="index"
-        :card="card"
-      >
-        <cardslot :card="card" v-if="index % 5 === 3" />
-      </div>
-    </div>
-    <div class="fifthRow">
-      <div
-        class="collectionCardDiv"
-        v-for="(card, index) in getCardCollection"
-        :key="index"
-        :card="card"
-      >
-        <cardslot :card="card" v-if="index % 5 === 4" />
-      </div>
+    <div v-for="(card, index) in getCardCollection" :key="index" :card="card">
+      <cardslot :card="card" />
     </div>
   </div>
 </template>
@@ -109,55 +62,19 @@ export default {
 </script>
 
 <style>
-.collectionCardDiv {
-  /* width: 7vw; */
-  height: 12vh;
-}
-
-.firstRow {
-  margin-top: 3vh;
-  margin-left: 1.5vw;
-  width: 60vw;
-  display: flex;
-}
-
-.secondRow {
-  margin-top: 2vh;
-  margin-left: 1.5vw;
-  width: 60vw;
-  display: flex;
-}
-
-.thirdRow {
-  margin-top: 2vh;
-  margin-left: 1.5vw;
-  width: 60vw;
-  display: flex;
-}
-
-.fourthRow {
-  margin-top: 2vh;
-  margin-left: 1.5vw;
-  width: 60vw;
-  display: flex;
-}
-
-.fifthRow {
-  margin-top: 2vh;
-  margin-left: 1.5vw;
-  width: 60vw;
-  display: flex;
-}
-
 .cardCollectionContainer {
+  color: white;
   margin: 5vh 0 0 3vw;
 
-  padding-top: 4.5vh;
+  padding-top: 2vh;
 
   height: 85vh;
   width: 60vw;
   border: 3px solid red;
 
-  /* overflow-x: auto; */
+  display: flex;
+  flex-wrap: wrap;
+
+  overflow-y: auto;
 }
 </style>

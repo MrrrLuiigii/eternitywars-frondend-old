@@ -1,6 +1,8 @@
 <template>
   <div class="deckBuilderCardName">
-    <div @mouseleave="mouseLeave" @mouseover="mouseOver">{{ this.deckbuilderCard.name }}</div>
+    <div @mouseleave="mouseLeave" @mouseover="mouseOver">
+      {{ this.deckbuilderCard.name }}
+    </div>
     <hoverCard class="hoverCard" v-show="hoverActive" :card="card" />
   </div>
 </template>
@@ -24,7 +26,7 @@ export default {
       this.hoverActive = true;
     },
     mouseLeave() {
-        this.hoverActive = false;
+      this.hoverActive = false;
     }
   }
 };
@@ -38,9 +40,9 @@ export default {
 }
 
 .hoverCard {
-    position: absolute;
-    top: 40vh;
-    right: 35vw;
-    transform: scale(1.5);
+  position: absolute;
+  top: 40vh;
+  right: 32vw;
+  transform: scale(1.5);
 }
 </style>

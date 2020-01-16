@@ -10,13 +10,13 @@
     />
 
     <div
-      v-if="this.selectedDeck == null"
+      v-if="this.selectedDeck === null"
       class="deckCardsContainer deckMessage"
     >
       <small>You don't have a deck selected...</small>
     </div>
     <div
-      v-else-if="this.selectedDeck.cards.cards === null"
+      v-else-if="this.selectedDeck.cards.cards.length === 0"
       class="deckCardsContainer deckMessage"
     >
       <small>You don't have any cards in this deck yet...</small>
@@ -26,6 +26,7 @@
         v-for="(card, index) in this.selectedDeck.cards.cards"
         :key="index"
         :card="card"
+        @click.right="removeCard(selectedDeck, index)"
       >
         <deckbuilderCard :card="card" />
       </div>
@@ -73,10 +74,25 @@ export default {
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
     },
+    async removeCard(selectedDeck, index) {
+      const deck = JSON.parse(JSON.stringify(selectedDeck));
+      const card = deck.cards.cards[index];
+
+      deck.cards.cards = [];
+      deck.cards.cards[0] = card;
+
+      this.wsMessage.Subject = "DECK";
+      this.wsMessage.Action = "REMOVECARD";
+      this.wsMessage.Content = deck;
+      this.wsMessage.Token = await this.$auth.getTokenSilently();
+      this.$socket.send(JSON.stringify(this.wsMessage));
+      console.log(this.wsMessage);
+    },
     messageReceived(data) {
       const jsonData = JSON.parse(data.data);
       switch (jsonData.action) {
         case "GETBUILDERDECKBYID":
+          console.log(jsonData);
           this.selectedDeck = jsonData.content;
           break;
         case "GETALLDECK":
