@@ -22,8 +22,6 @@ export default {
 
 <style>
 .cardSlot {
-  float: left;
-
   margin: 0 8.6px 0 8.6px;
 
   width: 5vw;

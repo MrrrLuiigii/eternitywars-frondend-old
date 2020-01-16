@@ -48,8 +48,6 @@ export default {
 .card {
   z-index: 99;
 
-  position: absolute;
-
   background-color: transparent;
   background-image: url("../../assets/game/card/card.png");
   background-size: 100% 100%;
