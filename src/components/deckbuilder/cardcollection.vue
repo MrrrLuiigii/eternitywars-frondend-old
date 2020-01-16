@@ -1,11 +1,5 @@
 <template>
   <div class="cardCollectionContainer">
-
-    <div v-if="this.getSelectedDeck !== null">
-      {{this.getSelectedDeck}}
-    </div>
-    <div v-else>Yeet</div>
-
     <div v-for="(card, index) in getCardCollection" :key="index" :card="card">
       <cardslot :card="card" />
     </div>
@@ -36,8 +30,8 @@ export default {
     getCardCollection() {
       return this.$store.getters.getCardCollection;
     },
-    getSelectedDeck() {
-      return this.$store.getters.getSelectedDeck;
+    getSelectedBuilderDeck() {
+      return this.$store.getters.getSelectedBuilderDeck;
     }
   },
   created() {

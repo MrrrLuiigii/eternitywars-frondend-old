@@ -1,23 +1,22 @@
 export default {
   state: {
     cards: null,
-    selectedDeck: null
+    selectedBuilderDeck: null
   },
   mutations: {
     SAVE_CARDCOLLECTION(state, cards) {
       state.cards = cards;
     },
     SAVE_SELECTEDDECK(state, deck) {
-      state.selectedDeck = deck;
+      state.selectedBuilderDeck = deck;
     }
   },
   getters: {
     getCardCollection: state => {
       return state.cards;
     },
-    getSelectedDeck: state => {
-      console.log("Get" + state.selectedDeck);
-      return state.selectedDeck;
+    getSelectedBuilderDeck: state => {
+      return state.selectedBuilderDeck;
     }
   },
   actions: {
@@ -25,7 +24,6 @@ export default {
       commit("SAVE_CARDCOLLECTION", cards);
     },
     SaveSelectedDeck({ commit }, deck) {
-      console.log("Save" + deck.cards.cards);
       commit("SAVE_SELECTEDDECK", deck);
     }
   }
