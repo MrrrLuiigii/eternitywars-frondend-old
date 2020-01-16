@@ -81,6 +81,7 @@
 <script>
 import card from "@/components/game/card.vue";
 import cardback from "@/components/game/cardback.vue";
+
 export default {
   name: "cardslot",
   components: {
