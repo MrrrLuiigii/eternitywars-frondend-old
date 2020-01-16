@@ -146,36 +146,36 @@
       }
     },
     methods: {
-      SelectCard(cardslot, index) {
-        if (cardslot !== null) {
-          const data = { cardslot, index };
+      SelectCard(cardslots, index) {
+        if (cardslots !== null) {
+          const data = { cardslots, index };
           this.$store.dispatch("SelectCardInHand", data);
           console.log(data);
         }
         this.$store.dispatch("SelectCardInHand", null);
       },
-      SelectEmptyYourField(cardslot, index) {
+      SelectEmptyYourField(cardslots, index) {
         console.log("werkt wel");
         if (this.getSelectedCardInHand !== null) {
-          const data = { cardslot, index };
+          const data = { cardslots, index };
           this.$store.dispatch("SelectedEmptyCardSlotOnYourField", data);
           this.TryToPlayCard();
           console.log(data);
         }
       },
-      SelectCardOnYourField(cardslot, index) {
-        if (cardslot !== null) {
-          const data = { cardslot, index };
+      SelectCardOnYourField(cardslots, index) {
+        if (cardslots !== null) {
+          const data = { cardslots, index };
           this.$store.dispatch("SelectedCardSlotOnYourField", data);
           console.log(data);
           //check if card has already attacked. backend needs a boolean
         }
         this.$store.dispatch("SelectedCardSlotOnYourField", null);
       },
-        SelectTargetToAttack(cardslot, index) {
+        SelectTargetToAttack(cardslots, index) {
         console.log("werkt wel");
         if (this.SelectedCardSlotOnYourField !== null) {
-          const data = { cardslot, index };
+          const data = { cardslots, index };
           this.$store.dispatch("SelectedTargetToAttack", data);
           this.AttackOpponentsCard();
           console.log(data);
