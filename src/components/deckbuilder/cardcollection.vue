@@ -66,7 +66,7 @@ export default {
   color: white;
   margin: 5vh 0 0 3vw;
 
-  padding-top: 4.5vh;
+  padding-top: 2vh;
 
   height: 85vh;
   width: 60vw;
