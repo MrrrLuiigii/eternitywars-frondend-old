@@ -12,7 +12,7 @@ export default {
             return state.game;
         },
         getSelectedCardInHand: state => {
-            return state.getSelectedCardInHand;
+            return state.selectedCardInHand;
         },
         getSelectedEmptyCardSlotOnYourField: state => {
             return state.SelectedEmptyCardSlotOnYourField;

@@ -1,27 +1,10 @@
 <template>
   <div v-if="handSlot">
-    <div
-      class="cardSlot"
-      v-if="
-        gameState.connectedPlayers[playerIndexData].cardsInHand[
-          cardSlotIndexData
-        ] !== undefined
-      "
-      v-on:click="
-        SelectCard(
-          gameState.connectedPlayers[playerIndexData].cardsInHand,
-          cardSlotIndexData
-        )
-      "
-      v-on:click.right="SelectCard(null, null)"
+    <div class="cardSlot" v-if=" gameState.connectedPlayers[playerIndexData].cardsInHand[ cardSlotIndexData] !== undefined" 
+    v-on:click="SelectCard( cardSlotIndexData )" 
+    v-on:click.right="SelectCard(null)"
     >
-      <card
-        v-if="playerIndexData === 0"
-        v-bind:card="
-          gameState.connectedPlayers[playerIndexData].cardsInHand[
-            cardSlotIndexData
-          ]
-        "
+      <card  v-if="playerIndexData === 0" v-bind:card=" gameState.connectedPlayers[playerIndexData].cardsInHand[cardSlotIndexData ]"
         v-bind:inHand="true"
         v-bind:onField="false"
       />
@@ -29,58 +12,24 @@
     </div>
     <div class="cardSlot" v-else></div>
   </div>
+
   <div v-else>
     <div v-if="playerIndexData === 0">
-      <div
-        class="cardSlot"
-        v-if="
-          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
-            cardSlotIndexData
-          ] !== undefined
-        "
+      <div class="cardSlot" v-if=" gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[cardSlotIndexData].card !== null"
         v-on:click="
-          SelectCardOnYourField(
-            gameState.connectedPlayers[playerIndexData].cardsInHand,
-            cardSlotIndexData
-          )
-        "
-      >
-        <card
-          v-bind:card="
-            gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
-              cardSlotIndexData
-            ].card
-          "
+          SelectCardOnYourField(cardSlotIndex)">
+        <card v-bind:card="gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[cardSlotIndexData].card"
           v-bind:inHand="false"
-          v-bind:onField="true"
-        />
+          v-bind:onField="true"/>
       </div>
-      <div
-        class="cardSlot"
-        v-else
-        v-on:click="
-          SelectEmptyYourField(
-            gameState.connectedPlayers[playerIndexData].cardsInHand,
-            cardSlotIndexData
-          )
-        "
+      <div class="cardSlot" v-else v-on:click=" SelectEmptyYourField( cardSlotIndexData)"
       ></div>
     </div>
     <div v-else>
       <div
-        class="cardSlot"
-        v-if="
-          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
-            cardSlotIndexData
-          ] !== undefined
-        "
-        v-on:click="
-          SelectTargetToAttack(
-            gameState.connectedPlayers[playerIndexData].cardsInHand,
-            cardSlotIndexData
-          )
-        "
-        v-on:click.right="SelectTargetToAttack(null, null)"
+        class="cardSlot" v-if=" gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[  cardSlotIndexData ].card !== null   "
+        v-on:click=" SelectTargetToAttack( cardSlotIndexData ) "
+        v-on:click.right="SelectTargetToAttack(null)"
       >
         <card
           v-bind:card="
@@ -146,39 +95,33 @@
       }
     },
     methods: {
-      SelectCard(cardslots, index) {
-        if (cardslots !== null) {
-          const data = { cardslots, index };
-          this.$store.dispatch("SelectCardInHand", data);
-          console.log(data);
+      SelectCard(index) {
+        if (index !== null) {
+          this.$store.dispatch("SelectCardInHand", index);
         }
+        else{
         this.$store.dispatch("SelectCardInHand", null);
-      },
-      SelectEmptyYourField(cardslots, index) {
-        console.log("werkt wel");
-        if (this.getSelectedCardInHand !== null) {
-          const data = { cardslots, index };
-          this.$store.dispatch("SelectedEmptyCardSlotOnYourField", data);
-          this.TryToPlayCard();
-          console.log(data);
         }
       },
-      SelectCardOnYourField(cardslots, index) {
-        if (cardslots !== null) {
-          const data = { cardslots, index };
-          this.$store.dispatch("SelectedCardSlotOnYourField", data);
-          console.log(data);
+      SelectEmptyYourField(index) {
+        if (this.getSelectedCardInHand !== null) {
+          this.$store.dispatch("SelectedEmptyCardSlotOnYourField", index);
+          this.TryToPlayCard();
+        }
+      },
+      SelectCardOnYourField(index) {
+        if (index !== null) {
+          this.$store.dispatch("SelectedCardSlotOnYourField", index);
           //check if card has already attacked. backend needs a boolean
         }
+        else{
         this.$store.dispatch("SelectedCardSlotOnYourField", null);
+        }
       },
-        SelectTargetToAttack(cardslots, index) {
-        console.log("werkt wel");
-        if (this.SelectedCardSlotOnYourField !== null) {
-          const data = { cardslots, index };
-          this.$store.dispatch("SelectedTargetToAttack", data);
+        SelectTargetToAttack(index) {
+        if (index !== null) {
+          this.$store.dispatch("SelectedTargetToAttack", index);
           this.AttackOpponentsCard();
-          console.log(data);
         }
       },
       TryToPlayCard() {
@@ -186,14 +129,18 @@
         this.PlayMessage.Subject = "GAME";
         this.PlayMessage.Action = "PLACECARD";
         this.PlayMessage.CardToPlay = this.getSelectedCardInHand;
-        this.PlayMessage.SpotToPlace = this.getSelectedEmptyCardSlotOnYourField;
+        this.PlayMessage.SpotToPlace = this.getSelectedEmptyCardSlotOnYourField;        
+        this.$socket.send(JSON.stringify(this.PlayMessage));
+        console.table(this.PlayMessage)
       },
       AttackOpponentsCard(){
         this.AttackMessage.Content = this.gameState;
         this.AttackMessage.Subject = "GAME";
         this.AttackMessage.Action = "ATTACKWITHCARD";
-        this.AttackMessage.CardToAttackWith = this.getSelectedCardInHand;
+        this.AttackMessage.CardToAttackWith = this.getSelectedCardSlotOnYourField;
         this.AttackMessage.TargetToAttack = this.getSelectedTargetToAttack;
+        this.$socket.send(JSON.stringify(this.AttackMessage));
+        console.table(this.AttackMessage)
       }
     }
   };

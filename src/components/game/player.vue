@@ -95,6 +95,8 @@
         this.AttackHeroMessage.Action = "ATTACKHERO";
         this.AttackHeroMessage.CardToAttackHeroWith = this.getSelectedCardSlotOnYourField;
         this.AttackHeroMessage.Hero = this.getSelectedHeroToAttack;
+        this.$socket.send(JSON.stringify(this.AttackHeroMessage));
+        console.log(this.AttackHeroMessage)
       }
     }
   };
