@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div v-on:click="select()">
+    <div v-on:click="addToDeck()">
       <div class="cardName">
         {{ this.card.name }}
       </div>
@@ -30,15 +30,18 @@ export default {
   props: {
     card: Object
   },
+  computed: {
+    getSelectedDeck() {
+      return this.$store.getters.getSelectedDeck;
+    }
+  },
   data() {
     return {};
   },
   methods: {
-    deselect() {
-      return null;
-    },
-    select() {
-      return null;
+    addToDeck() {
+      console.log(this.getSelectedDeck);
+      console.log(this.card);
     }
   }
 };
