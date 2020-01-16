@@ -1,5 +1,13 @@
 <template>
   <div class="deckSelectorComponent">
+    <button
+      v-if="this.decks.length < 6"
+      class="artXButton createDeckButton"
+      v-on:click="createDeck"
+    >
+      Create Deck
+    </button>
+
     <v-combobox
       label="Select a deck..."
       v-model="selectedDeck"
