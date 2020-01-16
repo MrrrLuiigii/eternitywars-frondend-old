@@ -26,6 +26,7 @@
         v-for="(card, index) in this.selectedDeck.cards.cards"
         :key="index"
         :card="card"
+        @click="changeColor(selectedDeck.cards.cards, index)"
       >
         <deckbuilderCard :card="card" />
       </div>
@@ -83,6 +84,10 @@ export default {
           this.decks = jsonData.content.decks;
           break;
       }
+    },
+    changeColor(cards, index) {
+      console.table(cards);
+      console.log(index);
     }
   }
 };
