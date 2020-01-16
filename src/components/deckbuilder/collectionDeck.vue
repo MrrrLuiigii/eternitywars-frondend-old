@@ -10,13 +10,13 @@
     />
 
     <div
-      v-if="this.selectedDeck == null"
+      v-if="this.selectedDeck === null"
       class="deckCardsContainer deckMessage"
     >
       <small>You don't have a deck selected...</small>
     </div>
     <div
-      v-else-if="this.selectedDeck.cards.cards === null"
+      v-else-if="this.selectedDeck.cards.cards.length === 0"
       class="deckCardsContainer deckMessage"
     >
       <small>You don't have any cards in this deck yet...</small>
