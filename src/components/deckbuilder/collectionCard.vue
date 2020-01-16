@@ -6,11 +6,11 @@
       </div>
 
       <div class="blueMana">
-        {{ this.card.blue_mana }}
+        {{ this.card.blueMana }}
       </div>
 
       <div class="deathEssence">
-        {{ this.card.death_essence }}
+        {{ this.card.deathEssence }}
       </div>
 
       <div class="attack">
@@ -69,7 +69,6 @@ export default {
 }
 
 .attack {
-  color: white;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -84,7 +83,6 @@ export default {
 }
 
 .health {
-  color: white;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -99,7 +97,6 @@ export default {
 }
 
 .blueMana {
-  color: white;
   position: absolute;
   top: 0;
   left: 0;
@@ -115,7 +112,6 @@ export default {
 }
 
 .deathEssence {
-  color: white;
   position: absolute;
   top: 0;
   right: 0;

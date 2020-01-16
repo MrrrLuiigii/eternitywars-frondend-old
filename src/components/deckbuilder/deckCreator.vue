@@ -1,17 +1,17 @@
 <template>
   <div class="deckCreatorContainer">
-    <collectionDeck />
+      <collectionDeck/>
   </div>
 </template>
 
 <script>
 import collectionDeck from "@/components/deckbuilder/collectionDeck";
 export default {
-  name: "deckCreator",
-  components: {
-    collectionDeck
-  },
-  props: {
+    name: "deckCreator",
+    components: {
+        collectionDeck
+    },
+    props: {
     deck: Object
   },
   data() {
@@ -24,19 +24,19 @@ export default {
       }
     };
   }
-};
+}
 </script>
 
 <style>
+
 .deckCreatorContainer {
-  margin: 5vh 3vw 0 0;
+    margin: 5vh 3vw 0 0;
 
-  padding-top: 4.5vh;
-  justify-content: center;
-  display: flex;
+    padding-top: 4.5vh;
 
-  width: 30vw;
-  height: 85vh;
-  border: 3px solid blue;
+    width: 30vw;
+    height: 85vh;
+    background-color: blue;
 }
+
 </style>
