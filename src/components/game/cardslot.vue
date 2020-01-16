@@ -27,7 +27,7 @@
     </div>
     <div v-else>
       <div
-        class="cardSlot" v-if=" gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[  cardSlotIndexData ].card !== null   "
+        class="cardSlot" v-if=" gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[cardSlotIndexData].card !== null   "
         v-on:click=" SelectTargetToAttack( cardSlotIndexData ) "
         v-on:click.right="SelectTargetToAttack(null)"
       >
@@ -120,6 +120,7 @@
       },
         SelectTargetToAttack(index) {
         if (index !== null) {
+          console.log(index)
           this.$store.dispatch("SelectedTargetToAttack", index);
           this.AttackOpponentsCard();
         }
@@ -132,6 +133,8 @@
         this.PlayMessage.SpotToPlace = this.getSelectedEmptyCardSlotOnYourField;        
         this.$socket.send(JSON.stringify(this.PlayMessage));
         console.table(this.PlayMessage)
+        this.$store.dispatch("SelectedEmptyCardSlotOnYourField", null);
+        this.$store.dispatch("SelectCardInHand", null);
       },
       AttackOpponentsCard(){
         this.AttackMessage.Content = this.gameState;
@@ -141,6 +144,8 @@
         this.AttackMessage.TargetToAttack = this.getSelectedTargetToAttack;
         this.$socket.send(JSON.stringify(this.AttackMessage));
         console.table(this.AttackMessage)
+        this.$store.dispatch("SelectedCardSlotOnYourField", null);
+        this.$store.dispatch("SelectedTargetToAttack", null);
       }
     }
   };
