@@ -70,7 +70,7 @@ export default {
   methods: {
     async getAllDecks() {
       this.wsMessage.Subject = "DECK";
-      this.wsMessage.Action = "GETALLDECK";
+      this.wsMessage.Action = "GETALLDECKS";
       const player = this.$store.getters.getPlayerInfo;
       this.wsMessage.Content = player;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
@@ -119,7 +119,7 @@ export default {
           this.selectedDeck = jsonData.content;
           this.$store.dispatch("SaveSelectedDeck", jsonData.content);
           break;
-        case "GETALLDECK":
+        case "GETALLDECKS":
           this.decks = jsonData.content.decks;
           break;
       }

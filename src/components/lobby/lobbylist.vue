@@ -54,7 +54,7 @@ export default {
     },
     async getDecks() {
       this.wsMessage.Subject = "DECK";
-      this.wsMessage.Action = "GETALLDECK";
+      this.wsMessage.Action = "GETALLDECKS";
       const cont = this.$store.getters.getPlayerInfo;
       this.wsMessage.Content = cont;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
@@ -73,7 +73,7 @@ export default {
         case "GETLOBBIES":
           this.$store.dispatch("SaveLobbies", jsonData.content.lobbies);
           break;
-        case "GETALLDECK":
+        case "GETALLDECKS":
           this.$store.dispatch("SaveDeckCollection", jsonData.content);
           break;
       }
