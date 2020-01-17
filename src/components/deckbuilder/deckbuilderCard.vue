@@ -40,8 +40,6 @@ export default {
   color: black;
 
   margin: 2px;
-
-  margin-bottom: 0.1vh;
 }
 
 .hoverCard {
