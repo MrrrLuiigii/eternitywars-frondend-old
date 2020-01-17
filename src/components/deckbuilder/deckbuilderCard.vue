@@ -3,12 +3,12 @@
     <div @mouseleave="mouseLeave" @mouseover="mouseOver">
       {{ this.deckbuilderCard.name }}
     </div>
-    <hoverCard class="hoverCard" v-show="hoverActive" :card="card" />
+    <hoverCard id="hoverDiv" class="hoverCard" v-show="hoverActive" :card="card" />
   </div>
 </template>
 
 <script>
-import hoverCard from "@/components/deckbuilder/collectionCard";
+import hoverCard from "@/components/card/hoverCard";
 export default {
   name: "deckbuilderCard",
   props: ["card"],
@@ -35,14 +35,18 @@ export default {
 <style>
 .deckBuilderCardName {
   font-size: 20px;
-  background-color: lightblue;
-  margin-bottom: 0.1vh;
+  
+  background-color: #362630;
+  color: black;
+  border: 2px solid black;
+
+  margin: 2px;
 }
 
 .hoverCard {
   position: absolute;
   top: 40vh;
   right: 32vw;
-  transform: scale(1.5);
+  transform: scale(2);
 }
 </style>

@@ -60,13 +60,12 @@ export default {
         this.wsMessage.Token = await this.$auth.getTokenSilently();
         this.$socket.send(JSON.stringify(this.wsMessage));
         console.log(this.wsMessage);
-      }
-      else {
+      } else {
         this.$toasted.show("Your deck has reached maximum capacity.", {
-            theme: "toasted-primary",
-            position: "bottom-right",
-            duration: 2500
-          });
+          theme: "toasted-primary",
+          position: "bottom-right",
+          duration: 2500
+        });
       }
     }
   }
@@ -83,77 +82,91 @@ export default {
 
   border: none;
 
-  margin: 0;
+  margin: 5px 0 5px 0;
   width: 5vw;
   height: 12vh;
 }
 
 .cardName {
   color: white;
-  margin: auto;
+
+  position: relative;
+  top: 40%;
+
+  width: 70px;
+  height: 70px;
+  word-wrap: break-word;
+
+  font-size: 15px;
 
   text-align: center;
 }
 
 .attack {
+  border-radius: 100%;
+
   color: white;
   position: absolute;
-  bottom: 0;
-  left: 0;
-
-  margin-left: -0.25vw;
-  margin-bottom: 0.2vh;
+  bottom: 0.7vh;
+  left: 0.5vw;
 
   font-weight: bold;
+  font-size: 15px;
 
-  width: 25px;
-  height: 25px;
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
 }
 
 .health {
+  border-radius: 100%;
+
   color: white;
   position: absolute;
-  bottom: 0;
-  right: 0;
-
-  margin-right: -0.15vw;
-  margin-bottom: 0.2vh;
+  bottom: 0.7vh;
+  right: 0.2vw;
 
   font-weight: bold;
+  font-size: 15px;
 
-  width: 25px;
-  height: 25px;
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
 }
 
 .blueMana {
+  border-radius: 100%;
+
   color: white;
   position: absolute;
-  top: 0;
-  left: 0;
-
-  margin-left: -0.25vw;
-  margin-top: -0.35vh;
+  top: 0.4vh;
+  left: 0.45vw;
 
   font-weight: bold;
+  font-size: 15px;
 
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
 }
 
 .deathEssence {
+  border-radius: 100%;
+
   color: white;
   position: absolute;
-  top: 0;
-  right: 0;
-
-  margin-left: -0.25vw;
-  margin-top: -0.35vh;
+  top: 0.4vh;
+  right: .05vw;
 
   font-weight: bold;
+  font-size: 15px;
 
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
 }
 </style>

@@ -29,7 +29,7 @@
            case "ENDGAME": {
             console.table(jsonData.content);
             const id = jsonData.content.id;
-            this.$router.push({ name: "home", params: { id } });
+            this.$router.push({ name: "postgame", params: { id } });
             this.$store.dispatch("UpdateGame", null);
             break;
           }

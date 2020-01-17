@@ -69,11 +69,18 @@ export default {
   color: white;
   margin: 5vh 0 0 3vw;
 
-  padding-top: 2vh;
+  padding: 6vh 0 6vh 0;
 
   height: 85vh;
   width: 60vw;
-  border: 3px solid red;
+
+  border: 20px;
+  border-color:#362630;
+  border-style: groove ridge ridge groove;
+
+  background-color: #a5b495;
+
+  justify-content: center;
 
   display: flex;
   flex-wrap: wrap;

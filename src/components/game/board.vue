@@ -46,7 +46,7 @@
 
 <style>
     .board {
-        background-image: url("../../assets/game/boardNew.png");
+        background-image: url("../../assets/game/board.png");
         background-size: 100% 100%;
 
         height: 100vh;

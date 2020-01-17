@@ -10,7 +10,7 @@
     <div>
       <Router-link to="/deckbuilder">
         <button class="artXButton routerLink">
-          DeckBuilder
+          Deckbuilder
         </button>
       </Router-link>
     </div>
@@ -30,9 +30,9 @@
     </div>
 
     <div>
-      <Router-link to="/game">
+      <Router-link to="/postgame">
         <button class="artXButton routerLink">
-          Game
+          Post game
         </button>
       </Router-link>
     </div>

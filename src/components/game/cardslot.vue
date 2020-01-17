@@ -10,6 +10,15 @@
       v-on:click="SelectCard(cardSlotIndexData)"
       v-on:click.right="SelectCard(null)"
     >
+      <hovercard
+        class="hoverCard"
+        v-show="hoverActive"
+        :card="
+          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
+            cardSlotIndexData
+          ].card
+        "
+      />
       <card
         v-if="playerIndexData === 0"
         v-bind:card="
