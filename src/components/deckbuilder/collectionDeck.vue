@@ -65,12 +65,12 @@ export default {
   },
   created() {
     this.$options.sockets.onmessage = data => this.messageReceived(data);
-    this.getAllEmptyDecks();
+    this.getAllDecks();
   },
   methods: {
-    async getAllEmptyDecks() {
+    async getAllDecks() {
       this.wsMessage.Subject = "DECK";
-      this.wsMessage.Action = "GETALLEMPTYDECKS";
+      this.wsMessage.Action = "GETALLDECK";
       const player = this.$store.getters.getPlayerInfo;
       this.wsMessage.Content = player;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
@@ -141,8 +141,8 @@ export default {
 }
 
 .deckMessage {
-  color: white;
-  padding-top: 35vh;
+  color: #362630;
+  padding-top: 28vh;
 }
 
 .selectAndRemove {
