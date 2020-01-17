@@ -3,7 +3,7 @@
     <div @mouseleave="mouseLeave" @mouseover="mouseOver">
       {{ this.deckbuilderCard.name }}
     </div>
-    <hoverCard class="hoverCard" v-show="hoverActive" :card="card" />
+    <hoverCard id="hoverDiv" class="hoverCard" v-show="hoverActive" :card="card" />
   </div>
 </template>
 
@@ -35,7 +35,12 @@ export default {
 <style>
 .deckBuilderCardName {
   font-size: 20px;
-  background-color: lightblue;
+  
+  background-color: #362630;
+  color: black;
+
+  margin: 2px;
+
   margin-bottom: 0.1vh;
 }
 

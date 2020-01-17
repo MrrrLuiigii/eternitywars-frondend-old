@@ -36,7 +36,12 @@ export default {
   display: flex;
 
   width: 30vw;
-  height: 85vh;
-  border: 3px solid blue;
+  height: 85vh;  
+
+  border: 20px;
+  border-color:#362630;
+  border-style: groove ridge ridge groove;
+
+  background-color: #a5b495;
 }
 </style>

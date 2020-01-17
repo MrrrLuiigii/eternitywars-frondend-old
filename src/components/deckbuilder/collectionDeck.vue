@@ -131,9 +131,11 @@ export default {
 <style>
 .deckCardsContainer {
   width: 25vw;
-  height: 66vh;
+  height: 64vh;
 
-  border: 3px solid orange;
+  border: 10px;
+  border-color:#362630;
+  border-style: ridge groove groove ridge;
 
   overflow-y: scroll;
 }
