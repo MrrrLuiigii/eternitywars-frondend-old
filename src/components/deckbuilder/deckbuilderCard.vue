@@ -38,6 +38,7 @@ export default {
   
   background-color: #362630;
   color: black;
+  border: 2px solid black;
 
   margin: 2px;
 }
@@ -46,6 +47,6 @@ export default {
   position: absolute;
   top: 40vh;
   right: 32vw;
-  transform: scale(1.5);
+  transform: scale(2);
 }
 </style>
