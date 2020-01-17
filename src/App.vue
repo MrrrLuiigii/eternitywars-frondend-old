@@ -46,7 +46,8 @@ export default {
 }
 
 .artButton:focus,
-.artXButton:focus {
+.artXButton:focus,
+.artSButton:focus {
   outline: 0;
 }
 
