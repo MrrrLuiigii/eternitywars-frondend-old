@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import hoverCard from "@/components/deckbuilder/collectionCard";
+import hoverCard from "@/components/card/hoverCard";
 export default {
   name: "deckbuilderCard",
   props: ["card"],
