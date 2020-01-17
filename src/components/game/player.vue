@@ -97,6 +97,8 @@
         this.AttackHeroMessage.Hero = this.getSelectedHeroToAttack;
         this.$socket.send(JSON.stringify(this.AttackHeroMessage));
         console.log(this.AttackHeroMessage)
+        this.$store.dispatch("SelectedHeroToAttack", null);
+        this.$store.dispatch("SelectedTargetToAttack", null);
       }
     }
   };

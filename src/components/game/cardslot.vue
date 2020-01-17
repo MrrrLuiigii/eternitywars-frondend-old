@@ -145,11 +145,7 @@ export default {
     //   this.hoverActive = false;
     // },
     SelectCard(index) {
-      if (index !== null) {
         this.$store.dispatch("SelectCardInHand", index);
-      } else {
-        this.$store.dispatch("SelectCardInHand", null);
-      }
     },
     SelectEmptyYourField(index) {
       if (this.getSelectedCardInHand !== null) {
@@ -158,16 +154,10 @@ export default {
       }
     },
     SelectCardOnYourField(index) {
-      if (index !== null) {
         this.$store.dispatch("SelectedCardSlotOnYourField", index);
-        //check if card has already attacked. backend needs a boolean
-      } else {
-        this.$store.dispatch("SelectedCardSlotOnYourField", null);
-      }
     },
     SelectTargetToAttack(index) {
-      if (index !== null) {
-        console.log(index);
+      if(this.getSelectedCardSlotOnYourField !== null){
         this.$store.dispatch("SelectedTargetToAttack", index);
         this.AttackOpponentsCard();
       }

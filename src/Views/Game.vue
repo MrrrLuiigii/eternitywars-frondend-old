@@ -30,7 +30,7 @@
             console.table(jsonData.content);
             const id = jsonData.content.id;
             this.$router.push({ name: "postgame", params: { id } });
-            this.$store.dispatch("UpdateGame", null);
+            this.$store.dispatch("UpdateGame", jsonData.content);
             break;
           }
         }

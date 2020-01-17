@@ -1,31 +1,88 @@
 <template>
-  <div>
-    <div class="winnerContainer">
+  <div v-if="gameState !== null">
+    <div class="winnerContainer" v-if="gameState.connectedPlayers[0].hero.hp <= 0">
       <div class="winnerPlayer">
         <img class="winnerCrown" src="../assets/postgame/crown.png" />
-        <h1 class="winnerName">WinnerName</h1>
-      </div>
-      <div class="winnerInfoContainer">
+        <h1 class="winnerName">{{gameState.connectedPlayers[1].username}}</h1>
+      <div class="winnerInfoContainer" >
         <div class="winnerGoldContainer">
           <img class="winnerGold" src="../assets/postgame/winnerGold.png" />
-          <p class="playerInfo">As a reward you gain 25 gold!</p>
+          <p class="playerInfo">As a reward your opponent gained 25 gold!</p>
         </div>
         <div class="winnerDeck">
           WinnerDeck
+            <div
+        v-for="(card, index) in gameState.connectedPlayers[1].deck.cards.cards"
+        :key="index"
+        :card="card"
+      >
+        <deckbuilderCard :card="card" />
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+       <div class="winnerContainer" v-else>
+      <div class="winnerPlayer">
+        <img class="winnerCrown" src="../assets/postgame/crown.png" />
+        <h1 class="winnerName">{{gameState.connectedPlayers[0].username}}</h1>
+      <div class="winnerInfoContainer" >
+        <div class="winnerGoldContainer">
+          <img class="winnerGold" src="../assets/postgame/winnerGold.png" />
+          <p class="playerInfo">As a reward you gained 25 gold!</p>
+        </div>
+        <div class="winnerDeck">
+          WinnerDeck
+            <div
+        v-for="(card, index) in gameState.connectedPlayers[0].deck.cards.cards"
+        :key="index"
+        :card="card"
+      >
+        <deckbuilderCard :card="card" />
+      </div>
         </div>
       </div>
     </div>
-    <div class="loserContainer">
-      <h1 class="loserName">LoserName</h1>
+  </div>
+
+    <div class="loserContainer" v-if="gameState.connectedPlayers[0].hero.hp <= 0">
+      <h1 class="loserName">{{gameState.connectedPlayers[0].username}}</h1>
       <img class="loserGold" src="../assets/postgame/loserGold.png" />
       <p class="playerInfo">
-        Here is a small consolation for you loss...<br />You gain 5 gold!
+        Here is a small consolation for you loss...<br />You gained 5 gold!
       </p>
       <div class="loserDeck">
         LoserDeck
+          <div
+        v-for="(card, index) in gameState.connectedPlayers[0].deck.cards.cards"
+        :key="index"
+        :card="card"
+      >
+        <deckbuilderCard :card="card" />
+      </div>
       </div>
     </div>
-    <homebutton />
+    <div class="loserContainer" v-else>
+      <h1 class="loserName">{{gameState.connectedPlayers[1].username}}</h1>
+      <img class="loserGold" src="../assets/postgame/loserGold.png" />
+      <p class="playerInfo">
+        Your opponent got a small consolation for his loss...<br />He gained 5 gold!
+      </p>
+      <div class="loserDeck">
+        LoserDeck
+          <div
+        v-for="(card, index) in gameState.connectedPlayers[1].deck.cards.cards"
+        :key="index"
+        :card="card"
+      >
+        <deckbuilderCard :card="card" />
+      </div>
+      </div>
+    </div>
+    <homebutton v-on:click="resetGameStore"/>
+  </div>
+  <div v-else>
+    ERROR <br/> NO POST-GAME STATE FOUND
   </div>
 </template>
 
@@ -49,7 +106,17 @@ export default {
         Token: null
       }
     };
-  }
+  },
+  methods:{
+    resetGameStore(){
+      this.$store.dispatch('UpdateGame', null)
+    }
+  },
+        computed: {
+    gameState() {
+      return this.$store.getters.getGame;
+    },
+      },
 };
 </script>
 

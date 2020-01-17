@@ -1,6 +1,6 @@
 export default {
     state: {
-        game: {},
+        game: null,
         selectedCardInHand: null,
         SelectedEmptyCardSlotOnYourField: null,
         SelectedTargetToAttack: null,
