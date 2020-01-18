@@ -97,7 +97,6 @@ export default {
     deckbuilderCard
   },
   props: ["game"],
-  created: {},
   data() {
     return {
       winner: null,
