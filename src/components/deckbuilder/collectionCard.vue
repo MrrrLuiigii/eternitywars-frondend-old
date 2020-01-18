@@ -50,7 +50,14 @@ export default {
       const deck = JSON.parse(JSON.stringify(this.getSelectedBuilderDeck));
       const cardToAdd = JSON.parse(JSON.stringify(this.card));
 
+      const cardLimit = this.checkCardLimit(deck, cardToAdd);
+
       if (deck.cards.cards.length < 30) {
+        if (cardLimit) {
+          this.showToast("You can only put two copies of a card in your deck.");
+          return;
+        }
+
         deck.cards.cards = [];
         deck.cards.cards[0] = cardToAdd;
 
@@ -59,10 +66,24 @@ export default {
         this.wsMessage.Content = deck;
         this.wsMessage.Token = await this.$auth.getTokenSilently();
         this.$socket.send(JSON.stringify(this.wsMessage));
-        console.log(this.wsMessage);
       } else {
         this.showToast("Your deck has reached maximum capacity.");
       }
+    },
+    checkCardLimit(deck, cardToAdd) {
+      var counter = 0;
+
+      deck.cards.cards.forEach(element => {
+        if (element.cardId === cardToAdd.cardId) {
+          counter += 1;
+        }
+      });
+
+      if (counter < 2) {
+        return false;
+      }
+
+      return true;
     },
     async showToast(message) {
       this.$toasted.show(message, {
@@ -130,7 +151,7 @@ export default {
 
   position: absolute;
   bottom: 0.9vh;
-  right: .05vw;
+  right: 0.05vw;
 
   font-weight: bold;
   font-size: 15px;
