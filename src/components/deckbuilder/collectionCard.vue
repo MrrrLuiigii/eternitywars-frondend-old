@@ -61,12 +61,15 @@ export default {
         this.$socket.send(JSON.stringify(this.wsMessage));
         console.log(this.wsMessage);
       } else {
-        this.$toasted.show("Your deck has reached maximum capacity.", {
-          theme: "toasted-primary",
-          position: "bottom-right",
-          duration: 2500
-        });
+        this.showToast("Your deck has reached maximum capacity.");
       }
+    },
+    async showToast(message) {
+      this.$toasted.show(message, {
+        theme: "toasted-primary",
+        position: "bottom-right",
+        duration: 2500
+      });
     }
   }
 };
@@ -82,6 +85,8 @@ export default {
 
   border: none;
 
+  justify-content: center;
+
   margin: 5px 0 5px 0;
   width: 5vw;
   height: 12vh;
@@ -90,12 +95,10 @@ export default {
 .cardName {
   color: white;
 
-  position: relative;
-  top: 40%;
-
   width: 70px;
   height: 70px;
   word-wrap: break-word;
+  margin: auto;
 
   font-size: 15px;
 
@@ -106,9 +109,10 @@ export default {
   border-radius: 100%;
 
   color: white;
+
   position: absolute;
-  bottom: 0.7vh;
-  left: 0.5vw;
+  bottom: 0.75vh;
+  left: 0.3vw;
 
   font-weight: bold;
   font-size: 15px;
@@ -123,9 +127,10 @@ export default {
   border-radius: 100%;
 
   color: white;
+
   position: absolute;
-  bottom: 0.7vh;
-  right: 0.2vw;
+  bottom: 0.9vh;
+  right: .05vw;
 
   font-weight: bold;
   font-size: 15px;
@@ -140,9 +145,10 @@ export default {
   border-radius: 100%;
 
   color: white;
+
   position: absolute;
-  top: 0.4vh;
-  left: 0.45vw;
+  top: 0.1vh;
+  left: 0.24vw;
 
   font-weight: bold;
   font-size: 15px;
@@ -157,9 +163,10 @@ export default {
   border-radius: 100%;
 
   color: white;
+
   position: absolute;
-  top: 0.4vh;
-  right: .05vw;
+  top: 0.1vh;
+  right: 0.05vw;
 
   font-weight: bold;
   font-size: 15px;
