@@ -7,7 +7,9 @@
     <div class="rightShopSide">
       <open />
     </div>
-    <homebutton v-on:click="resetStore" />
+    <button class="artButton shopHomeButton" @click="this.resetStore">
+      Home
+    </button>
   </div>
   <div v-else>
     <div>ERROR LOADING USER DATA PLEASE TRY AGAIN...</div>
@@ -37,7 +39,7 @@ export default {
     this.$options.sockets.onmessage = data => this.messageReceived(data);
   },
   methods: {
-    messageReceived(data) {
+    async messageReceived(data) {
       const jsonData = JSON.parse(data.data);
       switch (jsonData.action) {
         case "ERROR": {
@@ -45,7 +47,6 @@ export default {
           break;
         }
         case "OPENPACK": {
-          console.table(jsonData.content);
           this.$store.dispatch("AddPack", jsonData.content);
           break;
         }
@@ -68,6 +69,7 @@ export default {
     },
     resetStore() {
       this.$store.dispatch("AddPack", null);
+      this.$router.push("/");
     }
   }
 };
@@ -84,5 +86,11 @@ export default {
   width: 50vw;
   height: 100vh;
   float: right;
+}
+
+.shopHomeButton {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
 }
 </style>
