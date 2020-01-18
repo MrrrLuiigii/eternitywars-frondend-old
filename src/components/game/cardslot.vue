@@ -10,15 +10,6 @@
       v-on:click="SelectCard(cardSlotIndexData)"
       v-on:click.right="SelectCard(null)"
     >
-      <hovercard
-        class="hoverCard"
-        v-show="hoverActive"
-        :card="
-          gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
-            cardSlotIndexData
-          ].card
-        "
-      />
       <card
         v-if="playerIndexData === 0"
         v-bind:card="
@@ -137,13 +128,6 @@ export default {
     }
   },
   methods: {
-    // mouseOver() {
-    //   this.hoverActive = true;
-    //   console.log("hovveeerrrrrrrrrrrrrrrrrr");
-    // },
-    // mouseLeave() {
-    //   this.hoverActive = false;
-    // },
     SelectCard(index) {
         this.$store.dispatch("SelectCardInHand", index);
     },
@@ -197,13 +181,4 @@ export default {
   width: 5vw;
   height: 12vh;
 }
-
-/* .hoverCard {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: scale(1.5);
-
-  margin-left: -30vw;
-} */
 </style>
