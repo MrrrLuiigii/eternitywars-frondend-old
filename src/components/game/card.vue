@@ -57,3 +57,106 @@ export default {
   }
 };
 </script>
+
+<style>
+.card {
+  z-index: 99;
+
+  background-color: transparent;
+  background-image: url("../../assets/game/card/card.png");
+  background-size: 100% 100%;
+
+  border: none;
+
+  justify-content: center;
+
+  margin: 5px 0 5px 0;
+  width: 5vw;
+  height: 12vh;
+}
+
+.cardName {
+  color: white;
+
+  width: 70px;
+  height: 70px;
+  word-wrap: break-word;
+  margin: auto;
+
+  font-size: 15px;
+
+  text-align: center;
+}
+
+.attack {
+  border-radius: 100%;
+
+  color: white;
+
+  position: absolute;
+  bottom: 0.75vh;
+  left: 0.3vw;
+
+  font-weight: bold;
+  font-size: 15px;
+
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
+}
+
+.health {
+  border-radius: 100%;
+
+  color: white;
+
+  position: absolute;
+  bottom: 0.9vh;
+  right: 0.05vw;
+
+  font-weight: bold;
+  font-size: 15px;
+
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
+}
+
+.blueMana {
+  border-radius: 100%;
+
+  color: white;
+
+  position: absolute;
+  top: 0.1vh;
+  left: 0.24vw;
+
+  font-weight: bold;
+  font-size: 15px;
+
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
+}
+
+.deathEssence {
+  border-radius: 100%;
+
+  color: white;
+
+  position: absolute;
+  top: 0.1vh;
+  right: 0.05vw;
+
+  font-weight: bold;
+  font-size: 15px;
+
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
+}
+</style>

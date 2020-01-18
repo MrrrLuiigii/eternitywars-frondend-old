@@ -73,7 +73,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .leftShopSide {
   width: 50vw;
   height: 100vh;

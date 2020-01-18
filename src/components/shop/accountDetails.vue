@@ -31,7 +31,6 @@
 export default {
   computed: {
     getPlayerInfo() {
-      console.table(this.$store.getters.getPlayerInfo);
       return this.$store.getters.getPlayerInfo;
     }
   }
