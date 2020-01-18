@@ -137,13 +137,13 @@
   <div v-else>
     ERROR <br />
     NO POST-GAME STATE FOUND
-    <homebutton />
+    <homebutton v-on:click="resetGameStore" />
   </div>
 </template>
 
 <script>
-import deckbuilderCard from "@/components/deckbuilder/deckbuilderCard";
 import homebutton from "@/components/buttons/homebutton";
+import deckbuilderCard from "@/components/deckbuilder/deckbuilderCard";
 export default {
   name: "postGame",
   components: {
@@ -151,7 +151,6 @@ export default {
     deckbuilderCard
   },
   props: ["game"],
-  created: {},
   data() {
     return {
       winner: null,
