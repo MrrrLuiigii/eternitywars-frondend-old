@@ -86,7 +86,7 @@ export default {
   name: "cardslot",
   components: {
     card,
-    cardback,
+    cardback
   },
   props: ["handSlot", "cardSlotIndex", "playerIndex"],
   data() {
@@ -129,7 +129,7 @@ export default {
   },
   methods: {
     SelectCard(index) {
-        this.$store.dispatch("SelectCardInHand", index);
+      this.$store.dispatch("SelectCardInHand", index);
     },
     SelectEmptyYourField(index) {
       if (this.getSelectedCardInHand !== null) {
@@ -138,10 +138,10 @@ export default {
       }
     },
     SelectCardOnYourField(index) {
-        this.$store.dispatch("SelectedCardSlotOnYourField", index);
+      this.$store.dispatch("SelectedCardSlotOnYourField", index);
     },
     SelectTargetToAttack(index) {
-      if(this.getSelectedCardSlotOnYourField !== null){
+      if (this.getSelectedCardSlotOnYourField !== null) {
         this.$store.dispatch("SelectedTargetToAttack", index);
         this.AttackOpponentsCard();
       }
@@ -153,7 +153,6 @@ export default {
       this.PlayMessage.CardToPlay = this.getSelectedCardInHand;
       this.PlayMessage.SpotToPlace = this.getSelectedEmptyCardSlotOnYourField;
       this.$socket.send(JSON.stringify(this.PlayMessage));
-      console.table(this.PlayMessage);
       this.$store.dispatch("SelectedEmptyCardSlotOnYourField", null);
       this.$store.dispatch("SelectCardInHand", null);
     },
@@ -164,7 +163,6 @@ export default {
       this.AttackMessage.CardToAttackWith = this.getSelectedCardSlotOnYourField;
       this.AttackMessage.TargetToAttack = this.getSelectedTargetToAttack;
       this.$socket.send(JSON.stringify(this.AttackMessage));
-      console.table(this.AttackMessage);
       this.$store.dispatch("SelectedCardSlotOnYourField", null);
       this.$store.dispatch("SelectedTargetToAttack", null);
     }

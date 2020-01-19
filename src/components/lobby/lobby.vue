@@ -40,7 +40,6 @@ export default {
       this.wsMessage.Player = this.$store.getters.getPlayerInfo;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
-      console.log(this.wsMessage);
     },
     getPlayerCount() {
       if (this.datalobby.playerTwo !== null) {

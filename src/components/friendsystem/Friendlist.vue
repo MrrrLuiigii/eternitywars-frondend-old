@@ -83,7 +83,6 @@ export default {
           this.wsMessage.Content = cont;
           this.wsMessage.Token = token;
           this.$socket.send(JSON.stringify(this.wsMessage));
-          console.log(this.wsMessage);
         }
       }, 900);
     },
@@ -91,13 +90,11 @@ export default {
       const jsonData = JSON.parse(data.data);
       switch (jsonData.action) {
         case "GETALLFRIENDS":
-          console.log(jsonData.content);
           this.$store.dispatch("SaveFriendData", jsonData.content.friends);
       }
     },
     startChat(friend) {
       this.$store.dispatch("addChat", friend);
-      console.log(this.$store.getters.getChatList);
     }
   },
   computed: {

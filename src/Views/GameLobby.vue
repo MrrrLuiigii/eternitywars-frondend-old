@@ -45,161 +45,160 @@
 </template>
 
 <script>
-  import Playerinfo from "@/components/gamelobby/Playerinfo";
-  import GameLobbyDecks from "@/components/gamelobby/GameLobbyDecks";
-  import homebutton from "@/components/buttons/homebutton";
+import Playerinfo from "@/components/gamelobby/Playerinfo";
+import GameLobbyDecks from "@/components/gamelobby/GameLobbyDecks";
+import homebutton from "@/components/buttons/homebutton";
 
-  export default {
-    components: {
-      Playerinfo,
-      GameLobbyDecks,
-      homebutton
-    },
-    data: function() {
-      return {
-        id: "",
-        wsMessage: {
-          Subject: null,
-          Action: null,
-          Content: null,
-          Player: null,
-          Token: null
-        }
-      };
-    },
-    created() {
-      this.$options.sockets.onmessage = data => this.messageReceived(data);
-    },
-    mounted() {
-      this.id = this.$route.params.id;
-    },
-    computed: {
-      joinedLobby() {
-        return this.$store.getters.getJoinedlobby;
-      },
-      GamePlayer() {
-        return this.$store.getters.getGamePlayer;
-      },
-      getSelectedDeck() {
-        return this.$store.getters.getSelectedDeck;
-      },
-      getplayer() {
-        return this.$store.getters.getPlayerInfo;
+export default {
+  components: {
+    Playerinfo,
+    GameLobbyDecks,
+    homebutton
+  },
+  data: function() {
+    return {
+      id: "",
+      wsMessage: {
+        Subject: null,
+        Action: null,
+        Content: null,
+        Player: null,
+        Token: null
       }
+    };
+  },
+  created() {
+    this.$options.sockets.onmessage = data => this.messageReceived(data);
+  },
+  mounted() {
+    this.id = this.$route.params.id;
+  },
+  computed: {
+    joinedLobby() {
+      return this.$store.getters.getJoinedlobby;
     },
-    methods: {
-      messageReceived(data) {
-        const jsonData = JSON.parse(data.data);
-        switch (jsonData.action) {
-          case "UPDATELOBBY": {
-            this.$store.dispatch("SaveJoinedLobby", jsonData.content);
-            this.updateGamePlayer(jsonData.content);
-            break;
-          }
-          case "LAUNCHGAME": {
-            this.$store.dispatch("SetGame", jsonData.content);
-            console.table(jsonData.content);
-            const id = jsonData.content.id;
-            this.$router.push({ name: "game", params: { id } });
-            break;
-          }
-        }
-      },
-      updateGamePlayer(data) {
-        const user = this.getplayer;
-        if (data.playerOne.username === user.username) {
-          this.$store.dispatch("SaveGamePlayer", data.playerOne);
-        } else {
-          this.$store.dispatch("SaveGamePlayer", data.playerTwo);
-        }
-      },
-      async leave() {
-        this.wsMessage.Subject = "LOBBY";
-        this.wsMessage.Action = "LEAVELOBBY";
-        this.wsMessage.Content = this.joinedLobby;
-        this.wsMessage.Player = this.$store.getters.getPlayerInfo;
-        this.wsMessage.Token = await this.$auth.getTokenSilently();
-        this.$socket.send(JSON.stringify(this.wsMessage));
-        this.$store.dispatch("ClearSelectedDeck", null);
-      },
-      ready() {
-        if (this.getSelectedDeck === null) {
-          this.$toasted.show("No deck selected please select a deck", {
-            theme: "toasted-primary",
-            position: "bottom-right",
-            duration: 2500
-          });
-        } else {
-          this.sendReady();
-        }
-      },
-      async sendReady() {
-        this.wsMessage.Subject = "LOBBY";
-        this.wsMessage.Action = "PLAYERREADY";
-        this.wsMessage.Content = this.joinedLobby;
-        this.wsMessage.Player = this.$store.getters.getGamePlayer;
-        this.wsMessage.Token = await this.$auth.getTokenSilently();
-        this.$socket.send(JSON.stringify(this.wsMessage));
-      },
-      async unReady() {
-        this.wsMessage.Subject = "LOBBY";
-        this.wsMessage.Action = "PLAYERNOTREADY";
-        this.wsMessage.Content = this.joinedLobby;
-        this.wsMessage.Player = this.$store.getters.getGamePlayer;
-        this.wsMessage.Token = await this.$auth.getTokenSilently();
-        this.$socket.send(JSON.stringify(this.wsMessage));
-      }
+    GamePlayer() {
+      return this.$store.getters.getGamePlayer;
+    },
+    getSelectedDeck() {
+      return this.$store.getters.getSelectedDeck;
+    },
+    getplayer() {
+      return this.$store.getters.getPlayerInfo;
     }
-  };
+  },
+  methods: {
+    messageReceived(data) {
+      const jsonData = JSON.parse(data.data);
+      switch (jsonData.action) {
+        case "UPDATELOBBY": {
+          this.$store.dispatch("SaveJoinedLobby", jsonData.content);
+          this.updateGamePlayer(jsonData.content);
+          break;
+        }
+        case "LAUNCHGAME": {
+          this.$store.dispatch("SetGame", jsonData.content);
+          const id = jsonData.content.id;
+          this.$router.push({ name: "game", params: { id } });
+          break;
+        }
+      }
+    },
+    updateGamePlayer(data) {
+      const user = this.getplayer;
+      if (data.playerOne.username === user.username) {
+        this.$store.dispatch("SaveGamePlayer", data.playerOne);
+      } else {
+        this.$store.dispatch("SaveGamePlayer", data.playerTwo);
+      }
+    },
+    async leave() {
+      this.wsMessage.Subject = "LOBBY";
+      this.wsMessage.Action = "LEAVELOBBY";
+      this.wsMessage.Content = this.joinedLobby;
+      this.wsMessage.Player = this.$store.getters.getPlayerInfo;
+      this.wsMessage.Token = await this.$auth.getTokenSilently();
+      this.$socket.send(JSON.stringify(this.wsMessage));
+      this.$store.dispatch("ClearSelectedDeck", null);
+    },
+    ready() {
+      if (this.getSelectedDeck === null) {
+        this.$toasted.show("No deck selected please select a deck", {
+          theme: "toasted-primary",
+          position: "bottom-right",
+          duration: 2500
+        });
+      } else {
+        this.sendReady();
+      }
+    },
+    async sendReady() {
+      this.wsMessage.Subject = "LOBBY";
+      this.wsMessage.Action = "PLAYERREADY";
+      this.wsMessage.Content = this.joinedLobby;
+      this.wsMessage.Player = this.$store.getters.getGamePlayer;
+      this.wsMessage.Token = await this.$auth.getTokenSilently();
+      this.$socket.send(JSON.stringify(this.wsMessage));
+    },
+    async unReady() {
+      this.wsMessage.Subject = "LOBBY";
+      this.wsMessage.Action = "PLAYERNOTREADY";
+      this.wsMessage.Content = this.joinedLobby;
+      this.wsMessage.Player = this.$store.getters.getGamePlayer;
+      this.wsMessage.Token = await this.$auth.getTokenSilently();
+      this.$socket.send(JSON.stringify(this.wsMessage));
+    }
+  }
+};
 </script>
 
 <style>
-  .gameLobbyContainer {
-    height: 100%;
-    width: 100%;
-  }
+.gameLobbyContainer {
+  height: 100%;
+  width: 100%;
+}
 
-  .lobbyAndPlayerInfo {
-    width: 50%;
-    height: 100%;
-    float: left;
-  }
+.lobbyAndPlayerInfo {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
 
-  .deckSelectionContainer {
-    width: 50%;
-    height: 100%;
-    float: right;
-  }
+.deckSelectionContainer {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
 
-  .playerOneInfo {
-    width: 50%;
-    height: 100%;
-    float: left;
-  }
+.playerOneInfo {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
 
-  .playerTwoInfo {
-    width: 50%;
-    height: 100%;
-    float: right;
-  }
+.playerTwoInfo {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
 
-  .gameLobbyDecksComponent {
-    padding-top: 15vh;
-  }
+.gameLobbyDecksComponent {
+  padding-top: 15vh;
+}
 
-  .leaveButtonContainer {
-    position: absolute;
-    bottom: 18vh;
-    left: 14vw;
-  }
+.leaveButtonContainer {
+  position: absolute;
+  bottom: 18vh;
+  left: 14vw;
+}
 
-  .readyButtonContainer {
-    position: absolute;
-    bottom: 18vh;
-    right: 15vw;
-  }
+.readyButtonContainer {
+  position: absolute;
+  bottom: 18vh;
+  right: 15vw;
+}
 
-  .lobbyInfo {
-    margin-top: 15vh;
-  }
+.lobbyInfo {
+  margin-top: 15vh;
+}
 </style>
