@@ -33,17 +33,21 @@
             this.$store.dispatch("UpdateGame", jsonData.content);
             break;
           }
+          case "ERROR": {
+            console.table(jsonData.content);
+            const id = jsonData.content.id;
+            this.$router.push({ name: "postgame", params: { id } });
+            this.$store.dispatch("UpdateGame", jsonData.content);
+            break;
+          }
         }
       },
-      handleErrors(game) {
-        console.log(game)
-        if (game.Error !== null) {
-          this.$toasted.show(game.connectedPlayers[0].Error, {
+      handleErrors(error) {
+          this.$toasted.show(error, {
             theme: "toasted-primary",
             position: "bottom-right",
             duration: 2500
           });
-        }
       }
     }
   };
