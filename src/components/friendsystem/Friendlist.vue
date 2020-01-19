@@ -67,32 +67,7 @@ export default {
       }
     };
   },
-  created() {
-    this.$options.sockets.onmessage = data => this.messageReceived(data);
-    this.getFriendData();
-  },
   methods: {
-    async getFriendData() {
-      const token = await this.$auth.getTokenSilently();
-      setTimeout(() => {
-        const cont = this.$store.getters.getPlayerInfo;
-        if (cont.username !== null) {
-          this.wsMessage.Subject = "FRIEND";
-          this.wsMessage.Action = "GETALLFRIENDS";
-          cont.email = this.$auth.user.email;
-          this.wsMessage.Content = cont;
-          this.wsMessage.Token = token;
-          this.$socket.send(JSON.stringify(this.wsMessage));
-        }
-      }, 900);
-    },
-    messageReceived(data) {
-      const jsonData = JSON.parse(data.data);
-      switch (jsonData.action) {
-        case "GETALLFRIENDS":
-          this.$store.dispatch("SaveFriendData", jsonData.content.friends);
-      }
-    },
     startChat(friend) {
       this.$store.dispatch("addChat", friend);
     }
