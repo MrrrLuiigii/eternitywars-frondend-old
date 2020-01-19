@@ -23,21 +23,16 @@
         switch (jsonData.action) {
           case "UPDATEGAME": {
             this.$store.dispatch("UpdateGame", jsonData.content);
-            this.handleErrors(jsonData.content);
             break;
           }
            case "ENDGAME": {
-            console.table(jsonData.content);
             const id = jsonData.content.id;
             this.$router.push({ name: "postgame", params: { id } });
             this.$store.dispatch("UpdateGame", jsonData.content);
             break;
           }
           case "ERROR": {
-            console.table(jsonData.content);
-            const id = jsonData.content.id;
-            this.$router.push({ name: "postgame", params: { id } });
-            this.$store.dispatch("UpdateGame", jsonData.content);
+            this.handleErrors(jsonData.content);
             break;
           }
         }
