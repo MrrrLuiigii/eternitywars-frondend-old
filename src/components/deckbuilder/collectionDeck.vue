@@ -1,7 +1,12 @@
 <template>
   <div class="deckSelectorComponent">
-    <deckForm v-bind:disabled="false" v-if="this.decks.length < 6" />
-    <deckForm v-bind:disabled="true" v-else />
+    <div v-if="this.decks !== null">
+      <deckForm v-bind:disabled="false" v-if="this.decks.length < 6" />
+      <deckForm v-bind:disabled="true" v-else />
+    </div>
+    <div v-else>
+      <deckForm v-bind:disabled="true" />
+    </div>
 
     <div class="selectAndRemove">
       <v-combobox
@@ -23,19 +28,27 @@
       <small>You don't have a deck selected...</small>
     </div>
     <div
-      v-else-if="this.selectedDeck.cards.cards.length === 0"
       class="deckCardsContainer deckMessage"
+      v-else-if="this.selectedDeck.cards.cards === null"
     >
-      <small>You don't have any cards in this deck yet...</small>
+      <small>Loading...</small>
     </div>
-    <div v-else class="deckCardsContainer">
+    <div v-else>
       <div
-        v-for="(card, index) in this.selectedDeck.cards.cards"
-        :key="index"
-        :card="card"
-        @click.right="removeCard(selectedDeck, index)"
+        v-if="this.selectedDeck.cards.cards.length === 0"
+        class="deckCardsContainer deckMessage"
       >
-        <deckbuilderCard :card="card" />
+        <small>You don't have any cards in this deck yet...</small>
+      </div>
+      <div v-else class="deckCardsContainer">
+        <div
+          v-for="(card, index) in this.selectedDeck.cards.cards"
+          :key="index"
+          :card="card"
+          @click.right="removeCard(selectedDeck, index)"
+        >
+          <deckbuilderCard :card="card" />
+        </div>
       </div>
     </div>
   </div>
@@ -134,7 +147,7 @@ export default {
   height: 64vh;
 
   border: 10px;
-  border-color:#362630;
+  border-color: #362630;
   border-style: ridge groove groove ridge;
 
   overflow-y: scroll;

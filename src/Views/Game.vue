@@ -44,8 +44,18 @@
             duration: 2500
           });
       }
+    },
+    handleErrors(game) {
+      if (game.Error !== null) {
+        this.$toasted.show(game.connectedPlayers[0].Error, {
+          theme: "toasted-primary",
+          position: "bottom-right",
+          duration: 2500
+        });
+      }
     }
-  };
+  }
+};
 </script>
 
 <style></style>

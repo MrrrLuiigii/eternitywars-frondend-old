@@ -5,7 +5,8 @@
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>{{ this.$store.getters.getPlayerInfo.username }}</v-list-item-title>
+          <v-list-item-title v-if="this.$store.getters.getPlayerInfo !== null">{{ this.$store.getters.getPlayerInfo.username }}</v-list-item-title>
+          <v-list-item-title v-else>Loading...</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 </template>

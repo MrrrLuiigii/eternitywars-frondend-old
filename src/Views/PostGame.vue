@@ -1,95 +1,149 @@
 <template>
   <div v-if="gameState !== null">
-    <div class="winnerContainer" v-if="gameState.connectedPlayers[0].hero.hp <= 0">
-      <div class="winnerPlayer">
+    <div
+      class="winnerContainer"
+      v-if="gameState.connectedPlayers[0].hero.hp <= 0"
+    >
+      <div class="winnerInfoContainer">
         <img class="winnerCrown" src="../assets/postgame/crown.png" />
-        <h1 class="winnerName">{{gameState.connectedPlayers[1].username}}</h1>
-      <div class="winnerInfoContainer" >
+        <h1 class="winnerName">
+          {{ gameState.connectedPlayers[1].username }}
+        </h1>
         <div class="winnerGoldContainer">
           <img class="winnerGold" src="../assets/postgame/winnerGold.png" />
           <p class="playerInfo">As a reward your opponent gained 25 gold!</p>
         </div>
-        <div class="winnerDeck">
-          WinnerDeck
+      </div>
+
+      <div class="winnerDeckContainer">
+        <div class="winnerDeckBorder">
+          <div class="winnerDeckName">
+            {{ gameState.connectedPlayers[1].deck.name }}
+          </div>
+          <div class="winnerDeck">
             <div
-        v-for="(card, index) in gameState.connectedPlayers[1].deck.cards.cards"
-        :key="index"
-        :card="card"
-      >
-        <deckbuilderCard :card="card" />
+              v-for="(card, index) in gameState.connectedPlayers[1].deck.cards
+                .cards"
+              :key="index"
+              :card="card"
+            >
+              <deckbuilderCard :card="card" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-      </div>
-    </div>
-       <div class="winnerContainer" v-else>
-      <div class="winnerPlayer">
+
+    <div class="winnerContainer" v-else>
+      <div class="winnerInfoContainer">
         <img class="winnerCrown" src="../assets/postgame/crown.png" />
-        <h1 class="winnerName">{{gameState.connectedPlayers[0].username}}</h1>
-      <div class="winnerInfoContainer" >
+        <h1 class="winnerName">
+          {{ gameState.connectedPlayers[0].username }}
+        </h1>
         <div class="winnerGoldContainer">
           <img class="winnerGold" src="../assets/postgame/winnerGold.png" />
-          <p class="playerInfo">As a reward you gained 25 gold!</p>
-        </div>
-        <div class="winnerDeck">
-          WinnerDeck
-            <div
-        v-for="(card, index) in gameState.connectedPlayers[0].deck.cards.cards"
-        :key="index"
-        :card="card"
-      >
-        <deckbuilderCard :card="card" />
-      </div>
+          <p class="playerInfo">As a reward your opponent gained 25 gold!</p>
         </div>
       </div>
-    </div>
-  </div>
 
-    <div class="loserContainer" v-if="gameState.connectedPlayers[0].hero.hp <= 0">
-      <h1 class="loserName">{{gameState.connectedPlayers[0].username}}</h1>
-      <img class="loserGold" src="../assets/postgame/loserGold.png" />
-      <p class="playerInfo">
-        Here is a small consolation for you loss...<br />You gained 5 gold!
-      </p>
-      <div class="loserDeck">
-        LoserDeck
-          <div
-        v-for="(card, index) in gameState.connectedPlayers[0].deck.cards.cards"
-        :key="index"
-        :card="card"
-      >
-        <deckbuilderCard :card="card" />
-      </div>
+      <div class="winnerDeckContainer">
+        <div class="winnerDeckBorder">
+          <div class="winnerDeckName">
+            {{ gameState.connectedPlayers[1].deck.name }}
+          </div>
+          <div class="winnerDeck">
+            <div
+              v-for="(card, index) in gameState.connectedPlayers[1].deck.cards
+                .cards"
+              :key="index"
+              :card="card"
+            >
+              <deckbuilderCard :card="card" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div
+      class="loserContainer"
+      v-if="gameState.connectedPlayers[0].hero.hp <= 0"
+    >
+      <div class="loserInfoContainer">
+        <h1 class="loserName">
+          {{ gameState.connectedPlayers[0].username }}
+        </h1>
+        <div class="loserGoldContainer">
+          <img class="loserGold" src="../assets/postgame/loserGold.png" />
+          <p class="playerInfo">
+            Her is a small consolation for your loss...<br />You gained 5 gold!
+          </p>
+        </div>
+      </div>
+
+      <div class="loserDeckContainer">
+        <div class="loserDeckBorder">
+          <div class="loserDeckName">
+            {{ gameState.connectedPlayers[0].deck.name }}
+          </div>
+          <div class="loserDeck">
+            <div
+              v-for="(card, index) in gameState.connectedPlayers[0].deck.cards
+                .cards"
+              :key="index"
+              :card="card"
+            >
+              <deckbuilderCard :card="card" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="loserContainer" v-else>
-      <h1 class="loserName">{{gameState.connectedPlayers[1].username}}</h1>
-      <img class="loserGold" src="../assets/postgame/loserGold.png" />
-      <p class="playerInfo">
-        Your opponent got a small consolation for his loss...<br />He gained 5 gold!
-      </p>
-      <div class="loserDeck">
-        LoserDeck
-          <div
-        v-for="(card, index) in gameState.connectedPlayers[1].deck.cards.cards"
-        :key="index"
-        :card="card"
-      >
-        <deckbuilderCard :card="card" />
+      <div class="loserInfoContainer">
+        <h1 class="loserName">
+          {{ gameState.connectedPlayers[1].username }}
+        </h1>
+        <div class="loserGoldContainer">
+          <img class="loserGold" src="../assets/postgame/winnerGold.png" />
+          <p class="playerInfo">
+            Your opponent got a small consolation for his loss...<br />He gained
+            5 gold!
+          </p>
+        </div>
       </div>
+
+      <div class="loserDeckContainer">
+        <div class="loserDeckBorder">
+          <div class="loserDeckName">
+            {{ gameState.connectedPlayers[1].deck.name }}
+          </div>
+          <div class="loserDeck">
+            <div
+              v-for="(card, index) in gameState.connectedPlayers[1].deck.cards
+                .cards"
+              :key="index"
+              :card="card"
+            >
+              <deckbuilderCard :card="card" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <homebutton v-on:click="resetGameStore"/>
+    <homebutton v-on:click="resetGameStore" />
   </div>
   <div v-else>
-    ERROR <br/> NO POST-GAME STATE FOUND
-    <homebutton v-on:click="resetGameStore"/>
+    ERROR <br />
+    NO POST-GAME STATE FOUND
+    <homebutton v-on:click="resetGameStore" />
   </div>
 </template>
 
 <script>
 import homebutton from "@/components/buttons/homebutton";
-import deckbuilderCard from "@/components/deckbuilder/deckbuilderCard"
+import deckbuilderCard from "@/components/deckbuilder/deckbuilderCard";
 export default {
   name: "postGame",
   components: {
@@ -109,16 +163,16 @@ export default {
       }
     };
   },
-  methods:{
-    resetGameStore(){
-      this.$store.dispatch('UpdateGame', null)
+  methods: {
+    resetGameStore() {
+      this.$store.dispatch("UpdateGame", null);
     }
   },
-        computed: {
+  computed: {
     gameState() {
       return this.$store.getters.getGame;
-    },
-      },
+    }
+  }
 };
 </script>
 
@@ -127,37 +181,96 @@ export default {
   font-size: 25px;
 }
 
+.winnerContainer {
+  margin: 5vh 0 0 3vw;
+  width: 60vw;
+  height: 85vh;
+
+  border: 20px;
+  border-color: #362630;
+  border-style: groove ridge ridge groove;
+
+  background-color: #a5b495;
+
+  justify-content: center;
+  float: left;
+}
+
 .winnerInfoContainer {
-    justify-content: center;
-    display: flex;
-}
+  height: 100%;
+  width: 50%;
 
-.winnerGoldContainer {
-    margin: 10vh 3vw 0 0;
-    float: left;
-}
-
-.winnerDeck {
-  width: 25vw;
-  height: 50vh;
-  background-color: yellow;
-
-  margin: 2vh 0 0 3vw;
-
-  float: right;
+  justify-content: center;
+  float: left;
 }
 
 .winnerCrown {
-  transform: scale(1.5);
-}
-
-.winnerGold {
-  transform: scale(1);
-  margin: -2vh 0;
+  margin-top: 6vh;
+  transform: scale(1.2);
 }
 
 .winnerName {
   font-size: 80px;
+  margin-bottom: 5vh;
+}
+
+.winnerDeckContainer {
+  width: 50%;
+  height: 100%;
+
+  justify-content: center;
+  float: right;
+}
+
+.winnerDeckBorder {
+  height: 90%;
+  width: 90%;
+
+  margin: 5vh 0 0 5%;
+
+  border: 20px;
+  border-color: #362630;
+  border-style: ridge groove groove ridge;
+}
+
+.winnerDeckName {
+  font-size: 30px;
+  margin: 2vh 0 2vh 0;
+}
+
+.winnerDeck {
+  width: 22.5vw;
+  height: 57.5vh;
+
+  margin: auto;
+  padding: 1vh 1vw;
+
+  overflow: auto;
+}
+
+.winnerGoldContainer {
+  width: 100%;
+  margin-top: 5vh;
+}
+
+.winnerGold {
+  margin-bottom: -3vh;
+}
+
+.loserContainer {
+  margin: 5vh 3vw 0 0;
+
+  width: 30vw;
+  height: 85vh;
+
+  border: 20px;
+  border-color: #362630;
+  border-style: groove ridge ridge groove;
+
+  background-color: #a5b495;
+
+  justify-content: center;
+  float: right;
 }
 
 .loserGold {
@@ -167,37 +280,39 @@ export default {
 
 .loserName {
   font-size: 50px;
+  margin: 2vh 0;
+}
+
+.loserDeckContainer {
+  width: 30vw;
+
+  margin-top: 5vh;
+
+  justify-content: center;
+}
+
+.loserDeckBorder {
+  width: 85%;
+  height: 50vh;
+
+  margin-left: 3.75%;
+
+  border: 20px;
+  border-color: #362630;
+  border-style: ridge groove groove ridge;
+}
+
+.loserDeckName {
+  font-size: 30px;
+  margin: 1vh 0;
 }
 
 .loserDeck {
-  width: 25vw;
-  height: 50vh;
-  background-color: yellow;
-  
+  width: 20vw;
+  height: 37.5vh;
+
   margin: auto;
-  margin-top: 5.5vh;
-}
 
-.winnerContainer {
-  margin: 5vh 0 0 3vw;
-  width: 60vw;
-  height: 85vh;
-
-  background-color: green;
-
-  justify-content: center;
-  float: left;
-}
-
-.loserContainer {
-  margin: 5vh 3vw 0 0;
-  padding: 3vh 1vw 3vh 1vw;
-
-  width: 30vw;
-  height: 85vh;
-  background-color: red;
-
-  justify-content: center;
-  float: right;
+  overflow: auto;
 }
 </style>

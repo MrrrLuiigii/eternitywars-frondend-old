@@ -46,11 +46,9 @@ export default {
       this.wsMessage.Content = cont;
       this.wsMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.wsMessage));
-      console.log(this.wsMessage);
     },
     messageReceived(data) {
       const jsonData = JSON.parse(data.data);
-      console.log(jsonData);
       switch (jsonData.action) {
         case "GETCARDCOLLECTION": {
           const data = jsonData.content;
@@ -75,7 +73,7 @@ export default {
   width: 60vw;
 
   border: 20px;
-  border-color:#362630;
+  border-color: #362630;
   border-style: groove ridge ridge groove;
 
   background-color: #a5b495;

@@ -1,167 +1,162 @@
 <template>
-
   <div class="card" v-if="inHand">
-      <div v-on:click="place()">
-        <div class="cardName">
-            {{ this.card.name }}
-        </div>
-
-        <div class="blueMana">
-            {{ this.card.blue_mana }}
-        </div>
-
-        <div class="deathEssence">
-            {{ this.card.death_essence }}
-        </div>
-
-        <div class="attack">
-            {{ this.card.attack }}
-        </div>
-
-        <div class="health">
-            {{ this.card.health }}
-        </div>
+    <div class="cardName">
+      {{ this.card.name }}
     </div>
-  </div>
-   <div class="card" v-else>
-      <div v-on:click="attack()">
-        <div class="cardName">
-            {{ this.card.name }}
-        </div>
 
-        <div class="blueMana">
-            {{ this.card.blueMana }}
-        </div>
+    <div class="blueMana">
+      {{ this.card.blue_mana }}
+    </div>
 
-        <div class="deathEssence">
-            {{ this.card.deathEssence }}
-        </div>
+    <div class="deathEssence">
+      {{ this.card.death_essence }}
+    </div>
 
-        <div class="attack">
-            {{ this.card.attack }}
-        </div>
+    <div class="attack">
+      {{ this.card.attack }}
+    </div>
 
-        <div class="health">
-            {{ this.card.health }}
-        </div>
+    <div class="health">
+      {{ this.card.health }}
     </div>
   </div>
 
+  <div class="card" v-else>
+    <div class="cardName">
+      {{ this.card.name }}
+    </div>
+
+    <div class="blueMana">
+      {{ this.card.blue_mana }}
+    </div>
+
+    <div class="deathEssence">
+      {{ this.card.death_essence }}
+    </div>
+
+    <div class="attack">
+      {{ this.card.attack }}
+    </div>
+
+    <div class="health">
+      {{ this.card.health }}
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "card",
-        props:{
-            card: Object,
-            onField: Boolean,
-            inHand: Boolean,
-        },
-        data() {
-            return {
-            }
-        },
-        methods:{
-            attack(){
-                return null
-            },
-             place(){
-                return null
-            }
-        }
-    }
+export default {
+  name: "card",
+  props: {
+    card: Object,
+    onField: Boolean,
+    inHand: Boolean
+  },
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style>
+.card {
+  z-index: 99;
 
-    /* .card :focus() {
-        border: 1px solid rgb(86, 180, 239);
-        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
-    } */
+  background-color: transparent;
+  background-image: url("../../assets/game/card/card.png");
+  background-size: 100% 100%;
 
-    .card {
-        z-index: 99;
+  border: none;
 
-        position: absolute;
+  justify-content: center;
 
-        background-color: transparent;
-        background-image: url("../../assets/game/card/card.png");
-        background-size: 100% 100%;
+  margin: 5px 0 5px 0;
+  width: 5vw;
+  height: 12vh;
+}
 
-        border: none;
-        
-        margin: 0;
-        width: 5vw;
-        height: 12vh;
-    }
+.cardName {
+  color: white;
 
-    .cardName {
-        color: white;
-        margin: auto;
+  width: 70px;
+  height: 70px;
+  word-wrap: break-word;
+  margin: auto;
 
-        text-align: center;
+  font-size: 15px;
 
-    }
+  text-align: center;
+}
 
-    .attack {
-        color: white;
-        position: absolute;
-        bottom: 0;
-        left: 0;
+.attack {
+  border-radius: 100%;
 
-        margin-left: -.25vw;
-        margin-bottom: .2vh;
+  color: white;
 
-        font-weight: bold;
+  position: absolute;
+  bottom: 0.75vh;
+  left: 0.3vw;
 
-        width: 25px;
-        height: 25px;
-    }
+  font-weight: bold;
+  font-size: 15px;
 
-    .health {
-        color: white;
-        position: absolute;
-        bottom: 0;
-        right: 0;
+  text-align: center;
 
-        margin-right: -.15vw;
-        margin-bottom: .2vh;
+  width: 20px;
+  height: 20px;
+}
 
-        font-weight: bold;
+.health {
+  border-radius: 100%;
 
-        width: 25px;
-        height: 25px;
-    }
+  color: white;
 
-    .blueMana {
-        color: white;
-        position: absolute;
-        top: 0;
-        left: 0;
+  position: absolute;
+  bottom: 0.9vh;
+  right: 0.05vw;
 
-        margin-left: -.25vw;
-        margin-top: -.35vh;
+  font-weight: bold;
+  font-size: 15px;
 
-        font-weight: bold;
+  text-align: center;
 
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
-    }
+  width: 20px;
+  height: 20px;
+}
 
-    .deathEssence {
-        color: white;
-        position: absolute;
-        top: 0;
-        right: 0;
+.blueMana {
+  border-radius: 100%;
 
-        margin-left: -.25vw;
-        margin-top: -.35vh;
+  color: white;
 
-        font-weight: bold;
+  position: absolute;
+  top: 0.1vh;
+  left: 0.24vw;
 
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
-    }
+  font-weight: bold;
+  font-size: 15px;
+
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
+}
+
+.deathEssence {
+  border-radius: 100%;
+
+  color: white;
+
+  position: absolute;
+  top: 0.1vh;
+  right: 0.05vw;
+
+  font-weight: bold;
+  font-size: 15px;
+
+  text-align: center;
+
+  width: 20px;
+  height: 20px;
+}
 </style>

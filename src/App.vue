@@ -21,13 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-@font-face {
-  font-family: "RetroComputer";
-  src: url("/assets/font/RetroComputer.ttf");
-}
-
 #app {
-  font-family: "RetroComputer";
   color: #35252f;
   background-color: #3a5248;
   text-align: center;
