@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-if="inHand">
+  <div class="card" v-bind:class="[hasTaunt ? cardTauntImage : cardImage]" v-if="inHand">
     <div class="cardName">
       {{ this.card.name }}
     </div>
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div v-bind:class="[hasTaunt ? cardTaunt : card]" v-else>
+  <div class="card" v-bind:class="[hasTaunt ? cardTauntImage : cardImage]" v-else>
     <div class="cardName">
       {{ this.card.name }}
     </div>
@@ -55,8 +55,8 @@ export default {
   },
   data() {
     return {
-      cardCss: "card",
-      cardTaunt: "cardTaunt"
+      cardImage: "cardImage",
+      cardTauntImage: "cardTauntImage"
     };
   }
 };
@@ -67,7 +67,7 @@ export default {
   z-index: 99;
 
   background-color: transparent;
-  background-image: url("../../assets/game/card/card.png");
+
   background-size: 100% 100%;
 
   border: none;
@@ -79,20 +79,12 @@ export default {
   height: 12vh;
 }
 
-.cardTaunt {
-  z-index: 99;
-
-  background-color: transparent;
+.cardImage {
   background-image: url("../../assets/game/card/card.png");
-  background-size: 100% 100%;
+}
 
-  border: none;
-
-  justify-content: center;
-
-  margin: 5px 0 5px 0;
-  width: 5vw;
-  height: 12vh;
+.cardTauntImage {
+  background-image: url("../../assets/game/card/tauntCard.png");
 }
 
 .cardName {
