@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" v-bind:class="[card.taunt ? cardTauntImage : cardImage]">
     <div>
       <div class="cardName">
         {{ this.card.name }}
@@ -37,7 +37,9 @@ export default {
         Action: null,
         Content: null,
         Token: null
-      }
+      },
+      cardImage: "cardImage",
+      cardTauntImage: "cardTauntImage"
     };
   }
 };

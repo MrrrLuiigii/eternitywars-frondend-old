@@ -45,7 +45,7 @@
           v-for="(card, index) in this.getSelectedDeck.cards.cards"
           :key="index"
           :card="card"
-          @click.right="removeCard(this.getSelectedDeck, index)"
+          @click.right="removeCard(getSelectedDeck, index)"
         >
           <deckbuilderCard :card="card" />
         </div>

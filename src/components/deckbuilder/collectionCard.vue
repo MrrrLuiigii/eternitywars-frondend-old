@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div v-bind:class="[card.taunt ? cardTauntImage : cardImage]" class="card">
     <div v-on:click="addToDeck()">
       <div class="cardName">
         {{ this.card.name }}
@@ -42,7 +42,9 @@ export default {
         Action: null,
         Content: null,
         Token: null
-      }
+      },
+      cardImage: "cardImage",
+      cardTauntImage: "cardTauntImage"
     };
   },
   methods: {
@@ -60,6 +62,8 @@ export default {
 
         deck.cards.cards = [];
         deck.cards.cards[0] = cardToAdd;
+
+        console.log(cardToAdd);
 
         this.wsMessage.Subject = "DECK";
         this.wsMessage.Action = "ADDCARD";
@@ -101,7 +105,7 @@ export default {
   z-index: 99;
 
   background-color: transparent;
-  background-image: url("../../assets/game/card/card.png");
+
   background-size: 100% 100%;
 
   border: none;
@@ -111,6 +115,14 @@ export default {
   margin: 5px 0 5px 0;
   width: 5vw;
   height: 12vh;
+}
+
+.cardImage {
+  background-image: url("../../assets/game/card/card.png");
+}
+
+.cardTauntImage {
+  background-image: url("../../assets/game/card/tauntCard.png");
 }
 
 .cardName {
