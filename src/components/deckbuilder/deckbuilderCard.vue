@@ -1,7 +1,7 @@
 <template>
   <div class="deckBuilderCardName">
     <div @mouseleave="mouseLeave" @mouseover="mouseOver">
-      {{ this.deckbuilderCard.name }}
+      {{ this.card.name }}
     </div>
     <hoverCard id="hoverDiv" class="hoverCard" v-show="hoverActive" :card="card" />
   </div>

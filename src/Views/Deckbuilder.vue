@@ -2,20 +2,26 @@
   <div>
     <cardcollection class="cardcollectionComponent" />
     <deckCreator class="deckCreatorComponent" />
-    <homebutton />
+    <button @click="resetSelectedDeck" class="artButton deckBuilderHomeButton">
+      Home
+    </button>
   </div>
 </template>
 
 <script>
 import deckCreator from "@/components/deckbuilder/deckCreator";
 import cardcollection from "@/components/deckbuilder/cardcollection";
-import homebutton from "@/components/buttons/homebutton";
 export default {
   name: "Deckbuilder",
   components: {
-    homebutton,
     cardcollection,
     deckCreator
+  },
+  methods: {
+    resetSelectedDeck() {
+      this.$store.dispatch("SaveSelectedDeck", null);
+      this.$router.push("/");
+    }
   }
 };
 </script>
@@ -27,5 +33,14 @@ export default {
 
 .deckCreatorComponent {
   float: right;
+}
+
+.deckBuilderHomeButton {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  text-decoration: none;
+  color: #35252f;
+  outline: 0;
 }
 </style>

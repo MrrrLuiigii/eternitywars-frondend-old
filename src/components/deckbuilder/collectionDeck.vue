@@ -16,36 +16,36 @@
         :items="decks"
         item-text="name"
         single-line
-        v-on:change="getDeckById"
+        v-on:change="this.changeDeck"
       />
       <button class="artSButton deckRemover" @click="deleteDeck">Delete</button>
     </div>
 
     <div
-      v-if="this.selectedDeck === null"
+      v-if="this.getSelectedDeck === null"
       class="deckCardsContainer deckMessage"
     >
       <small>You don't have a deck selected...</small>
     </div>
     <div
       class="deckCardsContainer deckMessage"
-      v-else-if="this.selectedDeck.cards.cards === null"
+      v-else-if="this.getSelectedDeck.cards.cards === null"
     >
       <small>Loading...</small>
     </div>
     <div v-else>
       <div
-        v-if="this.selectedDeck.cards.cards.length === 0"
+        v-if="this.getSelectedDeck.cards.cards.length === 0"
         class="deckCardsContainer deckMessage"
       >
         <small>You don't have any cards in this deck yet...</small>
       </div>
       <div v-else class="deckCardsContainer">
         <div
-          v-for="(card, index) in this.selectedDeck.cards.cards"
+          v-for="(card, index) in this.getSelectedDeck.cards.cards"
           :key="index"
           :card="card"
-          @click.right="removeCard(selectedDeck, index)"
+          @click.right="removeCard(this.getSelectedDeck, index)"
         >
           <deckbuilderCard :card="card" />
         </div>
@@ -80,7 +80,15 @@ export default {
     this.$options.sockets.onmessage = data => this.messageReceived(data);
     this.getAllDecks();
   },
+  computed: {
+    getSelectedDeck() {
+      return this.$store.getters.getSelectedBuilderDeck;
+    }
+  },
   methods: {
+    changeDeck() {
+      this.getDeckById();
+    },
     async getAllDecks() {
       this.wsMessage.Subject = "DECK";
       this.wsMessage.Action = "GETALLDECKS";
@@ -124,12 +132,14 @@ export default {
         this.$socket.send(JSON.stringify(this.wsMessage));
         this.selectedDeck = null;
       }
+
+      this.$store.dispatch("SaveSelectedDeck", null);
     },
     messageReceived(data) {
       const jsonData = JSON.parse(data.data);
       switch (jsonData.action) {
         case "GETBUILDERDECKBYID":
-          this.selectedDeck = jsonData.content;
+          this.$store.dispatch("SaveSelectedDeck", null);
           this.$store.dispatch("SaveSelectedDeck", jsonData.content);
           break;
         case "GETALLDECKS":
