@@ -19,7 +19,9 @@
         "
         v-bind:inHand="true"
         v-bind:onField="false"
-        v-bind:hasTaunt="false"
+        v-bind:hasTaunt="gameState.connectedPlayers[playerIndexData].cardsInHand[
+            cardSlotIndexData
+          ].taunt"
       />
       <cardback v-else />
     </div>
