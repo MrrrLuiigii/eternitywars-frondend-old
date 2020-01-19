@@ -42,18 +42,18 @@
         </h1>
         <div class="winnerGoldContainer">
           <img class="winnerGold" src="../assets/postgame/winnerGold.png" />
-          <p class="playerInfo">As a reward your opponent gained 25 gold!</p>
+          <p class="playerInfo">As a reward you gained 25 gold!</p>
         </div>
       </div>
 
       <div class="winnerDeckContainer">
         <div class="winnerDeckBorder">
           <div class="winnerDeckName">
-            {{ gameState.connectedPlayers[1].deck.name }}
+            {{ gameState.connectedPlayers[0].deck.name }}
           </div>
           <div class="winnerDeck">
             <div
-              v-for="(card, index) in gameState.connectedPlayers[1].deck.cards
+              v-for="(card, index) in gameState.connectedPlayers[0].deck.cards
                 .cards"
               :key="index"
               :card="card"
@@ -76,7 +76,7 @@
         <div class="loserGoldContainer">
           <img class="loserGold" src="../assets/postgame/loserGold.png" />
           <p class="playerInfo">
-            Her is a small consolation for your loss...<br />You gained 5 gold!
+            Here is a small consolation for your loss...<br />You gained 5 gold!
           </p>
         </div>
       </div>
@@ -106,7 +106,7 @@
           {{ gameState.connectedPlayers[1].username }}
         </h1>
         <div class="loserGoldContainer">
-          <img class="loserGold" src="../assets/postgame/winnerGold.png" />
+          <img class="loserGold" src="../assets/postgame/loserGold.png" />
           <p class="playerInfo">
             Your opponent got a small consolation for his loss...<br />He gained
             5 gold!
@@ -178,7 +178,7 @@ export default {
 
 <style>
 .playerInfo {
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .winnerContainer {
