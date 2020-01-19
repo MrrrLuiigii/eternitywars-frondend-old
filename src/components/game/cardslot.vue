@@ -19,6 +19,7 @@
         "
         v-bind:inHand="true"
         v-bind:onField="false"
+        v-bind:hasTaunt="false"
       />
       <cardback v-else />
     </div>
@@ -44,6 +45,9 @@
           "
           v-bind:inHand="false"
           v-bind:onField="true"
+                  v-bind:hasTaunt="gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
+              cardSlotIndexData
+            ].card.taunt"
         />
       </div>
       <div
@@ -69,8 +73,11 @@
               cardSlotIndexData
             ].card
           "
-          v-bind:inHand="false"
+           v-bind:inHand="false"
           v-bind:onField="true"
+          v-bind:hasTaunt="gameState.connectedPlayers[playerIndexData].boardRow.cardSlotList[
+              cardSlotIndexData
+            ].card.taunt"
         />
       </div>
       <div class="cardSlot" v-else></div>

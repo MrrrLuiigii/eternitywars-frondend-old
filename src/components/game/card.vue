@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="card" v-else>
+  <div v-bind:class="[hasTaunt ? cardTaunt : card]" v-else>
     <div class="cardName">
       {{ this.card.name }}
     </div>
@@ -48,18 +48,38 @@
 export default {
   name: "card",
   props: {
+    hasTaunt: Boolean,
     card: Object,
     onField: Boolean,
     inHand: Boolean
   },
   data() {
-    return {};
+    return {
+      cardCss: "card",
+      cardTaunt: "cardTaunt"
+    };
   }
 };
 </script>
 
 <style>
 .card {
+  z-index: 99;
+
+  background-color: transparent;
+  background-image: url("../../assets/game/card/card.png");
+  background-size: 100% 100%;
+
+  border: none;
+
+  justify-content: center;
+
+  margin: 5px 0 5px 0;
+  width: 5vw;
+  height: 12vh;
+}
+
+.cardTaunt {
   z-index: 99;
 
   background-color: transparent;
