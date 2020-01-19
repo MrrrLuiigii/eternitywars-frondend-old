@@ -57,16 +57,6 @@ export default {
   components: {
     Friendcard
   },
-  data() {
-    return {
-      wsMessage: {
-        Subject: null,
-        Action: null,
-        Content: null,
-        Token: null
-      }
-    };
-  },
   methods: {
     startChat(friend) {
       this.$store.dispatch("addChat", friend);

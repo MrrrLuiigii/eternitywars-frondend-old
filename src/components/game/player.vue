@@ -63,6 +63,7 @@ export default {
         Subject: null,
         Action: null,
         Content: null,
+        Token: null,
         CardToAttackHeroWith: null,
         Hero: null
       }
@@ -87,12 +88,13 @@ export default {
         this.AttackHero();
       }
     },
-    AttackHero() {
+    async AttackHero() {
       this.AttackHeroMessage.Content = this.gameState;
       this.AttackHeroMessage.Subject = "GAME";
       this.AttackHeroMessage.Action = "ATTACKHERO";
       this.AttackHeroMessage.CardToAttackHeroWith = this.getSelectedCardSlotOnYourField;
       this.AttackHeroMessage.Hero = this.getSelectedHeroToAttack;
+      this.AttackHeroMessage.Token = await this.$auth.getTokenSilently();
       this.$socket.send(JSON.stringify(this.AttackHeroMessage));
       this.$store.dispatch("SelectedHeroToAttack", null);
       this.$store.dispatch("SelectedTargetToAttack", null);
