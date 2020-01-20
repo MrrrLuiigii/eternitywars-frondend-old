@@ -150,13 +150,13 @@ export default {
       this.$store.dispatch("SelectedCardSlotOnYourField", index);
     },
     SelectTargetToAttack(index) {
-      if (this.getSelectedCardSlotOnYourField !== null && this.gameState.playerTurn === this.gameState.connectedPlayers[0].userId) {
+      if (this.getSelectedCardSlotOnYourField !== null) {
         this.$store.dispatch("SelectedTargetToAttack", index);
         this.AttackOpponentsCard();
-        const sound = new Audio();
-        sound.src = 'src\\assets\\mp3\\Hit.mp3';
-        sound.volume = 0.5;
-        sound.play();
+        // const sound = new Audio();
+        // sound.src = 'Hit.mp3';
+        // sound.volume = 0.8;
+        // sound.play();
       }
     },
     TryToPlayCard() {
