@@ -117,11 +117,7 @@ export default {
         CardToAttackWith: null,
         TargetToAttack: null
       },
-      attackSound: null,
     };
-  },
-  created(){
-    this.attackSound = new Audio("@/assests/mp3/Hit.mp3");
   },
   computed: {
     gameState() {
@@ -154,10 +150,13 @@ export default {
       this.$store.dispatch("SelectedCardSlotOnYourField", index);
     },
     SelectTargetToAttack(index) {
-      if (this.getSelectedCardSlotOnYourField !== null) {
+      if (this.getSelectedCardSlotOnYourField !== null && this.gameState.playerTurn === this.gameState.connectedPlayers[0].userId) {
         this.$store.dispatch("SelectedTargetToAttack", index);
         this.AttackOpponentsCard();
-        this.attackSound.play()
+        const sound = new Audio();
+        sound.src = 'src\\assets\\mp3\\Hit.mp3';
+        sound.volume = 0.5;
+        sound.play();
       }
     },
     TryToPlayCard() {
