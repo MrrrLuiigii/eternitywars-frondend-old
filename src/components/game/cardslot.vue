@@ -116,8 +116,12 @@ export default {
         Content: null,
         CardToAttackWith: null,
         TargetToAttack: null
-      }
+      },
+      attackSound: null,
     };
+  },
+  created(){
+    this.attackSound = new Audio("");
   },
   computed: {
     gameState() {

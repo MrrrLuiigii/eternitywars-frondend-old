@@ -22,6 +22,7 @@ export default {
       const jsonData = JSON.parse(data.data);
       switch (jsonData.action) {
         case "UPDATEGAME": {
+          console.table(jsonData.content)
           this.$store.dispatch("UpdateGame", jsonData.content);
           break;
         }

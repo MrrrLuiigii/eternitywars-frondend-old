@@ -66,8 +66,12 @@ export default {
         Token: null,
         CardToAttackHeroWith: null,
         Hero: null
-      }
+      },
+      heroHitSound: null
     };
+  },
+  created(){
+    this.heroHitSound = new Audio("");
   },
   computed: {
     gameState() {
