@@ -71,7 +71,7 @@ export default {
     };
   },
   created(){
-    this.heroHitSound = new Audio("");
+    this.heroHitSound = new Audio();
   },
   computed: {
     gameState() {

@@ -121,7 +121,7 @@ export default {
     };
   },
   created(){
-    this.attackSound = new Audio("");
+    this.attackSound = new Audio("@/assests/mp3/Hit.mp3");
   },
   computed: {
     gameState() {
@@ -157,6 +157,7 @@ export default {
       if (this.getSelectedCardSlotOnYourField !== null) {
         this.$store.dispatch("SelectedTargetToAttack", index);
         this.AttackOpponentsCard();
+        this.attackSound.play()
       }
     },
     TryToPlayCard() {
