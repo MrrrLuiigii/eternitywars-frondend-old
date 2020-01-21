@@ -39,7 +39,6 @@
           Unready
         </button>
       </div>
-      <homebutton />
     </div>
   </div>
 </template>
@@ -47,13 +46,11 @@
 <script>
 import Playerinfo from "@/components/gamelobby/Playerinfo";
 import GameLobbyDecks from "@/components/gamelobby/GameLobbyDecks";
-import homebutton from "@/components/buttons/homebutton";
 
 export default {
   components: {
     Playerinfo,
-    GameLobbyDecks,
-    homebutton
+    GameLobbyDecks
   },
   data: function() {
     return {
