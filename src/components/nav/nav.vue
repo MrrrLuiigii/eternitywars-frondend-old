@@ -21,13 +21,13 @@
         </button>
       </Router-link>
     </div>
-    <div>
+    <!-- <div>
       <Router-link to="/quests">
         <button class="artXButton routerLink">
           Quests
         </button>
       </Router-link>
-    </div>
+    </div> -->
 
     <div>
       <button class="artButton" @click="logout()">
