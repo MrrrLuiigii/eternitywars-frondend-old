@@ -1,17 +1,14 @@
 <template>
   <div>
-    <homebutton />
     <board />
   </div>
 </template>
 
 <script>
 import board from "@/components/game/board.vue";
-import homebutton from "@/components/buttons/homebutton";
 export default {
   name: "Deckbuilder",
   components: {
-    homebutton,
     board
   },
   created() {
@@ -22,7 +19,7 @@ export default {
       const jsonData = JSON.parse(data.data);
       switch (jsonData.action) {
         case "UPDATEGAME": {
-          console.table(jsonData.content)
+          console.table(jsonData.content);
           this.$store.dispatch("UpdateGame", jsonData.content);
           break;
         }
