@@ -30,14 +30,6 @@
     </div>
 
     <div>
-      <Router-link to="/postgame">
-        <button class="artXButton routerLink">
-          Post game
-        </button>
-      </Router-link>
-    </div>
-
-    <div>
       <button class="artButton" @click="logout()">
         Quit
       </button>
