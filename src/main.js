@@ -22,10 +22,10 @@ Vue.use(Toasted);
 
 import VueNativeSock from "vue-native-websocket";
 
-Vue.use(VueNativeSock, "ws://145.93.96.211:8082/ws/", {
+Vue.use(VueNativeSock, "ws://localhost:8082/ws/", {
   reconnection: true, // (Boolean) whether to reconnect automatically (false)
   reconnectionAttempts: 5, // (Number) number of reconnection attempts before giving up (Infinity),
-  reconnectionDelay: 3000 // (Number) how long to initially wait before attempting a new (1000)
+  reconnectionDelay: 3000, // (Number) how long to initially wait before attempting a new (1000)
 });
 
 // Install the authentication plugin here
@@ -34,13 +34,13 @@ Vue.use(Auth0Plugin, {
   clientId,
   audience,
   prompt,
-  onRedirectCallback: appState => {
+  onRedirectCallback: (appState) => {
     router.push(
       appState && appState.targetUrl
         ? appState.targetUrl
         : window.location.pathname
     );
-  }
+  },
 });
 
 Vue.use(BootstrapVue);
@@ -51,5 +51,5 @@ new Vue({
   router,
   store,
   vuetify,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
